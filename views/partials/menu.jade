@@ -1,0 +1,50 @@
+nav.navbar.navbar-trans.navbar-fixed-top(role="navigation")
+		.container
+			.navbar-header
+				button.navbar-toggle(type="button", data-toggle="collapse",data-target="#navbar-collapsible")
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand.text-danger(href="#")
+					i.fa.fa-road.fa-lg GAE System
+			.navbar-collapse.collapse#navbar-collapsible
+				ul.nav.navbar-nav.navbar-left
+					if isLogged
+						li
+							a(href="/home")
+								span.fa.fa-home  Home
+						li
+							a(href="#section2")
+								span.fa.fa-graduation-cap  Alunos
+						li
+							a(href="#")
+								span.fa.fa-tachometer  Instrutores
+						li
+							a(href="#")
+								span.fa.fa-book  Curso Teórico
+						li
+							a(href="#")
+								span.fa.fa-car  Aulas Práticas
+						li
+							a(href="/usuarios") 
+								span.fa.fa-users   Usuários
+						li
+							a(href="/logout")
+								span.fa.fa-sign-out  #{session.email} [Sair]
+						
+					else
+						li
+							a(href="/") Início
+						li
+							a(href="#section2") Sobre
+						li
+							a(href="#") Projetos
+						li
+							a(href="#") Contato
+						li
+							a(href="#") Tecnologias
+						li
+							a(href="#") Social
+						li &nbsp;
+block content

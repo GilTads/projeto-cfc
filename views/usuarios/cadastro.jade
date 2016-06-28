@@ -1,0 +1,55 @@
+extends ../layout
+block content
+		.container.nav-top
+				.panel.panel-default
+					.panel-heading.text-center
+						h3
+							span.fa.fa-user-plus  Cadastro de Funcionários  
+						
+					.panel-body
+						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/cadastro", method="post",role="form")
+							if messages.erro
+								.alert.alert-danger
+									each msg in messages.erro
+										b=msg
+										br
+								br
+							.row
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="text", name="nome",placeholder="Nome",value="#{usuario.nome || ''}", tabindex="1", required)
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="text", name="sobrenome",value="#{usuario.sobrenome || ''}",placeholder="Sobrenome", tabindex="2",required)
+							.form-group
+								input.form-control(type="email", name="email",value="#{usuario.email || ''}",placeholder="Email", tabindex="3",required)
+							.row
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="text", name="rg",value="#{usuario.rg || ''}", placeholder="RG", tabindex="4",required)
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control#cpf(type="text",name="cpf",value="#{usuario.cpf || ''}", placeholder="CPF", tabindex="5",required )
+							.row
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control.fone(type="text" name="fone",value="#{usuario.fone || ''}",placeholder="Fone Residencial", tabindex="6",required)
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control.fone(type="text", name="cel",value="#{usuario.cel || ''}", placeholder="Celular", tabindex="7",required)
+							.form-group
+								select(name="cargo", placeholder="Tipo", tabindex="8",required).form-control
+									option(value="", disabled selected) Área de Atuação
+									option(value="Intrutor") Instrução
+									option(value="Administração") Administração
+							.row
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="password", name="senha",placeholder="Senha" tabindex="9")
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="password", name="confirma_senha",placeholder="Confirmar Senha", tabindex="10")
+							button.btn.btn-danger.btn-lg.btn-block(type="submit") Cadastrar
+							h3
+								a(href="/home")
+									span.fa.fa-arrow-left   Voltar

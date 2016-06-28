@@ -1,0 +1,17 @@
+extends ../layout
+block content
+	div.container
+		div.page-header.text-cente
+		div.row
+			div.col-sm-6
+				div.well
+					h3
+						span.fa.fa-user  Olá, #{session.nome}
+					br
+					p 
+						span.fa.fa-key  <strong> Id de Sessão: </strong> #{session._id}
+					p
+						span.fa.fa-envelope <strong> Email:  </strong>  #{session.email}
+					a.btn.btn-danger.btn-sm(href="/logout") Sair
+
+

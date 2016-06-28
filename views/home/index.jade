@@ -1,0 +1,45 @@
+extends ../layout
+block content
+	section.container-fluid#section1
+		.v-center
+			h1.text-center GAE System
+			h2.text-center.lato.animate.slideInDown Um sistema <b>moderno</b> e exclusivo
+			p.text-center<br>
+			form(method="get", action="/login")
+				p.text-center<br>
+					button.btn.btn-danger.btn-lg.btn-huge.lato Acesse o sistema
+		a(href="#section2")
+			.scroll-down.bounceInDown.animated
+				span
+					i.fa.fa-angle-down.fa-2x
+	section.container-fluid#section2
+		.container.v-center
+			.row
+				.col-sm-4
+					.row
+						.col-sm-12.text-center
+							.panel.panel-default.slideInLeft.animate
+								.panel-heading#painel
+									h3 Robusto
+								.panel-body
+									p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum velit laudantium, assumenda, non alias impedit, ex dolore vitae, dignissimos tempora aut! Totam laborum dolores, tenetur incidunt repellat eum enim quod.
+									hr
+				.col-sm-4.text-center
+					.row
+						.col-sm-12.text-center
+							.panel.panel-default.slideInUp.animate
+								.panel-heading#painel
+									h3 Simples
+								.panel-body
+									p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum velit laudantium, assumenda, non alias impedit, ex dolore vitae, dignissimos tempora aut! Totam laborum dolores, tenetur incidunt repellat eum enim quod.
+									hr
+				.col-sm-4.text-center
+					.row
+						.col-sm-12.text-center
+							.panel.panel-default.slideInUp.animate
+								.panel-heading#painel
+									h3 Limpo
+								.panel-body
+									p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum velit laudantium, assumenda, non alias impedit, ex dolore vitae, dignissimos tempora aut! Totam laborum dolores, tenetur incidunt repellat eum enim quod.
+									hr
+	include ../partials/footer.jade

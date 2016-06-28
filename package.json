@@ -1,0 +1,27 @@
+{
+  "name": "projeto-cfc",
+  "version": "0.0.1",
+  "description": "projeto de conclusão do curso tads",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Gil Santos",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cpf_cnpj": "^0.1.1",
+    "express": "^4.14.0",
+    "express-flash": "0.0.2",
+    "express-load": "^1.1.15",
+    "express-session": "^1.13.0",
+    "express-validator": "^2.20.8",
+    "jade": "^1.11.0",
+    "moment": "^2.13.0",
+    "mongoose": "^4.5.2",
+    "morgan": "^1.7.0",
+    "static-favicon": "^2.0.0-alpha"
+  }
+}
