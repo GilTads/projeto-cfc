@@ -11,7 +11,7 @@
 			cel 		: {type:String, trin:true},
 			cpf 		: {type:String, trim:true, unique:true},
 			rg 			: {type:String, trim:true, unique:true},
-			cargo 		: {type:String},
+			setor 		: {type:String},
 			data_cad 	: {type:Date, default:Date.now}
 		});
 

@@ -29,7 +29,7 @@ module.exports = function(app){
 				modelo.cpf 		= req.body.cpf;
 				modelo.fone 	= req.body.fone;
 				modelo.cel 		= req.body.cel;
-				modelo.cargo 	= req.body.cargo;
+				modelo.setor 	= req.body.setor;
 
 				Usuario.findOne({'email' : modelo.email}, function(err,data){
 					if(data){
@@ -50,6 +50,27 @@ module.exports = function(app){
 			}else{
 				res.render('usuarios/cadastro', {usuario : req.body});
 			}
+		},
+		listar: function(req,res){
+			Usuario.findById(req.params.id, function(err, dados){
+				if(err){
+					req.flash('erro', 'Erro ao exibir usuário: '+err);
+					res.redirect('/usuarios');
+				}else{
+					res.render('usuarios/listar', {dados: dados});
+				}
+			});
+		},
+		excluir: function(req,res){
+			Usuario.remove({_id: req.params.id}, function(err){
+				if(err){
+					req.flash('erro', 'Erro ao excluir usuário: '+err);
+					res.redirect('/usuarios');
+				}else{
+					req.flash('info', 'Registro excluído com sucesso!');
+					res.redirect('/usuarios');
+				}
+			});
 		}
 	
 	}	

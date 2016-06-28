@@ -8,6 +8,9 @@ module.exports = function(app){
 			res.render('home/index');
 		},
 		home: function(req,res){
+			if(req.session.usuario.setor == 'Instrutor'){
+				res.send('Coitado de voce');
+			}else
 			res.render('home/home');
 		},
 		loginPage: function(req, res){
@@ -22,7 +25,6 @@ module.exports = function(app){
 			if(validacao(req,res)){
 				Usuario.findOne({'email': email}, function(err, data){
 					if(err){
-						console.log('Entrou aqui')
 						req.flash('erro', 'Erro ao acessar o sistema: ' + err);
 						res.redirect('/login');
 					}else if(!data){

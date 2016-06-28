@@ -4,12 +4,11 @@ head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(name="generator", content="Codeply")
-    script(src="https://use.fontawesome.com/af092653a1.js")
     link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
     link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
     link(rel='stylesheet', href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css")
     link(rel='stylesheet', href='/stylesheet/styles.css')
-    title= title
+    title GAE System
 body
     include ./partials/menu.jade
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
@@ -17,3 +16,4 @@ body
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js")
     script(src="/javascripts/mascaras.js")
     script(src="/javascripts/modal.js")
+    block scripts

@@ -20,7 +20,7 @@ module.exports = function(req,res){
 	var validaErros = req.validationErrors() || [];
 
 	if(req.body.senha != req.body.confirma_senha){
-		validateErros.push({msg: 'Senha não confere.'});
+		validaErros.push({msg: 'Senha não confere.'});
 	}
 
 	if(validaErros.length > 0){

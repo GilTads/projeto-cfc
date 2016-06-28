@@ -10,4 +10,11 @@ module.exports = function(app){
 
 	app.route('/usuarios')
 		.get(autenticar, usuario.index);
+
+
+	app.route('/usuarios/listar/:id')
+		.get(autenticar, usuario.listar);
+
+	app.route('/usuarios/excluir/:id')
+		.post(usuario.excluir);
 }
