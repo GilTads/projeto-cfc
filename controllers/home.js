@@ -27,13 +27,15 @@ module.exports = function(app){
 					if(err){
 						req.flash('erro', 'Erro ao acessar o sistema: ' + err);
 						res.redirect('/login');
-					}else if(!data){
-						req.flash('erro', 'Usuário não cadastrado!');
+					}else if((!data) || (!usuario.validPassword(senha, data.senha))){
+						//req.flash('erro', 'Usuário não cadastrado!');
+						req.flash('erro', 'Usuário ou senha inválidos!');
 						res.redirect('/login');
-					}else if(!usuario.validPassword(senha, data.senha)){
-						req.flash('erro', 'Senha não confere!');
-						res.redirect('/login');
-					}else {
+					// }else if(!usuario.validPassword(senha, data.senha)){
+					// 	req.flash('erro', 'Senha não confere!');
+					// 	res.redirect('/login');
+					// 
+						}else {
 
 						req.session.usuario = data;
 						res.redirect('/home');

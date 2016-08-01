@@ -1,6 +1,6 @@
 exports.notfound = function(req,res,next){
 	res.status(404);
-	res.render('not-found');
+	res.render('Opss, página não encontrada');
 };
 
 exports.serverError = function(err, req, res, next) {  

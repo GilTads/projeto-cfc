@@ -5,7 +5,7 @@ module.exports = function(app){
 
 
 	app.route('/cadastro')
-		.get(autenticar, usuario.cadastro)
+		.get(/*autenticar, */usuario.cadastro)
 		.post(usuario.create);
 
 	app.route('/usuarios')
