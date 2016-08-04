@@ -7,10 +7,18 @@ block content
 					h3 #{dados.nome} #{dados.sobrenome}
 					hr
 					p
+						span
+							b  RG: #{dados.rg}
+					p
+					p
+						span
+							b  CPF: #{dados.cpf}
+					p
+					p
 						span.fa.fa-envelope
 							b  Email: #{dados.email}
 					p
-						span.fa.fa-black-tie
+						span.fa.fa-bank
 							b  Cargo:  #{dados.setor}
 					p
 						span.fa.fa-phone
@@ -19,17 +27,17 @@ block content
 						span.fa.fa-calendar-times-o
 							b  Data de Cadastro: #{moment(dados.data_cad).format('DD/MM/YYYY HH:MM:ss')}
 					br
-					form(method="POST",action="/usuarios/excluir/#{dados._id}", role="form", id="excluir-form")
-						button(type="submit", class="btn btn-danger") Excluir
+					form(method="POST",action="/usuarios/excluir/#{dados._id}", role="form", id="excluir-user")
+						button(type="submit", class="btn btn-danger" id="myBtn") Excluir
 					br
 					a(href="/usuarios") Voltar
 block scripts
-	script(type="text/javascript").
-		$(function(){
-			$('#excluir-form').submit(function(){
-				var pergunta = confirm('Deseja realmente excluir?');
-				if(!pergunta){
-					return false;
-				}
-			});
-		});
+	//- script(type="text/javascript").
+	//- 	$(function(){
+	//- 		$('#excluir-user').submit(function(){
+	//- 			var pergunta = confirm('Deseja realmente excluir?');
+	//- 			if(!pergunta){
+	//- 				return false;
+	//- 			}
+	//- 		});
+	//- 	});

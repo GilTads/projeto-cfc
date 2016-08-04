@@ -10,6 +10,7 @@
 	   ,path 	     	= require('path')
 	   ,load 		 	= require('express-load')
 	   ,mongoose	 	= require('mongoose');
+	   // ,jqueryConfirm	= require('jquery-confirm');
 
 	var porta 	= 3000;
 
