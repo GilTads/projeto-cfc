@@ -8,9 +8,9 @@ module.exports = function(app){
 			res.render('home/index');
 		},
 		home: function(req,res){
-			if(req.session.usuario.setor == 'Instrutor'){ //A partir daqui darei as devidas permissões para os users
-				res.send('Coitado de voce');
-			}else
+			// if(req.session.usuario.setor == 'Instrutor'){ //A partir daqui darei as devidas permissões para os users
+			// 	res.send('Coitado de voce');
+			// }else
 			res.render('home/home');
 		},
 		loginPage: function(req, res){

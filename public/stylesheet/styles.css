@@ -23,6 +23,10 @@ a:hover {
     color:#111;
 }
 
+.alert{
+  text-align: center;
+}
+
 .nav-top{
   padding-top: 80px; 
 }

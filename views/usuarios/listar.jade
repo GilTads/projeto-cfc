@@ -28,7 +28,7 @@ block content
 							b  Data de Cadastro: #{moment(dados.data_cad).format('DD/MM/YYYY HH:MM:ss')}
 					br
 					form(method="POST",action="/usuarios/excluir/#{dados._id}", role="form", id="excluir-user")
-						button(type="submit", class="btn btn-danger" id="myBtn") Excluir
+						input(type="submit", class="btn btn-danger", id="myBtn", value="Excluir")
 					br
 					a(href="/usuarios") Voltar
 block scripts
