@@ -1,8 +1,8 @@
 extends ../layout
 block content
-	.container.nav-top
+	section.container.nav-top
 			.col-sm-6.col-sm-offset-3
-				.panel.panel-default
+				.panel.panel-default#borda
 					.panel-heading.text-center
 						h3
 							span.fa.fa-sign-in  Login
@@ -20,7 +20,7 @@ block content
 							.form-group
 								label Senha
 								input.form-control.input-lg(type="password", name="senha",required)
-							button.btn.btn-danger.btn-lg.btn-block(type="submit") Login
+							button.btn.btn-danger.btn-lg.btn-block#botao(type="submit") Login
 							hr
 							p
 								a(href="/")

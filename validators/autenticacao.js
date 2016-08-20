@@ -1,6 +1,6 @@
 module.exports = function(req,res){
 	req.assert('email', 'Email inválido.').isEmail();
-	req.assert('senha', 'A senha deve conter entre 6 e 12 caracteres.').len(6,12);
+	//req.assert('senha', 'A senha deve conter entre 6 e 12 caracteres.').len(6,12);
 
 	var validaErros = req.validationErrors() || [];
 

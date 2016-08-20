@@ -23,6 +23,11 @@ a:hover {
     color:#111;
 }
 
+#borda,#botao{
+  border-radius: 5px;
+}
+
+
 .alert{
   text-align: center;
 }
@@ -192,12 +197,11 @@ section {
 
 footer {
   background-color:#2b2b2b;
-    color:#ddd;
-    min-height:50px;
-    padding-top:20px;
-    padding-bottom:20px;
+  color:#ddd;
+  min-height:50px;
+  padding-top:20px;
+  padding-bottom:20px;
 }
-
 footer .nav>li>a {
     padding: 3px;
     color: #f44d3c;
