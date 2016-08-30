@@ -45,6 +45,18 @@ $(document).ready(function(){
           
     //   });
 
+    $('#listar-usuarios').dataTable({
+      "language": {
+        "lengthMenu": "Exibir _MENU_  usuários por página",
+        "info"      : "Mostrando página  _PAGE_ de _PAGE_",
+        "search"    : "Procurar",
+        "paginate"  : {
+          "previous": "Anterior",
+          "next"    : "Próxima"
+        }
+      }
+    });
+
 
     $('#myBtn').on('click', function(e){
       e.preventDefault();
