@@ -1,7 +1,7 @@
 # projeto-cfc
 
-#npm install
+==> npm install
 
-#node app.js
+==> node app.js
 
 Have a good test!
