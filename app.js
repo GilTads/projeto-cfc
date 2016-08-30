@@ -1,6 +1,6 @@
 	var express 	 	= require('express')
 	   ,logger 		 	= require('morgan')
-	   ,favicon 		= require('static-favicon')
+	   ,favicon 		= require('express-favicon')
 	   ,cookieParser 	= require('cookie-parser')
 	   ,bodyParser 	 	= require('body-parser')
 	   ,session 	 	= require('express-session')
@@ -24,7 +24,7 @@
 	});
 
 	var app = express();
-
+	app.use(favicon(__dirname + '/public/img/vol.ico'));	
 	//exibindo erros se houver
 	var erros = require('./middleware/erros');
 
@@ -32,7 +32,7 @@
 	app.set('views', path.join(__dirname,'views'));
 	app.set('view engine', 'jade');
 
-	app.use(favicon());
+	
 	app.use(logger('dev'));
 	app.use(bodyParser.urlencoded());
 	app.use(bodyParser.json());
