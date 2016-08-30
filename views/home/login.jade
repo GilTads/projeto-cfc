@@ -10,7 +10,7 @@ block content
 						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/autenticar", method="post")
 							if messages.erro
 								br
-								.alert.alert-danger
+								.alert.alert-danger#success-alert
 									each msg in messages.erro
 										b= msg
 										br
