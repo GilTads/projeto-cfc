@@ -45,6 +45,12 @@ $(document).ready(function(){
           
     //   });
 
+
+$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+});
+
+      // JQUERY TABLES 
     $('#listar-usuarios').dataTable({
       "language": {
         "lengthMenu"  : "Exibir _MENU_  usuários por página",
@@ -52,7 +58,7 @@ $(document).ready(function(){
         "search"      : "Procurar",
         "zeroRecords" : "Nenhum resultado encontrado",
         "infoEmpty"   : "Mostrando página _PAGE_ de _PAGE_",
-        "infoFiltered": "Filtrando a partir de um total de _MAX_ entradas",
+        "infoFiltered": ". Filtrando a partir de um total de _MAX_ entradas",
         "paginate"    : {
           "previous"  : "Anterior",
           "next"      : "Próxima"
@@ -61,6 +67,8 @@ $(document).ready(function(){
     });
 
 
+
+      //JQUERY CONFIRM
     $('#myBtn').on('click', function(e){
       e.preventDefault();
       $.confirm({

@@ -9,7 +9,7 @@
 			email 		: {type:String, trim:true, unique:true, index: true},
 			fone 		: {type:String, trim:true},
 			cel 		: {type:String, trin:true},
-			cpf 		: {type:String, trim:true, unique:true},
+			cpf 		: {type:String, trim:true, unique:true, index: true},
 			rg 			: {type:String, trim:true, unique:true},
 			setor 		: {type:String},
 			data_cad 	: {type:Date, default:Date.now}

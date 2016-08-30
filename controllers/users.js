@@ -35,6 +35,13 @@ module.exports = function(app){
 					if(data){
 						req.flash('erro', 'Email já cadastrado, tente outro.');
 						res.render('usuarios/cadastro', {usuario : modelo});
+					}
+				});
+
+				Usuario.findOne({'cpf' : modelo.cpf}, function(err, data){
+					if(data){
+						req.flash('erro', 'CPF já cadastrado.');
+						res.render('usuarios/cadastro', {usuario : modelo});
 					}else{
 						modelo.save(function(err){
 							if(err){
@@ -47,6 +54,7 @@ module.exports = function(app){
 						});
 					}
 				});
+
 			}else{
 				res.render('usuarios/cadastro', {usuario : req.body});
 			}

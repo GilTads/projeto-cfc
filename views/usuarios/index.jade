@@ -10,12 +10,12 @@ block content
 				br
 				br
 				if messages.erro
-					.alert.alert-danger
-						p #{message.erro}
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
 					br
 				if messages.info
-					.alert.alert-success
-						p #{message.info}
+					.alert.alert-success#success-alert
+						p #{messages.info}
 					br
 				if lista.length > 0
 					.table-responsive
