@@ -9,7 +9,6 @@ $(document).ready(function(){
   });
 
 
-$('#myModal').modal({'backdrop': 'static'});
 
   /* smooth scrolling sections */
   $('a[href*=#]:not([href=#])').click(function() {

@@ -46,6 +46,9 @@ $(document).ready(function(){
     //   });
 
 
+//$('#myModal').modal({'backdrop': 'static'});
+
+
 
 $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
     $("#success-alert").slideUp(500);
@@ -109,4 +112,6 @@ $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
           }
     });
   });
+
+    //$('#myModal').modal({'backdrop': 'static'});
 });

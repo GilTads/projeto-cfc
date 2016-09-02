@@ -5,8 +5,9 @@ exports.notfound = function(req,res,next){
 
 exports.serverError = function(err, req, res, next) {  
 	res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });  
+	res.render('error');
+    // res.render('error', {
+    //     message: err.message,
+    //     error: {}
+    // });  
 };

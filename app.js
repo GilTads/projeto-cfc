@@ -58,8 +58,8 @@
 		.into(app);
 
 	//tratando paginas de erro
-	// app.use(erros.notfound);
-	// app.use(erros.serverError);
+	app.use(erros.notfound);
+	app.use(erros.serverError);
 
 	app.listen(porta, function(){
 		console.log('Servidor node js ativo na porta '+ porta);

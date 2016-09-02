@@ -30,7 +30,7 @@ module.exports = function(app){
 					}else if((!data) || (!usuario.validPassword(senha, data.senha))){
 						//req.flash('erro', 'Usuário não cadastrado!');
 						req.flash('erro', 'Usuário ou senha inválidos!');
-						res.redirect('/login');
+						res.redirect('/login');// retorna o erro a página inicial
 					// }else if(!usuario.validPassword(senha, data.senha)){
 					// 	req.flash('erro', 'Senha não confere!');
 					// 	res.redirect('/login');

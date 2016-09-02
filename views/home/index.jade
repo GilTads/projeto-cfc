@@ -7,7 +7,7 @@ block content
 			p.text-center<br>
 			form(method="get", action="/login")
 				p.text-center<br>
-					button.btn.btn-danger.btn-lg.btn-huge.lato Acesse o sistema
+					button(type="submit").btn.btn-danger.btn-lg.btn-huge.lato#loginModal Acesse o sistema
 		a(href="#section2")
 			.scroll-down.bounceInDown.animated
 				span
@@ -42,6 +42,32 @@ block content
 								.panel-body
 									p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum velit laudantium, assumenda, non alias impedit, ex dolore vitae, dignissimos tempora aut! Totam laborum dolores, tenetur incidunt repellat eum enim quod.
 									hr
+	.modal.fade#myModal(tabindex="-1",role="dialog",aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss="modal", aria-hidden="true") x
+					h2.text-center
+						i.fa.fa-road  Login
+				.modal-body.row
+					h6.text-center PREENCHA O FORMULÁRIO ABAIXO
+					form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/autenticar", method="post")
+						if messages.erro
+							br
+							.alert.alert-danger#success-alert
+								each msg in messages.erro
+									b= msg
+									br
+						.form-group
+							input.form-control.input-lg(type="text", name="email", placeholder="Email", required)
+						.form-group
+							input.form-control.input-lg(type="password",name="senha", placeholder="Senha", required)
+						.form-group
+							button.btn.btn-danger.btn.btn-lg.btn-block(type="submit") Entrar
+						hr
+						p
+							a(href="/")
+								i.fa.fa-arrow-left   Voltar
 	//- footer
 	//- 	.container.text-right
 	//- 		.row
