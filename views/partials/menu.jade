@@ -6,8 +6,8 @@ nav.navbar.navbar-trans.navbar-fixed-top(role="navigation")
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand.text-danger(href="#")
-					i.fa.fa-road.fa-lg GAE System
+				a.navbar-brand.text-danger(href="/home")
+					i.fa.fa-road.fa-lg  GAE System
 			.navbar-collapse.collapse#navbar-collapsible
 				ul.nav.navbar-nav.navbar-left
 					if isLogged
@@ -21,17 +21,20 @@ nav.navbar.navbar-trans.navbar-fixed-top(role="navigation")
 							a(href="#")
 								span.fa.fa-tachometer  Instrutores
 						li
+							a(href="/veiculos")
+								span.fa.fa-car  Veículos
+						li
 							a(href="#")
 								span.fa.fa-book  Curso Teórico
 						li
 							a(href="#")
-								span.fa.fa-car  Aulas Práticas
+								span.fa.fa-road  Aulas Práticas
 						li
 							a(href="/usuarios") 
 								span.fa.fa-users   Usuários
 						li
 							a(href="/logout")
-								span.fa.fa-sign-out  #{session.email} [Sair]
+								span.fa.fa-sign-out  #{session.nome} [Sair]
 						
 					else
 						li
