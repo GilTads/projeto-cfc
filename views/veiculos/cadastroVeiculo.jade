@@ -7,7 +7,16 @@ block content
 							span.fa.fa-car  
 							&nbsp;
 							span.fa.fa-motorcycle
-							&nbsp; Veículos
+							&nbsp; Cadastro de Veículos
 						
 					.panel-body
-						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/cadastro", method="post", role="form")
+							if messages.erro
+								.alert.alert-danger
+									each msg in messages.erro
+										b=msg
+										br
+								br
+							.row
+								.form-group
+									input.form-control(type="text", name="nome", placeholder="Nome do Veículo", value="#{veiculo.nome || ''}", tabindex="1", required)

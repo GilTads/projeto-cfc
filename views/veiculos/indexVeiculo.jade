@@ -1,0 +1,35 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-car  Veículos
+			.panel-body
+				a.btn.btn-danger(href="/cadastroVeiculo") Cadastrar Veículo
+				br
+				br
+				if messages.erro
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
+					br
+				if messages.info
+					.alert.alert-success#success-alert
+						p #{messages.info}
+					br
+				if lista.length > 0
+					.table-responsive
+						table.table.table-striped#listar-usuarios
+							thead
+								tr
+									th Nome
+									th Placa
+									th Categoria
+							tbody
+								each valor in lista
+									tr
+										td #{valor.nome}
+										td #{valor.placa}
+										td #{valor.categoria}
+				else
+					p Nenhum registro encontrado.
