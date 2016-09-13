@@ -8,5 +8,6 @@ module.exports= function(app){
 
 	app.route('/cadastroVeiculo')
 		.get(veiculo.cadastro)
+		.post(veiculo.create)
 
 }

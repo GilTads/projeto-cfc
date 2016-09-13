@@ -16,4 +16,13 @@ $(document).ready(function(){
 
     $('#cpf').mask('000.000.000-00');
 
+
+
+// =============Placa de veículos============//
+
+	$('#placa').keyup(function(){
+		$(this).val($(this).val().toUpperCase());
+		$(this).mask('AAA - 9999');
+	});
+
 });

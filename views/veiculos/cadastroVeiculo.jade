@@ -10,13 +10,28 @@ block content
 							&nbsp; Cadastro de Veículos
 						
 					.panel-body
-						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/cadastro", method="post", role="form")
+						form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/cadastroVeiculo", method="post", role="form")
 							if messages.erro
-								.alert.alert-danger
+								.alert.alert-danger#success-alert.col-lg-8.col-lg-offset-2
 									each msg in messages.erro
 										b=msg
 										br
 								br
 							.row
-								.form-group
-									input.form-control(type="text", name="nome", placeholder="Nome do Veículo", value="#{veiculo.nome || ''}", tabindex="1", required)
+								.col-lg-8.col-lg-offset-2
+									.form-group
+										input.form-control(type="text", name="nome", placeholder="Nome do 	Veículo", value="#{veiculo.nome || ''}", tabindex="1", required)
+									.form-group
+										input.form-control#placa(type="text", name="placa", placeholder="Placa", value="#{veiculo.placa || ''}", tabindex="2", required)
+									.form-group
+										select.form-control(name="categoria",tabindex="3", required)
+											option(value="", disabled selected) Categoria
+											option(value="A") A - Moto
+											option(value="B") B - Carro
+											option(value="C") C - Caminhão
+											option(value="D") D - Ônibus
+											option(value="E") E - Carreta
+									button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="4", required) Cadastrar
+									h3
+										a(href="/veiculos")
+											span.fa.fa-arrow-left Voltar

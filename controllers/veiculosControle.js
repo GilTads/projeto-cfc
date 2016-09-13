@@ -19,8 +19,29 @@ module.exports = function(app){
 				}
 			});
 		},
-		create: function(){
+		create: function(req, res){
+			var modelo = new Veiculo();
+			modelo.nome = req.body.nome;
+			modelo.placa = req.body.placa;
+			modelo.categoria = req.body.categoria;
 
+			Veiculo.findOne({'placa' : modelo.placa}, function(err, data){
+				if(data){
+					req.flash('erro', 'Placa já cadastrada');
+					res.render('veiculos/cadastroVeiculo', {veiculo: modelo});
+				}else{
+					modelo.save(function(err){
+						if(err){
+							req.flash('erro', 'Erro ao cadastrar : ' + err);
+							req.render('veiculos/cadastroVeiculo', {veiculo: modelo});
+						}else{
+							req.flash('info', 'Veículo cadastrado com sucesso!');
+							res.redirect('/veiculos');
+						}
+					});
+				}
+			});
+			// res.render('veiculos/cadastroVeiculo', {veiculo: req.body});
 		}
 	}
 

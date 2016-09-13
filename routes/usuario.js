@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	var usuario    = app.controllers.users;
+	var usuario    = app.controllers.usuariosControle;
 	var autenticar = require('../middleware/autenticar');
 
 
