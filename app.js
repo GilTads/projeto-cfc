@@ -24,7 +24,7 @@
 	});
 
 	var app = express();
-	app.use(favicon(__dirname + '/public/img/vol.ico'));	
+	app.use(favicon(__dirname + '/public/img/road.ico'));	
 	//exibindo erros se houver
 	var erros = require('./middleware/erros');
 
