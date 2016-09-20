@@ -1,0 +1,19 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h2 Atualizar Usuário
+				br
+				br
+				if messages.erro
+					.alert.alert-danger
+						each msg in messages.erro
+							b= msg
+							br
+					br
+			.panel-body
+				form(method="POST")
+					.form-group
+						label Nome
+						input.form-control(type="text", name="nome", placeholder="Nome", value="#{usuario.nome}", autofocus, required)

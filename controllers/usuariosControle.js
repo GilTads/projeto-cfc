@@ -69,6 +69,17 @@ module.exports = function(app){
 				}
 			});
 		},
+
+		editar: function(req, res){
+			Usuario.findById(req.params.id, function(err, data){
+				if(err){
+					req.flash('erro', 'Erro ao editar: '+err);
+					res.redirect('usuarios');
+				}else{
+					res.render('usuarios/editar', {usuario: data});
+				}
+			});
+		},
 		excluir: function(req,res){
 			Usuario.remove({_id: req.params.id}, function(err){
 				if(err){

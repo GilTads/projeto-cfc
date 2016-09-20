@@ -15,6 +15,9 @@ module.exports = function(app){
 	app.route('/usuarios/listar/:id')
 		.get(autenticar, usuario.listar);
 
+	app.route('/usuarios/editar/:id')
+		.get(usuario.editar)
+
 	app.route('/usuarios/excluir/:id')
 		.post(usuario.excluir);
 }
