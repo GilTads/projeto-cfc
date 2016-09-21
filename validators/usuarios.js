@@ -24,7 +24,9 @@ module.exports = function(req,res){
 	if(req.body.senha != req.body.confirma_senha){
 		validaErros.push({msg: 'Senha não confere.'});
 	}
-	// if(!CPF.isValid(cpf)){ ////////ATIVAR PARA VALIDAR CPF
+
+	//====================DESCOMENTAR PARA VALIDAR CPF =============================//
+	// if(!CPF.isValid(cpf)){ 
 	// 	validaErros.push({msg: 'CPF inválido!'});
 	// }
 

@@ -3,17 +3,53 @@ block content
 	section.container.nav-top
 		.panel.panel-default
 			.panel-heading.text-center
-				h2 Atualizar Usuário
-				br
-				br
-				if messages.erro
-					.alert.alert-danger
-						each msg in messages.erro
-							b= msg
-							br
-					br
+				h3
+					span.fa.fa-pencil &nbsp; Atualizar Usuário
 			.panel-body
-				form(method="POST")
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/usuarios/editar/#{usuario._id}", method="POST",role="form")
+					if messages.erro
+						.alert.alert-danger
+							each msg in messages.erro
+								b=msg
+								br
+						br
+					.row
+						.col-xs-12.col-sm-6.col-md-6		
+							.form-group
+								label Nome
+								input.form-control(type="text", name="nome",placeholder="Nome",value="#{usuario.nome || ''}", tabindex="1", required)
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label Sobrenome
+								input.form-control(type="text", name="sobrenome",value="#{usuario.sobrenome || ''}",placeholder="Sobrenome", tabindex="2",required)
 					.form-group
-						label Nome
-						input.form-control(type="text", name="nome", placeholder="Nome", value="#{usuario.nome}", autofocus, required)
+						label Email
+						input.form-control(type="email", name="email",value="#{usuario.email || ''}",placeholder="Email", tabindex="3",required)
+					.row
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								Label RG
+								input.form-control(type="text", name="rg",value="#{usuario.rg || ''}", placeholder="RG", tabindex="4",required)
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label CPF
+								input.form-control#cpf(type="text",name="cpf",value="#{usuario.cpf || ''}", placeholder="CPF", tabindex="5",required)
+					.row
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label Fone
+								input.form-control.fone(type="text" name="fone",value="#{usuario.fone || ''}",placeholder="Fone Residencial", tabindex="6",required)
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label Cel
+								input.form-control.fone(type="text", name="cel",value="#{usuario.cel || ''}", placeholder="Celular", tabindex="7",required)
+					.form-group
+						label Área de Trabalho
+						select(name="setor", placeholder="Setor de Atuação", tabindex="8",required).form-control
+							option(value="", disabled selected) Escolha
+							option(value="Instrutor") Instrução
+							option(value="Administração") Administração
+					button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="11") Atualizar
+					h3
+						a(href="/usuarios")
+							span.fa.fa-arrow-left   Voltar

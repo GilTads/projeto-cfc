@@ -17,6 +17,8 @@ module.exports = function(app){
 
 	app.route('/usuarios/editar/:id')
 		.get(usuario.editar)
+		.post(usuario.update);
+
 
 	app.route('/usuarios/excluir/:id')
 		.post(usuario.excluir);

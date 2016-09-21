@@ -80,14 +80,54 @@ module.exports = function(app){
 				}
 			});
 		},
+		update: function(req, res){
+			if(validacao(req, res)){
+				Usuario.findById(req.params.id, function(err, data){
+					console.log('ID: '+ req.params.id);
+					var modelo		 = data;
+					modelo.nome 	 = req.body.nome;
+					modelo.sobrenome = req.body.sobrenome; 
+					modelo.email 	 = req.body.email;
+					modelo.rg 		 = req.body.rg;
+					modelo.cpf 		 = req.body.cpf;
+					modelo.fone 	 = req.body.fone;
+					modelo.cel 		 = req.body.cel;
+					modelo.setor 	 = req.body.setor;
+
+					modelo.save(function(err){
+						if(err){
+							req.flash('erro', 'Erro ao atualizar os dados: ' + err);
+						}// VERIFICA SE O USUARIO EDITADO É O MESMO DA SESSÃO. SE FOR ATUALIZA A SESSÃO
+						else{
+							if(req.session.usuario._id == req.params.id){
+								req.session.usuario = data;
+								res.redirect('/usuarios');
+							}else{
+								req.flash('info', 'Registro atualizado com sucesso!');
+								res.redirect('/usuarios');
+							}
+						}
+					});
+				});
+			}else{
+				res.render('usuarios/editar/:id', {usuario: req.body});
+			}
+		},
+
 		excluir: function(req,res){
 			Usuario.remove({_id: req.params.id}, function(err){
 				if(err){
 					req.flash('erro', 'Erro ao excluir usuário: '+err);
 					res.redirect('/usuarios');
-				}else{
-					req.flash('info', 'Registro excluído com sucesso!');
-					res.redirect('/usuarios');
+				}// VERIFICA SE O USUARIO EDITADO É O MESMO DA SESSÃO. SE FOR ENCERRA A SESSÃO
+				else{
+					if(req.session.usuario._id == req.params.id){
+						req.session.destroy();
+						res.redirect('/login');
+					}else{
+						req.flash('info', 'Registro excluído com sucesso!');
+						res.redirect('/usuarios');
+					}
 				}
 			});
 		}
