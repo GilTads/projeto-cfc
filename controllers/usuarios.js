@@ -119,7 +119,7 @@ module.exports = function(app){
 				if(err){
 					req.flash('erro', 'Erro ao excluir usuário: '+err);
 					res.redirect('/usuarios');
-				}// VERIFICA SE O USUARIO EDITADO É O MESMO DA SESSÃO. SE FOR ENCERRA A SESSÃO
+				}// VERIFICA SE O USUARIO EXCLUÍDO É O MESMO DA SESSÃO. SE FOR ENCERRA A SESSÃO
 				else{
 					if(req.session.usuario._id == req.params.id){
 						req.session.destroy();

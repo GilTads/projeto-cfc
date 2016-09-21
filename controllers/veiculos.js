@@ -5,7 +5,7 @@ module.exports = function(app){
 	var veiculoController = {
 
 		cadastro: function(req, res){
-			res.render('veiculos/cadastroVeiculo', {veiculo : new Veiculo()});
+			res.render('veiculos/cadastro-veiculo', {veiculo : new Veiculo()});
 		},
 
 		index: function(req,res){
@@ -15,7 +15,7 @@ module.exports = function(app){
 					req.redirect('/veiculos');
 				}
 				else{
-					res.render('veiculos/indexVeiculo', {lista : dados});
+					res.render('veiculos/index-veiculo', {lista : dados});
 				}
 			});
 		},

@@ -1,6 +1,6 @@
 module.exports= function(app){
 
-	var veiculo = app.controllers.veiculosControle;
+	var veiculo = app.controllers.veiculos;
 	var autenticar = require('../middleware/autenticar');
 
 	app.route('/veiculos')
