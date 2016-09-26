@@ -12,6 +12,10 @@
 			cpf 		: {type:String, trim:true, unique:true, index: true},
 			rg 			: {type:String, trim:true, unique:true},
 			setor 		: {type:String},
+			instrutor	:{
+				credencial: {type: String},
+				categoria : {type: String}
+			},
 			data_cad 	: {type:Date, default:Date.now}
 		});
 

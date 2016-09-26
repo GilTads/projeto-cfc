@@ -23,6 +23,18 @@ a:hover {
     color:#111;
 }
 
+#onlyInstrutor{
+  display: none;
+}
+
+.voltar{
+  float: right;
+}
+
+.cad{
+  float:left;
+}
+
 #borda,#botao{
   border-radius: 5px;
 }

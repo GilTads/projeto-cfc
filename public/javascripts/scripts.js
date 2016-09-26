@@ -48,7 +48,13 @@ $(document).ready(function(){
 
 //$('#myModal').modal({'backdrop': 'static'});
 
-
+$('input:radio').change( function(){
+  if(this.value == "Instrutor"){
+    $("#onlyInstrutor").fadeIn('slow');
+  }else if(this.value == "Administrador"){
+    $("#onlyInstrutor").fadeOut('slow');
+  }
+});
 
 $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
     $("#success-alert").slideUp(2000);

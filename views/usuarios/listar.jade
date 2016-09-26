@@ -26,6 +26,10 @@ block content
 					p
 						span.fa.fa-calendar-times-o
 							b  Data de Cadastro: #{moment(dados.data_cad).format('DD/MM/YYYY HH:MM:ss')}
+					if (dados.instrutor != {})
+						p
+							span
+								b Credencial:  #{dados.instrutor.credencial}
 					br
 					form(method="POST",action="/usuarios/excluir/#{dados._id}", role="form", id="excluir-user")
 						input(type="submit", class="btn btn-danger", id="myBtn", value="Excluir")

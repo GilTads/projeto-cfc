@@ -37,19 +37,35 @@ block content
 								.col-xs-12.col-sm-6.col-md-6
 									.form-group
 										input.form-control.fone(type="text", name="cel",value="#{usuario.cel || ''}", placeholder="Celular", tabindex="7",required)
-							.form-group
-								select(name="setor", placeholder="Setor de Atuação", tabindex="8",required).form-control
-									option(value="", disabled selected) Escolha
-									option(value="Instrutor") Instrução
-									option(value="Administração") Administração
+							.row
+								.col-xs-12.col-sm-6.col-md-6
+									.radio-inline
+										input(type="radio", name="optradio", value="Administrador", tabindex="8", required)
+										label Administrador
+								.col-xs-12.col-sm-6.col-md-6
+									.radio-inline
+										input(type="radio", name="optradio", value="Instrutor", tabindex="9", required)
+										label Instrutor
+							.row#onlyInstrutor
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="text", name="credencial", value="", placeholder="Credencial")
+								.col-xs-12.col-sm-6.col-md-6
+									.form-group
+										input.form-control(type="text", name="categoria", value="", placeholder="Categoria")
+							//- .form-group
+							//- 	select(name="setor", placeholder="Setor de Atuação", tabindex="8",required).form-control
+							//- 		option(value="", disabled selected) Escolha
+							//- 		option(value="Instrutor") Instrução
+							//- 		option(value="Administração") Administração
 							.row
 								.col-xs-12.col-sm-6.col-md-6
 									.form-group
-										input.form-control(type="password", name="senha",placeholder="Senha" tabindex="9")
+										input.form-control(type="password", name="senha",placeholder="Senha" tabindex="10")
 								.col-xs-12.col-sm-6.col-md-6
 									.form-group
-										input.form-control(type="password", name="confirma_senha",placeholder="Confirmar Senha", tabindex="10")
-							button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="11") Cadastrar
+										input.form-control(type="password", name="confirma_senha",placeholder="Confirmar Senha", tabindex="11")
+							button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="12") Cadastrar
 							h3
 								a(href="/usuarios")
 									span.fa.fa-arrow-left   Voltar

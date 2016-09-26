@@ -29,7 +29,9 @@ module.exports = function(app){
 				modelo.cpf 		= req.body.cpf;
 				modelo.fone 	= req.body.fone;
 				modelo.cel 		= req.body.cel;
-				modelo.setor 	= req.body.setor;
+				modelo.setor 	= req.body.optradio;
+				modelo.instrutor.credencial= req.body.credencial;
+				modelo.instrutor.categoria = req.body.categoria;
 
 				Usuario.findOne({'email' : modelo.email}, function(err,data){
 					if(data){
@@ -66,6 +68,7 @@ module.exports = function(app){
 					res.redirect('/usuarios');
 				}else{
 					res.render('usuarios/listar', {dados: dados});
+					console.log(dados);
 				}
 			});
 		},
@@ -92,7 +95,7 @@ module.exports = function(app){
 					modelo.cpf 		 = req.body.cpf;
 					modelo.fone 	 = req.body.fone;
 					modelo.cel 		 = req.body.cel;
-					modelo.setor 	 = req.body.setor;
+					modelo.setor 	 = req.body.optradio;
 
 					modelo.save(function(err){
 						if(err){

@@ -5,7 +5,8 @@ module.exports = function(app){
 
 
 	app.route('/cadastro')
-		.get(/*autenticar, */usuario.cadastro)
+		// DESCOMENTAR O '/autenticar' PARA CADASTRAR SOMENTE QUANDO LOGADO
+		.get(/*autenticar, */usuario.cadastro) 
 		.post(usuario.create);
 
 	app.route('/usuarios')
