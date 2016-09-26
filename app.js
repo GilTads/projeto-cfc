@@ -33,7 +33,7 @@
 	app.set('view engine', 'jade');
 
 	
-	app.use(logger('dev'));
+	app.use(logger('dev')); // Exexuta os logs somente em modo de desenvolvimento
 	app.use(bodyParser.urlencoded());
 	app.use(bodyParser.json());
 	app.use(expressValidator());
