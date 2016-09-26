@@ -34,8 +34,8 @@
 
 	
 	app.use(logger('dev')); // Exexuta os logs somente em modo de desenvolvimento
-	app.use(bodyParser.urlencoded());
-	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded()); //Trabalha com req e res de urls
+	app.use(bodyParser.json());// Trabalha com req e res de json
 	app.use(expressValidator());
 	app.use(cookieParser());
 	app.use(session({

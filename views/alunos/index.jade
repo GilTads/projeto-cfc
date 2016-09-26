@@ -1,0 +1,51 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-users  Alunos
+			.panel-body
+				a.btn.btn-danger(href="") Cadastrar
+				br
+				br
+				if messages.erro
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
+					br
+				if messages.info
+					.alert.alert-success#success-alert
+						p #{messages.info}
+					br
+				if lista.length > 0
+					.table-responsive
+						table.table.table-striped#listar-usuarios 
+							thead
+								tr
+									th Nome:
+									th Renach:
+									th CPF:
+									th RG:
+									th Cel
+									th Fone Res.
+									th Fone Opc.
+									th Visualizar
+									th Editar
+							tbody
+								each valor in lista
+									tr
+										td #{valor.nome}
+										td #{valor.renach}
+										td #{valor.cpf}
+										td #{valor.rg}
+										td #{valor.telefones.cel}
+										td #{valor.telefones.res}
+										td #{valor.telefones.opc}
+										td 
+											//- a.btn(href="/usuarios/listar/#{valor._id}")
+											span.glyphicon.glyphicon-search
+										td 
+											//- a.btn(href="/usuarios/editar/#{valor._id}")
+											span.glyphicon.glyphicon-pencil
+				else
+					p Nenhum registro encontrado!
