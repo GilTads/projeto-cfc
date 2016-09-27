@@ -48,6 +48,11 @@ $(document).ready(function(){
 
 //$('#myModal').modal({'backdrop': 'static'});
 
+
+
+new dgCidadesEstados({ estado: document.getElementById('estado'), cidade: document.getElementById('cidade') });
+
+
 $('input:radio').change( function(){
   if(this.value == "Instrutor"){
     $("#onlyInstrutor").fadeIn('slow');

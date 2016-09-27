@@ -1,0 +1,82 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-user-plus  Cadastro de Alunos	
+			.panel-body
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/cadastro/aluno", method="post",role="form")
+					if messages.erro
+						.alert.alert-danger
+							each msg in messages.erro
+								b=msg
+								br
+						br
+					.row
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								input.form-control(type="text", name="nome",placeholder="Nome",value="#{aluno.nome || ''}", tabindex="1", required)
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								input.form-control(type="email", name="email", placeholder="Email", value="#{aluno.email || ''}", tabindex="2", required)
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								input.form-control(type="text", name="renach", placeholder="RENACH", value="#{aluno.renach || ''}", tabindex="3", required)
+					.row
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control(type="text", name="rg", placeholder="RG", value="#{aluno.rg || ''}", tabindex="4", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control#cpf(type="text", name="cpf", placeholder="CPF", value="#{aluno.cpf || ''}", tabindex="5", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								select.form-control(name="sexo", tabindex="6", required)
+									option(value="", disabled selected) Sexo
+									option(value="masculino") Masculino
+									option(value="feminino")  Feminino
+					.row
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control(type="text", name="idade", placeholder="Idade", value="#{aluno.idade || ''}", tabindex="7", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control(type="text", name="pai", placeholder="Nome do Pai", value="#{aluno.pais.pai || ''}", tabindex="8", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control(type="text", name="mae", placeholder="Nome da Mãe", value="#{aluno.pais.mae || ''}", tabindex="9", required)
+					.row
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control.fone(type="text", name="res", placeholder="Fone Residencial", value="#{aluno.telefones.res || ''}", tabindex="10", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control.fone(type="text", name="cel", placeholder="Fone Celular", value="#{aluno.telefones.cel || ''}", tabindex="11", required)
+						.col-xs-12.col-sm-6.col-md-4
+							.form-group
+								input.form-control.fone(type="text", name="opc", placeholder="Fone Opcional", value="#{aluno.telefones.opc || ''}", tabindex="12", required)
+					.row
+						.col-xs-12.col-sm-6.col-md-9
+							.form-group
+								input.form-control(type="text", name="rua", placeholder="Nome da Rua", value="#{aluno.endereco.rua || ''}", tabindex="13", required)
+						.col-xs-12.col-sm-6.col-md-2
+							.form-group
+								input.form-control(type="text", name="numero", placeholder="Nº", value="#{aluno.endereco.numero || ''}", tabindex="14", required)
+					.row
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								input.form-control(type="text", name="bairro", value="#{aluno.endereco.bairro || ''}", placeholder="Bairro", tabindex="15", required)
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								input.form-control#cep(type="text", name="cep", value="#{aluno.endereco.cep || ''}", placeholder="CEP", tabindex="16", required)
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								select.form-control#estado(type="text", name="uf", placeholder="UF", value="#{aluno.endereco.uf || ''}", tabindex="17", required)
+						.col-xs-12.col-sm-6.col-md-3
+							.form-group
+								select.form-control#cidade(type="text", name="cidade", value="#{aluno.endereco.cidade || ''}", placeholder="Cidade", tabindex="18", required)
+					button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="") Cadastrar
+					h3
+						a(href="/alunos")
+							span.fa.fa-arrow-left   Voltar

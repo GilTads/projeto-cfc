@@ -5,7 +5,7 @@ module.exports = function(app){
 
 	var UsuarioController = {
 		cadastro: function(req,res){
-			res.render('usuarios/cadastro', {usuario : new Usuario()});
+			res.render('usuarios/cadastrar', {usuario : new Usuario()});
 		},
 		index: function(req,res){
 			Usuario.find(function(err,dados){
@@ -36,19 +36,19 @@ module.exports = function(app){
 				Usuario.findOne({'email' : modelo.email}, function(err,data){
 					if(data){
 						req.flash('erro', 'Email já cadastrado, tente outro.');
-						res.render('usuarios/cadastro', {usuario : modelo});
+						res.render('usuarios/cadastrar', {usuario : modelo});
 					}
 				});
 
 				Usuario.findOne({'cpf' : modelo.cpf}, function(err, data){
 					if(data){
 						req.flash('erro', 'CPF já cadastrado.');
-						res.render('usuarios/cadastro', {usuario : modelo});
+						res.render('usuarios/cadastrar', {usuario : modelo});
 					}else{
 						modelo.save(function(err){
 							if(err){
 								req.flash('erro', 'Erro ao cadastrar: '+err);
-								res.render('usuarios/cadastro', {usuario : req.body});
+								res.render('usuarios/cadastrar', {usuario : req.body});
 							}else {
 								req.flash('info', 'Usuário cadastrado com sucesso!');
 								res.redirect('/usuarios');
@@ -58,7 +58,7 @@ module.exports = function(app){
 				});
 
 			}else{
-				res.render('usuarios/cadastro', {usuario : req.body});
+				res.render('usuarios/cadastrar', {usuario : req.body});
 			}
 		},
 		listar: function(req,res){
