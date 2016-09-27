@@ -50,7 +50,6 @@ $(document).ready(function(){
 
 
 
-new dgCidadesEstados({ estado: document.getElementById('estado'), cidade: document.getElementById('cidade') });
 
 
 $('input:radio').change( function(){
@@ -124,5 +123,10 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
     });
   });
 
+
+new dgCidadesEstados({ 
+  estado: document.getElementById('estado')
+  ,cidade: document.getElementById('cidade')
+ });
     //$('#myModal').modal({'backdrop': 'static'});
 });
