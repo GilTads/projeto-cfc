@@ -54,9 +54,9 @@ $(document).ready(function(){
 
 $('input:radio').change( function(){
   if(this.value == "Instrutor"){
-    $("#onlyInstrutor").fadeIn('slow');
+    $(".onlyInstrutor").fadeIn('slow');
   }else if(this.value == "Administrador"){
-    $("#onlyInstrutor").fadeOut('slow');
+    $(".onlyInstrutor").fadeOut('slow');
   }
 });
 

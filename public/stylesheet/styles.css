@@ -23,7 +23,7 @@ a:hover {
     color:#111;
 }
 
-#onlyInstrutor{
+.onlyInstrutor{
   display: none;
 }
 
