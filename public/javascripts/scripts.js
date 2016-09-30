@@ -52,10 +52,10 @@ $(document).ready(function(){
 
 
 /* AULAS/INDEX_PRATICA -  TROCA BOTÕES DE LIMPAR INPUT COM BUSCA ALUNO*/
-if($('#alunoInput').val()){
-  $('#buscarAluno').hide();
-  $('#limpar').show();
-}
+// if($('#alunoInput').val()){
+//   $('#buscarAluno').hide();
+//   $('#limpar').show();
+// }
 
 
 /* No campo de cadastro de funcionarios adiciona inputs a mais caso for instrutor*/

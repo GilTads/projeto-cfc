@@ -18,7 +18,7 @@ module.exports = function(app){
 						
 					// });
 					// res.render('aulas/index_pratica', {aluno: alunos, instrutor: instrutores});
-					res.render('aulas/index_pratica', {aluno: alunos});
+					res.render('aulas/index_pratica', {aluno: alunos, aluno_id: ''});
 				}
 			});
 			
@@ -29,7 +29,10 @@ module.exports = function(app){
 				if(err){
 					req.redirect('/home');
 				}else{
-					res.render('aulas/index_pratica', {aluno: dados});
+					Aluno.find(function(err, alunos){
+						res.render('aulas/index_pratica', {aluno_id: dados, aluno: alunos});
+					});
+					
 				}
 				
 			});
