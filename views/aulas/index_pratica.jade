@@ -1,4 +1,6 @@
 extends ../layout
+include ../partials/instrutorModal.jade
+include ../partials/modalTables.jade
 block content
 	section.container.nav-top
 		.panel.panel-default
@@ -26,14 +28,13 @@ block content
 							.col-xs-3.col-sm-3.col-md-3
 								.form-group#buscarAluno
 									a.btn.btn-danger(data-toggle="modal", data-target="#alunoModal") Buscar Aluno
-							//- .col-xs-3.col-sm-3.col-md-3
-							//- 	.form-group
-							//- 		input.form-control#alunoInput(type="text", name="aluno",value="#{instrutor.nome || ''}", disabled)
-							//- .col-xs-3.col-sm-3.col-md-3
-							//- 	.form-group
-							//- 		a.btn.btn-danger(data-toggle="modal", data-target="#instrutorModal") Buscar Instrutor
-							.form-group#limpar
-									a.btn.btn-danger(href="/aulas/praticas") Limpar
+							.col-xs-3.col-sm-3.col-md-3
+								.form-group
+									input.form-control#alunoInput(type="text", name="aluno",value="#{instrutor_id.nome || ''}", disabled)
+							.col-xs-3.col-sm-3.col-md-3
+								.form-group
+									a.btn.btn-danger(data-toggle="modal", data-target="#instrutorModal") Buscar Instrutor
+							
 									
 									
 						
@@ -48,60 +49,3 @@ block content
 					.tab-pane.fade#menu3
 						h3 Settings
 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum dicta adipisci consectetur aspernatur, eius necessitatibus voluptatem qui vero soluta magnam harum quod nemo pariatur impedit a vel itaque. Asperiores.
-
-
-	.modal.fade#alunoModal(tabindex="-1",role="dialog",aria-labelledby="alunoModal", aria-hiden="true")
-		.modal-dialog.modal-md
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal", aria-label="Close")
-						span(aria-hiden="true") &times;
-					h4.modal-title#alunoModalLabel Alunos
-				.modal-body
-					if aluno.length > 0
-						.table-responsive
-							table.table.table-striped#listar-usuarios
-								thead
-									tr
-										th Nome
-										th CPF
-										th Selecionar
-								tbody
-									each dados in aluno
-										tr
-											td #{dados.nome}
-											td #{dados.cpf}
-											td
-												a.btn(href="/aulas/praticas/#{dados._id}")
-													span.glyphicon.glyphicon-search
-				.modal-footer
-					button.btn.btn-secondary(data-dismiss="modal") Close
-
-
-
-	//- .modal.fade#instrutorModal(tabindex="-1",role="dialog",aria-labelledby="instrutorModal", aria-hiden="true")
-	//- 	.modal-dialog.modal-md
-	//- 		.modal-content
-	//- 			.modal-header
-	//- 				button.close(type="button",data-dismiss="modal", aria-label="Close")
-	//- 					span(aria-hiden="true") &times;
-	//- 				h4.modal-title#instrutorModalLabel Instrutor
-	//- 			.modal-body
-	//- 				if instrutor.length > 0
-	//- 					.table-responsive
-	//- 						table.table.table-striped#listar-usuarios
-	//- 							thead
-	//- 								tr
-	//- 									th Nome
-	//- 									th CPF
-	//- 									th Selecionar
-	//- 							tbody
-	//- 								each data in instrutor
-	//- 									tr
-	//- 										td #{data.nome}
-	//- 										td #{data.cpf}
-	//- 										td
-	//- 											a.btn(href="/aulas/praticas/#{data._id}")
-	//- 												span.glyphicon.glyphicon-search
-	//- 			.modal-footer
-	//- 				button.btn.btn-secondary(data-dismiss="modal") Close

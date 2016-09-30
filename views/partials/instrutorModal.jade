@@ -1,0 +1,28 @@
+.modal.fade#instrutorModal(role="dialog",aria-labelledby="instrutorModal", aria-hiden="true")
+	.modal-dialog.modal-md
+		.modal-content
+			.modal-header
+				button.close(type="button",data-dismiss="modal", aria-label="Close")
+					span(aria-hiden="true") &times;
+				h4.modal-title#instrutorModalLabel Alunos
+			.modal-body
+				if lista_instrutor.length > 0
+					.table-responsive
+						table.table.table-striped#listar-usuarios
+							thead
+								tr
+									th Nome
+									th CPF
+									th Credencial
+									th Selecionar
+							tbody
+								each dados in lista_instrutor
+									tr
+										td #{dados.nome}
+										td #{dados.cpf}
+										td #{dados.credencial}
+										td
+											a.btn(href="/aulas/praticas/#{dados._id}")
+												span.glyphicon.glyphicon-search
+			.modal-footer
+				button.btn.btn-secondary(data-dismiss="modal") Close

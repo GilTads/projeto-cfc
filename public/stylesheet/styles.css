@@ -23,13 +23,6 @@ a:hover {
     color:#111;
 }
 
-.onlyInstrutor{
-  display: none;
-}
-
-#limpar{
-  display: none;
-}
 
 .voltar{
   float: right;

@@ -1,0 +1,33 @@
+.modal.fade#alunoModal(role="dialog",aria-labelledby="alunoModal", aria-hiden="true")
+	.modal-dialog.modal-md
+		.modal-content
+			.modal-header
+				button.close(type="button",data-dismiss="modal", aria-label="Close")
+					span(aria-hiden="true") &times;
+				h4.modal-title#alunoModalLabel Alunos
+			.modal-body
+				if lista_aluno.length > 0
+					.table-responsive
+						table.table.table-striped#listar-usuarios
+							thead
+								tr
+									th Nome
+									th CPF
+									th RENACH
+									th Selecionar
+							tbody
+								each dados in lista_aluno
+									tr
+										td #{dados.nome}
+										td #{dados.cpf}
+										td #{dados.renach}
+										td
+											a.btn(href="/aulas/praticas/#{dados._id}")
+												span.glyphicon.glyphicon-search
+			.modal-footer
+				button.btn.btn-secondary(data-dismiss="modal") Close
+
+	
+
+
+
