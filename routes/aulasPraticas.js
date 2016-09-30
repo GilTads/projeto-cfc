@@ -5,4 +5,7 @@ module.exports = function(app){
 
 	app.route('/aulas/praticas')
 		.get(autenticar, aula.index);
+
+	app.route('/aulas/praticas/:aluno_id')
+		.get(aula.pegar)
 }

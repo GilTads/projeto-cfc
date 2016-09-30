@@ -51,7 +51,14 @@ $(document).ready(function(){
 
 
 
+/* AULAS/INDEX_PRATICA -  TROCA BOTÕES DE LIMPAR INPUT COM BUSCA ALUNO*/
+if($('#alunoInput').val()){
+  $('#buscarAluno').hide();
+  $('#limpar').show();
+}
 
+
+/* No campo de cadastro de funcionarios adiciona inputs a mais caso for instrutor*/
 $('input:radio').change( function(){
   if(this.value == "Instrutor"){
     $("#onlyInstrutor").fadeIn('slow');
@@ -79,6 +86,9 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
         }
       }
     });
+
+
+ 
 
 
 
@@ -128,5 +138,6 @@ new dgCidadesEstados({
   estado: document.getElementById('estado')
   ,cidade: document.getElementById('cidade')
  });
-    //$('#myModal').modal({'backdrop': 'static'});
+
+
 });
