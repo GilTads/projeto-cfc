@@ -61,9 +61,9 @@ if($('#alunoInput').val()){
 /* No campo de cadastro de funcionarios adiciona inputs a mais caso for instrutor*/
 $('input:radio').change( function(){
   if(this.value == "Instrutor"){
-    $("#onlyInstrutor").fadeIn('slow');
+    $(".onlyInstrutor").fadeIn('slow');
   }else if(this.value == "Administrador"){
-    $("#onlyInstrutor").fadeOut('slow');
+    $(".onlyInstrutor").fadeOut('slow');
   }
 });
 
