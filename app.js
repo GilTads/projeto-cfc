@@ -39,7 +39,9 @@
 	app.use(expressValidator());
 	app.use(cookieParser());
 	app.use(session({
-		secret: 'gilmarifms2016'
+		secret: 'gilmarifms2016',
+		saveUninitialized: true,
+		resave: true
 	}));
 	app.use(express.static(path.join(__dirname,'public')));
 	app.use(flash());

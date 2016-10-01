@@ -72,7 +72,7 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
 });
 
       // JQUERY TABLES 
-    $('#listar-usuarios').dataTable({
+    $('.listar-usuarios').dataTable({
       "language": {
         "lengthMenu"  : "Exibir _MENU_  usuários por página",
         "info"        : "Mostrando página  _PAGE_ de _PAGE_",
@@ -88,6 +88,7 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
     });
 
 
+   
  
 
 
