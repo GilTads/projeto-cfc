@@ -7,5 +7,5 @@ module.exports = function(app){
 		.get(autenticar, aula.index);
 
 	app.route('/aulas/praticas/:id')
-		.get(aula.teste);
+		.get(aula.seleciona)
 }

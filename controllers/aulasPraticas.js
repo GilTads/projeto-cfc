@@ -12,10 +12,14 @@ module.exports = function(app){
 				}else{
 					Instrutor.find({setor: 'Instrutor'},function(err, instrutor){
 						if(err){
-							console.log('Pau');
+							console.log(' Deu Galho :( ');
 						}else{
-							res.render('aulas/index_pratica',
-							 {lista_instrutor: instrutor, lista_aluno: alunos});
+							res.render('aulas/index_pratica',{
+								lista_instrutor: instrutor,
+							    lista_aluno	   : alunos,
+								instrutor 	   : '',
+								aluno 		   : ''
+							});
 						}
 					});
 				}
@@ -24,8 +28,9 @@ module.exports = function(app){
 			
 		},
 
-		teste: function(req, res){
-			console.log(req.params.id);
+		seleciona: function(req, res){
+			var aluno = req.body.aluno;
+			console.log(aluno);
 			
 		}
 	
