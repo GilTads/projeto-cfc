@@ -7,8 +7,11 @@ module.exports = function(app){
 		.get(autenticar, aula.index);
 
 	app.route('/aulas/praticas/aluno/:id')
-		.get(aula.seleciona_aluno);
+		.post(aula.seleciona_aluno);
 
 	app.route('/aulas/praticas/instrutor/:id')
-		.get(aula.seleciona_instrutor);
+		.post(aula.seleciona_instrutor);
+
+	app.route('/aulas/praticas/veiculo/:id')
+		.post(aula.seleciona_veiculo);
 }

@@ -21,18 +21,28 @@ block content
 						hr
 						form(role="form", action="", method="")
 							.row
-								.col-xs-6.col-sm-3.col-md-3
+								.col-xs-8.col-sm-8.col-md-3
 									.form-group
-										input.form-control#alunoInput(type="text", name="aluno", value="#{aluno.nome || ''}" disabled)
-								.col-xs-3.col-sm-3.col-md-3
-									.form-group#buscarAluno
-										a.btn.btn-danger(data-toggle="modal", data-target="#alunoModal") Buscar Aluno
-								.col-xs-3.col-sm-3.col-md-3
+										label Aluno
+										input.form-control(type="text", name="aluno", value="#{aluno.nome || ''}" disabled, placeholder="Aluno")
+								.col-xs-1.col-sm-1.col-md-1
+										a.btn.btn-danger.lab(data-toggle="modal", data-target="#alunoModal")
+											span.glyphicon.glyphicon-search
+								.col-xs-8.col-sm-8.col-md-3
 									.form-group
-										input.form-control#instrutorInput(type="text", name="instrutor", value="#{instrutor.nome || ''}",disabled)
-								.col-xs-3.col-sm-3.col-md-3
+										label Instrutor
+										input.form-control(type="text", name="instrutor", value="#{instrutor.nome || ''}",disabled, placeholder="Instrutor")
+								.col-xs-1.col-sm-1.col-md-1
+										a.btn.btn-danger.lab(data-toggle="modal", data-target="#instrutorModal")
+											span.glyphicon.glyphicon-search
+								.col-xs-8.col-sm-8.col-md-3
 									.form-group
-										a.btn.btn-danger#instrutor(data-toggle="modal", data-target="#instrutorModal") Buscar Instrutor
+										label Veículo
+										input.form-control(type="text", name="veiculo", value="#{veiculo.nome || ''}#{veiculo.placa || ''}", disabled, placeholder="Veículo")
+								.col-xs-1.col-sm-1.col-md-1
+										a.btn.btn-danger.lab(data-toggle="modal", data-target="#veiculoModal")
+											span.glyphicon.glyphicon-search
+						hr
 							
 									
 									
@@ -71,8 +81,9 @@ block content
 											td #{instrutor.nome}
 											td #{instrutor.cpf}
 											td
-												a.btn(href="/aulas/praticas/instrutor/#{instrutor._id}")
-													span.glyphicon.glyphicon-search
+												form(method="post", action="/aulas/praticas/instrutor/#{instrutor._id}")
+													button.btn(type="submit")
+														span.glyphicon.glyphicon-search
 				.modal-footer
 					button.btn.btn-secondary(data-dismiss="modal") Close
 
@@ -102,7 +113,39 @@ block content
 											td #{aluno.cpf}
 											td #{aluno.renach}
 											td
-												a.btn(href="/aulas/praticas/aluno/#{aluno._id}")
+												form(method="post", action="/aulas/praticas/aluno/#{aluno._id}")
+													button.btn(type="submit")
+														span.glyphicon.glyphicon-search
+				.modal-footer
+					button.btn.btn-secondary(data-dismiss="modal") Close
+
+
+	.modal.fade#veiculoModal(role="dialog",aria-labelledby="veiculoModal", aria-hiden="true")
+		.modal-dialog.modal-md
+			.modal-content
+				.modal-header
+					button.close(type="button",data-dismiss="modal", aria-label="Close")
+						span(aria-hiden="true")
+					h4.modal-title Veículos
+				.modal-body
+					if lista_veiculo.length > 0
+						.table-responsive
+							table.table.table-striped.listar-usuarios
+								thead
+									tr
+										th Nome
+										th Placa
+										th Categoria
+										th Selecionar
+								tbody
+									each veiculo in lista_veiculo
+										tr
+											td #{veiculo.nome}
+											td #{veiculo.placa}
+											td #{veiculo.categoria}
+											td
+												form(method="post", action="/aulas/praticas/veiculo/#{veiculo._id}")
+													button.btn(type="submit")
 														span.glyphicon.glyphicon-search
 				.modal-footer
 					button.btn.btn-secondary(data-dismiss="modal") Close
