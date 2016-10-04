@@ -19,19 +19,20 @@ block content
 					.tab-pane.active.fade.in#main
 						h3 Agendamento de Aulas
 						hr
-						.row
-							.col-xs-6.col-sm-3.col-md-3
-								.form-group
-									input.form-control#alunoInput(type="text", name="aluno", disabled, value="#{aluno.nome || ''}")
-							.col-xs-3.col-sm-3.col-md-3
-								.form-group#buscarAluno
-									a.btn.btn-danger(data-toggle="modal", data-target="#alunoModal") Buscar Aluno
-							.col-xs-3.col-sm-3.col-md-3
-								.form-group
-									input.form-control#alunoInput(type="text", name="instrutor", disabled, value="#{instrutor.nome || ''}")
-							.col-xs-3.col-sm-3.col-md-3
-								.form-group
-									a.btn.btn-danger#instrutor(data-toggle="modal", data-target="#instrutorModal") Buscar Instrutor
+						form(role="form", action="", method="")
+							.row
+								.col-xs-6.col-sm-3.col-md-3
+									.form-group
+										input.form-control#alunoInput(type="text", name="aluno", value="#{aluno.nome || ''}" disabled)
+								.col-xs-3.col-sm-3.col-md-3
+									.form-group#buscarAluno
+										a.btn.btn-danger(data-toggle="modal", data-target="#alunoModal") Buscar Aluno
+								.col-xs-3.col-sm-3.col-md-3
+									.form-group
+										input.form-control#instrutorInput(type="text", name="instrutor", value="#{instrutor.nome || ''}",disabled)
+								.col-xs-3.col-sm-3.col-md-3
+									.form-group
+										a.btn.btn-danger#instrutor(data-toggle="modal", data-target="#instrutorModal") Buscar Instrutor
 							
 									
 									
@@ -70,7 +71,7 @@ block content
 											td #{instrutor.nome}
 											td #{instrutor.cpf}
 											td
-												a.btn#buscaInstrutor(href="#")
+												a.btn(href="/aulas/praticas/instrutor/#{instrutor._id}")
 													span.glyphicon.glyphicon-search
 				.modal-footer
 					button.btn.btn-secondary(data-dismiss="modal") Close
@@ -101,9 +102,8 @@ block content
 											td #{aluno.cpf}
 											td #{aluno.renach}
 											td
-												//- form(method="POST", action="/aulas/praticas/#{aluno._id}")
-												a.btn(href="/aulas/praticas/#{aluno._id}")
-													span.glyphicon.glyphicon-search
+												a.btn(href="/aulas/praticas/aluno/#{aluno._id}")
+														span.glyphicon.glyphicon-search
 				.modal-footer
 					button.btn.btn-secondary(data-dismiss="modal") Close
 

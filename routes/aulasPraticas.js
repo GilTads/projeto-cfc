@@ -6,6 +6,9 @@ module.exports = function(app){
 	app.route('/aulas/praticas')
 		.get(autenticar, aula.index);
 
-	app.route('/aulas/praticas/:id')
-		.get(aula.seleciona)
+	app.route('/aulas/praticas/aluno/:id')
+		.get(aula.seleciona_aluno);
+
+	app.route('/aulas/praticas/instrutor/:id')
+		.get(aula.seleciona_instrutor);
 }
