@@ -1,0 +1,124 @@
+extends ../layout
+block content
+	section.container.nav-top
+			.panel.panel-default
+				.panel-heading.text-center
+					h3
+						span.fa.fa-graduation-cap  Dados do Aluno
+				.panel-body					
+					form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/alunos/editar/#{aluno._id}", role="form", id="excluir-user")
+						.row
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Nome
+									input.form-control(type="text",name="nome", value="#{aluno.nome}", disabled)
+							.col-xs-12.col-sm-6.col-md-3
+								.form-group
+									label CPF
+									input.form-control#cpf(type="text", name="cpf", value="#{aluno.cpf}", disabled)
+							.col-xs-12.col-sm-6.col-md-3
+								.form-group
+									label RG
+									input.form-control(type="text",name="rg", value="#{aluno.rg}", disabled)
+						.row
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label Data de Nascimento
+									input.form-control#nasc_show(type="text", value="#{moment(aluno.nasc).format('DD/MM/YYYY')}", disabled)
+									input.form-control#nasc(type="date",name="nasc", value="", disabled)
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label RENACH
+									input.form-control(type="text",name="renach", value="#{aluno.renach}", disabled)
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Email
+									input.form-control(type="email",name="email", value="#{aluno.email}", disabled)
+						.row
+							.col-xs-6.col-sm-6.col-md-3#data_cad
+								.form-group
+									label Data do Cadastro
+									input.form-control(type="text", value="#{moment(aluno.data_cad).format('DD/MM/YYYY  HH:MM:ss')}", disabled)
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label Sexo
+									select.form-control(name="sexo",type="text", disabled)
+										option(selected, disabled) #{aluno.sexo}
+										option(value="masculino") Masculino
+										option(value="feminino")  Feminino
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label Aulas de Carro
+									input.form-control(type="number", name= "aula_carro", value="#{aluno.qnt_aulas.carro || ''}", disabled)
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label Aulas de Moto
+									input.form-control(type="number", name= "aula_moto", value="#{aluno.qnt_aulas.moto || '' }", disabled)
+						.row
+							.col-xs-12.col-sm-6.col-md-4
+								.form-group
+									label Celular
+									input.form-control.fone(type="text",name="cel", value="#{aluno.telefones.cel}", disabled)
+							.col-xs-12.col-sm-6.col-md-4
+								.form-group
+									label Fone Res.
+									input.form-control.fone(type="text",name="res", value="#{aluno.telefones.res}", disabled)
+							.col-xs-12.col-sm-6.col-md-4
+								.form-group
+									label Fone Opc.
+									input.form-control.fone(type="text",name="opc", value="#{aluno.telefones.opc}", disabled)
+						.row
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Nome do Pai
+									input.form-control(type="text",name="pai", value="#{aluno.pais.pai}", disabled)
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Nome da Mãe
+									input.form-control(type="text",name="mae", value="#{aluno.pais.mae}", disabled)
+						.row
+							.col-xs-9.col-sm-6.col-md-9
+								.form-group
+									label Rua
+									input.form-control(type="text",name="rua", value="#{aluno.endereco.rua}", disabled)
+							.col-xs-3.col-sm-6.col-md-3
+								.form-group
+									label nº
+									input.form-control(type="text",name="numero", value="#{aluno.endereco.numero}", disabled)
+						.row
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label Bairro
+									input.form-control(type="text",name="bairro", value="#{aluno.endereco.bairro}", disabled)
+							.col-xs-6.col-sm-6.col-md-3
+								.form-group
+									label CEP
+									input.form-control#cep(type="text",name="cep", value="#{aluno.endereco.cep}", disabled)
+							.col-xs-3.col-sm-6.col-md-3
+								.form-group
+									label UF
+									select.form-control#estado(type="text",name="uf", value="", disabled)
+										option(disabled, selected) #{aluno.endereco.uf}
+							.col-xs-9.col-sm-6.col-md-3
+								.form-group
+									label Cidade
+									select.form-control#cidade(type="text",name="cidade", value="", disabled)
+										option(selected, disabled) #{aluno.endereco.cidade}
+							
+						.panel-footer.text-center
+							.row
+								.col-xs-4.col-sm-4.col-md-3
+									.form-group
+										input(type="button", class="btn btn-danger", id="myBtn", value="Excluir")
+								.col-xs-4.col-sm-4.col-md-3
+									.form-group.text-rigth
+										input(type="button", class="btn btn-danger editar", id="myBtn", value="Editar")
+								.col-xs-4.col-sm-4.col-md-3#atualizar
+									.form-group.text-rigth
+										input(type="submit", class="btn btn-danger Atualizar", id="myBtn", value="Atualizar")
+								.col-xs-4.col-sm-4.col-md-3
+									.form-group.text-rigth
+										h4
+											a(href="/alunos") 
+												span.fa.fa-arrow-left   Voltar										
+block scripts

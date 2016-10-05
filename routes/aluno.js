@@ -9,4 +9,11 @@ module.exports = function(app){
 	app.route('/cadastro/aluno')
 		.get(autenticar, aluno.cadastro)
 		.post(aluno.create);
+
+
+	app.route('/alunos/listar/:id')
+		.get(autenticar, aluno.listar);
+
+	app.route('/alunos/editar/:id')
+		.post(autenticar, aluno.update)
 }

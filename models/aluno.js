@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 module.exports = function(){
 	var alunoSchema = mongoose.Schema({
 		nome: 	{type: String,trim:true},
-		idade:  {type: Number},
+		nasc:   {type: Date},
 		rg: 	{type: String,trim:true},
 		cpf: 	{type: String,trim:true, unique: true},
 		renach: {type: String,trim:true},

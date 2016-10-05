@@ -1,49 +1,6 @@
 $(document).ready(function(){
 
-    // $('#myBtn').click(function(){
-    //     var pergunta = confirm('Deseja realmente excluir?');
-    //     if(!pergunta){
-    //       return false;
-    //     }
 
-    // $("#excluir-user").submit(function(){
-    //   $.confirm({
-    //       theme: 'black',
-    //       icon: 'fa fa-warning',  
-    //       title: 'Aviso!!',
-    //       content: 'O funcionário será excluído definitivamente. Deseja continuar?',
-    //       confirmButton: 'SIM',
-    //       cancelButton: 'NÃO',
-    //       confirmButtonClass: 'btn-danger',
-    //       cancelButtonClass: 'btn-default',
-    //       animationSpeed: 500,
-    //       animationBounce: 2.5,
-    //       confirm: function(){
-    //         $.alert({
-    //           id: 'confirma',
-    //           theme: 'black',
-    //           icon: 'fa fa-check',
-    //           title: 'Exclusão',
-    //           content: 'Funcionário excluído',
-    //           confirmButton: 'OK',
-    //           animationSpeed: 800,
-    //           animationBounce: 2.5,
-    //         }); 
-    //       },
-    //       cancel: function(){
-    //         $.alert({
-    //           theme: 'black',
-    //           icon: 'fa fa-close',
-    //           title: 'Cancelado',
-    //           content: 'Exclusão cancelada',
-    //           animationSpeed: 800,
-    //           animationBounce: 2.5,
-    //           confirmButton: 'OK',
-    //         });
-    //       }
-    //     });
-          
-    //   });
 
 
 //$('#myModal').modal({'backdrop': 'static'});
@@ -56,6 +13,15 @@ $(document).ready(function(){
 //   $('#buscarAluno').hide();
 //   $('#limpar').show();
 // }
+
+
+$('.editar').click(function(){
+  $('#data_cad').hide();
+  $('input, select').removeAttr('disabled');
+  $('#atualizar').show();
+  $('#nasc_show').hide();
+  $('#nasc').show();
+});
 
 
 /* No campo de cadastro de funcionarios adiciona inputs a mais caso for instrutor*/

@@ -23,6 +23,17 @@ a:hover {
     color:#111;
 }
 
+.onlyInstrutor{
+  display: none;
+}
+
+#nasc{
+  display: none;
+}
+
+#atualizar{
+  display: none;
+}
 
 .lab{
   margin-top: 25px;

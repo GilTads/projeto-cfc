@@ -26,7 +26,7 @@ block content
 					p
 						span.fa.fa-calendar-times-o
 							b  Data de Cadastro: #{moment(dados.data_cad).format('DD/MM/YYYY HH:MM:ss')}
-					if (dados.instrutor != {})
+					if (dados.setor == 'Instrutor')
 						p
 							span
 								b Credencial:  #{dados.instrutor.credencial}

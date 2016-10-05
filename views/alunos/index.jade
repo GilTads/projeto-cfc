@@ -25,7 +25,7 @@ block content
 									th Nome:
 									th Renach:
 									th CPF:
-									th RG:
+									th Data de Nascimento:
 									th Cel
 									th Fone Res.
 									th Fone Opc.
@@ -37,13 +37,13 @@ block content
 										td #{valor.nome}
 										td #{valor.renach}
 										td #{valor.cpf}
-										td #{valor.rg}
+										td #{moment(valor.nasc).format('DD/MM/YYYY')}
 										td #{valor.telefones.cel}
 										td #{valor.telefones.res}
 										td #{valor.telefones.opc}
 										td 
-											//- a.btn(href="/usuarios/listar/#{valor._id}")
-											span.glyphicon.glyphicon-search
+											a.btn(href="/alunos/listar/#{valor._id}")
+												span.glyphicon.glyphicon-search
 										td 
 											//- a.btn(href="/usuarios/editar/#{valor._id}")
 											span.glyphicon.glyphicon-pencil
