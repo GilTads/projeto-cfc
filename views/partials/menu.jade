@@ -34,7 +34,7 @@ nav.navbar.navbar-trans.navbar-fixed-top(role="navigation")
 								span.fa.fa-users   Usuários
 						li
 							a(href="/logout")
-								span.fa.fa-sign-out  #{session.nome} [Sair]
+								span.fa.fa-sign-out  #{session.nome.split(' ')[0]} [Sair]
 						
 					else
 						li

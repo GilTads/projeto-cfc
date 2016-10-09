@@ -6,37 +6,41 @@ module.exports = function(app){
 	var alunos
 	   ,instrutores
 	   ,veiculos
-	   ,aluno_input 
+	   ,aluno_input
 	   ,instrutor_input
 	   ,veiculo_input
 
 
-	Aluno.find(function(err, data){
-		if(err){
-			req.flash('erro', 'Erro ao buscar aluno');
-		}else{
-			alunos = data;
-		}
-	});
 
-	Instrutor.find({setor: 'Instrutor'}, function(err, data){
-		if(err){
-			req.flash('erro', 'Erro ao buscar intrutores');
-		}else{
-			instrutores = data;
-		}
-	});
-
-	Veiculo.find(function(err, data){
-		if(err){
-			req.flash('erro', 'Erro ao buscar veiculo');
-		}else{
-			veiculos = data;
-		}
-	});	
 
 
 	var aulasPraticasController = {
+		refresh: function(req, res){
+			Aluno.find(function(err, data){
+				if(err){
+					req.flash('erro', 'Erro ao buscar aluno');
+				}else{
+					alunos = data;
+				}
+			});
+
+			Instrutor.find({setor: 'Instrutor'}, function(err, data){
+				if(err){
+					req.flash('erro', 'Erro ao buscar intrutores');
+				}else{
+					instrutores = data;
+				}
+			});
+
+			Veiculo.find(function(err, data){
+				if(err){
+					req.flash('erro', 'Erro ao buscar veiculo');
+				}else{
+					veiculos = data;
+				}
+			});	
+			res.redirect('/aulas/index');
+		},
 		index: function(req, res){
 			aluno_input    = '';
 			instrutor_input= '';

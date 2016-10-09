@@ -17,55 +17,56 @@ block content
 						.col-xs-12.col-sm-6.col-md-6		
 							.form-group
 								label Nome
-								input.form-control(type="text", name="nome",placeholder="Nome",value="#{usuario.nome || ''}", tabindex="1", required)
+								input.form-control(type="text", name="nome",placeholder="Nome",value="#{usuario.nome || ''}", tabindex="1", required, disabled)
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
-								label Sobrenome
-								input.form-control(type="text", name="sobrenome",value="#{usuario.sobrenome || ''}",placeholder="Sobrenome", tabindex="2",required)
-					.form-group
-						label Email
-						input.form-control(type="email", name="email",value="#{usuario.email || ''}",placeholder="Email", tabindex="3",required)
+								label Email
+								input.form-control(type="email", name="email",value="#{usuario.email || ''}",placeholder="Email", tabindex="3",required, disabled)
 					.row
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
 								Label RG
-								input.form-control(type="text", name="rg",value="#{usuario.rg || ''}", placeholder="RG", tabindex="4",required)
+								input.form-control(type="text", name="rg",value="#{usuario.rg || ''}", placeholder="RG", tabindex="4",required, disabled)
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
 								label CPF
-								input.form-control#cpf(type="text",name="cpf",value="#{usuario.cpf || ''}", placeholder="CPF", tabindex="5",required)
+								input.form-control#cpf(type="text",name="cpf",value="#{usuario.cpf || ''}", placeholder="CPF", tabindex="5",required, disabled)
 					.row
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
 								label Fone
-								input.form-control.fone(type="text" name="fone",value="#{usuario.fone || ''}",placeholder="Fone Residencial", tabindex="6",required)
+								input.form-control.fone(type="text" name="fone",value="#{usuario.fone || ''}",placeholder="Fone Residencial", tabindex="6",required, disabled)
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
 								label Cel
-								input.form-control.fone(type="text", name="cel",value="#{usuario.cel || ''}", placeholder="Celular", tabindex="7",required)
+								input.form-control.fone(type="text", name="cel",value="#{usuario.cel || ''}", placeholder="Celular", tabindex="7",required, disabled)
 					.row
 						.col-xs-12.col-sm-6.col-md-6
 							.radio-inline
-								input(type="radio", name="optradio", value="Administrador", tabindex="8",required)
+								input(type="radio", name="optradio", value="Administrador", tabindex="8",required, disabled)
 								label Administrador
 						.col-xs-12.col-sm-6.col-md-6
 							.radio-inline
-								input(type="radio", name="optradio", value="Instrutor", tabindex="9", required)
+								input(type="radio", name="optradio", value="Instrutor", tabindex="9", required, disabled)
 								label Instrutor
 					.row.onlyInstrutor
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
-								input.form-control(type="text", name="credencial", value="", placeholder="Credencial",tabindex="10")
+								input.form-control(type="text", name="credencial", value="", placeholder="Credencial",tabindex="10", disabled)
 						.col-xs-12.col-sm-6.col-md-6
 							.form-group
-								input.form-control(type="text", name="categoria", value="", placeholder="Categoria", tabindex="11")
+								input.form-control(type="text", name="categoria", value="", placeholder="Categoria", tabindex="11", disabled)
 					//- .form-group
 					//- 	label Área de Trabalho
 					//- 	select(name="setor", placeholder="Setor de Atuação", tabindex="8",required).form-control
 					//- 		option(value="", disabled selected) Escolha
 					//- 		option(value="Instrutor") Instrução
 					//- 		option(value="Administração") Administração
-					button.btn.btn-danger.btn-lg.btn-block(type="submit", tabindex="10") Atualizar
+					input.btn.btn-warning.btn-lg.btn-block.editar(type="button", tabindex="10", value="Editar")
+					input#atualizar.btn.btn-warning.btn-lg.btn-block.atualizar(type="submit" value="Atualizar")
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/usuarios/excluir/#{usuario._id}", role="form", id="excluir-user")
+					br
+					input.btn.btn-danger.btn-lg.btn-block(type="submit",id="myBtn", value="Excluir")
 					h3
 						a(href="/usuarios")
 							span.fa.fa-arrow-left   Voltar

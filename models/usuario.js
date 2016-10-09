@@ -4,7 +4,6 @@
 	module.exports = function(){
 		var usuarioSchema = mongoose.Schema({
 			nome 		: {type:String, trim:true},
-			sobrenome	: {type:String, trim:true},
 			senha 		: {type:String},
 			email 		: {type:String, trim:true, unique:true, index: true},
 			fone 		: {type:String, trim:true},

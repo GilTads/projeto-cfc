@@ -22,7 +22,6 @@ module.exports = function(app){
 			if(validacao(req,res)){
 				var modelo 		= new Usuario();
 				modelo.nome 	= req.body.nome;
-				modelo.sobrenome= req.body.sobrenome;
 				modelo.email 	= req.body.email;
 				modelo.senha 	= modelo.generateHash(req.body.senha);
 				modelo.rg 		= req.body.rg;
@@ -104,6 +103,7 @@ module.exports = function(app){
 						else{
 							if(req.session.usuario._id == req.params.id){
 								req.session.usuario = data;
+								req.flash('info', 'Registro atualizado com sucesso!');
 								res.redirect('/usuarios');
 							}else{
 								req.flash('info', 'Registro atualizado com sucesso!');

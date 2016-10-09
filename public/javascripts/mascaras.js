@@ -28,4 +28,8 @@ $(document).ready(function(){
 		$(this).mask('AAA - 9999');
 	});
 
+
+  //=============Datas=======================//
+  $('#datepicker').mask('00/00/0000');
+
 });

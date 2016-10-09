@@ -2,7 +2,6 @@ $(document).ready(function(){
 
 
 
-
 //$('#myModal').modal({'backdrop': 'static'});
 
 
@@ -15,12 +14,17 @@ $(document).ready(function(){
 // }
 
 
+
+
+
 $('.editar').click(function(){
   $('#data_cad').hide();
   $('input, select').removeAttr('disabled');
   $('#atualizar').show();
-  $('#nasc_show').hide();
-  $('#nasc').show();
+  $('.editar').hide();
+  $('#sexShow').hide();
+  $('#sexChoose').show();
+  $('#labSex').show();
 });
 
 
@@ -59,7 +63,7 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
 
 
 
-      //JQUERY CONFIRM
+      //JQUERY CONFIRM EXCLUIR USUARIO
     $('#myBtn').on('click', function(e){
       e.preventDefault();
       $.confirm({
@@ -74,17 +78,42 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
         animationSpeed: 500,
         animationBounce: 2.5,
         confirm: function(e){
-          // $.alert({
-          //   id: 'confirma',
-          //   theme: 'black',
-          //   icon: 'fa fa-check',
-          //   title: 'Exclusão',
-          //   content: 'Funcionário excluído',
-          //   confirmButton: 'OK',
-          //   animationSpeed: 800,
-          //   animationBounce: 2.5,
-          // });
+   
             $("#excluir-user").submit();
+        },
+          cancel: function(){
+            $.alert({
+              theme: 'black',
+              icon: 'fa fa-close',
+              title: 'Cancelado',
+              content: 'Exclusão cancelada',
+              animationSpeed: 800,
+              animationBounce: 2.5,
+              confirmButton: 'OK',
+            });
+          }
+    });
+  });
+
+
+
+      //JQUERY CONFIRM EXCLUIR ALUNO
+    $('#excluir-alunoBtn').on('click', function(e){
+      e.preventDefault();
+      $.confirm({
+        theme: 'black',
+        icon: 'fa fa-warning',  
+        title: 'Aviso!!',
+        content: 'O registro será excluído definitivamente. Deseja continuar?',
+        confirmButton: 'SIM',
+        cancelButton: 'NÃO',
+        confirmButtonClass: 'btn-danger',
+        cancelButtonClass: 'btn-default',
+        animationSpeed: 500,
+        animationBounce: 2.5,
+        confirm: function(e){
+   
+            $("#excluir-aluno").submit();
         },
           cancel: function(){
             $.alert({

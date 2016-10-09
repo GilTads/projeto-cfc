@@ -6,7 +6,7 @@ block content
 			div.col-sm-6
 				div.well
 					h3
-						span.fa.fa-user  Olá, #{session.nome}
+						span.fa.fa-user  Olá, #{session.nome.split(' ')[0]}
 					br
 					p 
 						span.fa.fa-key  <strong> Id de Sessão: </strong> #{session._id}

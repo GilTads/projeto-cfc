@@ -3,7 +3,10 @@ module.exports = function(app){
 	var aula = app.controllers.aulasPraticas;
 	var autenticar = require('../middleware/autenticar');
 
-	app.route('/aulas/praticas')
+	app.route('/aulas/praticas') //Atualiza a lista de instrutores, alunos e veículos
+		.get(autenticar, aula.refresh);
+
+	app.route('/aulas/index')
 		.get(autenticar, aula.index);
 
 	app.route('/aulas/praticas/aluno/:id')

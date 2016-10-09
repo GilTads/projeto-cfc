@@ -15,5 +15,9 @@ module.exports = function(app){
 		.get(autenticar, aluno.listar);
 
 	app.route('/alunos/editar/:id')
-		.post(autenticar, aluno.update)
+		.post(autenticar, aluno.update);
+
+
+	app.route('/alunos/excluir/:id')
+		.post(aluno.excluir);
 }

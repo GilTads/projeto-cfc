@@ -6,34 +6,33 @@ block content
 					h3
 						span.fa.fa-graduation-cap  Dados do Aluno
 				.panel-body					
-					form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/alunos/editar/#{aluno._id}", role="form", id="excluir-user")
+					form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/alunos/editar/#{aluno._id}", role="form")
 						.row
 							.col-xs-12.col-sm-6.col-md-6
 								.form-group
 									label Nome
-									input.form-control(type="text",name="nome", value="#{aluno.nome}", disabled)
+									input.form-control(type="text",name="nome", value="#{aluno.nome}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-3
 								.form-group
 									label CPF
-									input.form-control#cpf(type="text", name="cpf", value="#{aluno.cpf}", disabled)
+									input.form-control#cpf(type="text", name="cpf", value="#{aluno.cpf}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-3
 								.form-group
 									label RG
-									input.form-control(type="text",name="rg", value="#{aluno.rg}", disabled)
+									input.form-control(type="text",name="rg", value="#{aluno.rg}", disabled, required)
 						.row
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
-									label Data de Nascimento
-									input.form-control#nasc_show(type="text", value="#{moment(aluno.nasc).format('DD/MM/YYYY')}", disabled)
-									input.form-control#nasc(type="date",name="nasc", value="", disabled)
+									label Data de Nasc (Mês/Dia/Ano)
+									input.form-control#datepicker(type="text",name="nasc", value="#{moment(aluno.nasc).format('MM/DD/YYYY')}", disabled, required)
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label RENACH
-									input.form-control(type="text",name="renach", value="#{aluno.renach}", disabled)
+									input.form-control(type="text",name="renach", value="#{aluno.renach}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-6
 								.form-group
 									label Email
-									input.form-control(type="email",name="email", value="#{aluno.email}", disabled)
+									input.form-control(type="email",name="email", value="#{aluno.email}", disabled, required)
 						.row
 							.col-xs-6.col-sm-6.col-md-3#data_cad
 								.form-group
@@ -41,84 +40,80 @@ block content
 									input.form-control(type="text", value="#{moment(aluno.data_cad).format('DD/MM/YYYY  HH:MM:ss')}", disabled)
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
-									label Sexo
-									select.form-control(name="sexo",type="text", disabled)
-										option(selected, disabled) #{aluno.sexo}
+									label Sexo &nbsp;
+									label#labSex  Anterior: #{aluno.sexo}
+									input.form-control#sexShow(type="text", value="#{aluno.sexo}", disabled)
+									select.form-control#sexChoose(name="sexo",type="text",value="#{aluno.sexo}" disabled, required)
+										option(selected, disabled)
 										option(value="masculino") Masculino
 										option(value="feminino")  Feminino
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label Aulas de Carro
-									input.form-control(type="number", name= "aula_carro", value="#{aluno.qnt_aulas.carro || ''}", disabled)
+									input.form-control(type="number", name= "aula_carro", value="#{aluno.qnt_aulas.carro || ''}", disabled, required)
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label Aulas de Moto
-									input.form-control(type="number", name= "aula_moto", value="#{aluno.qnt_aulas.moto || '' }", disabled)
+									input.form-control(type="number", name= "aula_moto", value="#{aluno.qnt_aulas.moto || '' }", disabled, required)
 						.row
 							.col-xs-12.col-sm-6.col-md-4
 								.form-group
 									label Celular
-									input.form-control.fone(type="text",name="cel", value="#{aluno.telefones.cel}", disabled)
+									input.form-control.fone(type="text",name="cel", value="#{aluno.telefones.cel}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-4
 								.form-group
 									label Fone Res.
-									input.form-control.fone(type="text",name="res", value="#{aluno.telefones.res}", disabled)
+									input.form-control.fone(type="text",name="res", value="#{aluno.telefones.res}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-4
 								.form-group
 									label Fone Opc.
-									input.form-control.fone(type="text",name="opc", value="#{aluno.telefones.opc}", disabled)
+									input.form-control.fone(type="text",name="opc", value="#{aluno.telefones.opc}", disabled, required)
 						.row
 							.col-xs-12.col-sm-6.col-md-6
 								.form-group
 									label Nome do Pai
-									input.form-control(type="text",name="pai", value="#{aluno.pais.pai}", disabled)
+									input.form-control(type="text",name="pai", value="#{aluno.pais.pai}", disabled, required)
 							.col-xs-12.col-sm-6.col-md-6
 								.form-group
 									label Nome da Mãe
-									input.form-control(type="text",name="mae", value="#{aluno.pais.mae}", disabled)
+									input.form-control(type="text",name="mae", value="#{aluno.pais.mae}", disabled, required)
 						.row
 							.col-xs-9.col-sm-6.col-md-9
 								.form-group
 									label Rua
-									input.form-control(type="text",name="rua", value="#{aluno.endereco.rua}", disabled)
+									input.form-control(type="text",name="rua", value="#{aluno.endereco.rua}", disabled, required)
 							.col-xs-3.col-sm-6.col-md-3
 								.form-group
 									label nº
-									input.form-control(type="text",name="numero", value="#{aluno.endereco.numero}", disabled)
+									input.form-control(type="text",name="numero", value="#{aluno.endereco.numero}", disabled, required)
 						.row
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label Bairro
-									input.form-control(type="text",name="bairro", value="#{aluno.endereco.bairro}", disabled)
+									input.form-control(type="text",name="bairro", value="#{aluno.endereco.bairro}", disabled, required)
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label CEP
-									input.form-control#cep(type="text",name="cep", value="#{aluno.endereco.cep}", disabled)
+									input.form-control#cep(type="text",name="cep", value="#{aluno.endereco.cep}", disabled, required)
 							.col-xs-3.col-sm-6.col-md-3
 								.form-group
 									label UF
-									select.form-control#estado(type="text",name="uf", value="", disabled)
-										option(disabled, selected) #{aluno.endereco.uf}
+									select.form-control#estado(type="text",name="uf", value="#{aluno.endereco.uf}", disabled, required)
+										option(disabled, selected) 
 							.col-xs-9.col-sm-6.col-md-3
 								.form-group
 									label Cidade
-									select.form-control#cidade(type="text",name="cidade", value="", disabled)
-										option(selected, disabled) #{aluno.endereco.cidade}
-							
-						.panel-footer.text-center
-							.row
-								.col-xs-4.col-sm-4.col-md-3
-									.form-group
-										input(type="button", class="btn btn-danger", id="myBtn", value="Excluir")
-								.col-xs-4.col-sm-4.col-md-3
-									.form-group.text-rigth
-										input(type="button", class="btn btn-danger editar", id="myBtn", value="Editar")
-								.col-xs-4.col-sm-4.col-md-3#atualizar
-									.form-group.text-rigth
-										input(type="submit", class="btn btn-danger Atualizar", id="myBtn", value="Atualizar")
-								.col-xs-4.col-sm-4.col-md-3
-									.form-group.text-rigth
-										h4
-											a(href="/alunos") 
-												span.fa.fa-arrow-left   Voltar										
+									select.form-control#cidade(type="text",name="cidade", value="#{aluno.endereco.cidade}", disabled, required)
+										option(selected, disabled, required)
+						input.btn.btn-warning.btn-lg.btn-block.editar(type="button", value="Editar")
+						input#atualizar.btn.btn-warning.btn-lg.btn-block.atualizar(type="submit" value="Atualizar")
+					br
+					form#excluir-aluno.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/alunos/excluir/#{aluno._id}", role="form")
+						br
+						input#excluir-alunoBtn.btn.btn-danger.btn-lg.btn-block(type="submit", value="Excluir")
+					.col-xs-4.col-sm-4.col-md-3
+						.form-group
+							h3
+								a(href="/alunos") 
+									span.fa.fa-arrow-left   Voltar						
 block scripts

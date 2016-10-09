@@ -27,7 +27,6 @@ block content
 									th Data do cadastro
 									th Cargo
 									th Visualizar
-									th Editar
 							tbody
 								each valor in lista
 									tr
@@ -36,11 +35,8 @@ block content
 										td #{moment(valor.data_cad).format('DD/MM/YYYY HH:MM:ss')}
 										td #{valor.setor}
 										td 
-											a.btn(href="/usuarios/listar/#{valor._id}")
-												span.glyphicon.glyphicon-search
-										td 
 											a.btn(href="/usuarios/editar/#{valor._id}")
-												span.glyphicon.glyphicon-pencil
+												span.glyphicon.glyphicon-search
 				else
 					p Nenhum registro encontrado!
 

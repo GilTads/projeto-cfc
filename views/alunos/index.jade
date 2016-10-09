@@ -26,11 +26,10 @@ block content
 									th Renach:
 									th CPF:
 									th Data de Nascimento:
-									th Cel
-									th Fone Res.
+									th Fone 1
+									th Fone 2.
 									th Fone Opc.
 									th Visualizar
-									th Editar
 							tbody
 								each valor in lista
 									tr
@@ -44,8 +43,5 @@ block content
 										td 
 											a.btn(href="/alunos/listar/#{valor._id}")
 												span.glyphicon.glyphicon-search
-										td 
-											//- a.btn(href="/usuarios/editar/#{valor._id}")
-											span.glyphicon.glyphicon-pencil
 				else
 					p Nenhum registro encontrado!

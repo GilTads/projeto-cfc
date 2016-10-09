@@ -75,9 +75,8 @@ module.exports = function(app){
 		},
 
 		update: function(req, res){
-			
+			console.log(req.body.nasc);
 				Aluno.findById(req.params.id, function(err, data){
-					console.log(data);
 					var modelo 				= data;
 					modelo.nome 			= req.body.nome;
 					modelo.cpf 				= req. body.cpf;
@@ -111,6 +110,19 @@ module.exports = function(app){
 
 				});
 			
+		},
+
+		excluir: function(req, res){
+			console.log("Entrou no exluir aluno");
+			Aluno.remove({_id: req.params.id}, function(err){
+				if(err){
+					req.flash('erro', 'Erro ao excluir aluno: '+err);
+					res.redirect('/alunos');
+				}else{
+					req.flash('info', 'Registro excluído com sucesso!');
+					res.redirect('/alunos');
+				}
+			});
 		}
 		
 	}
