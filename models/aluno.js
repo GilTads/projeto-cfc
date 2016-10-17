@@ -14,6 +14,7 @@ module.exports = function(){
 			pai: {type: String,trim:true},
 			mae: {type: String,trim:true}
 		},
+		categoria: {type: String, trim:true},
 		endereco: {
 			rua: 	{type: String,trim:true},
 			numero: {type: Number},

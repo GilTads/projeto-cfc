@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
 	$.datepicker.regional['pt-BR'] = {
+	changeYear: true,
+    yearRange: '1900:2100',
 	closeText: 'Fechar',
 	prevText: '&lt;Anterior',
 	nextText: 'Próximo&gt;',

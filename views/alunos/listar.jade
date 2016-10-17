@@ -47,11 +47,19 @@ block content
 										option(selected, disabled)
 										option(value="masculino") Masculino
 										option(value="feminino")  Feminino
-							.col-xs-6.col-sm-6.col-md-3
+							.col-xs-6.col-sm-6.col-md-2
+								.form-group
+									label Categoria #{aluno.categoria}
+									select.form-control(name="categoria", tabindex="6",value="#{aluno.categoria}", required)
+										option(value="", disabled selected) Categoria
+										option(value="A") A - Moto
+										option(value="B") B - Carro
+										option(value="AB") AB - Moto e Carro
+							.col-xs-6.col-sm-6.col-md-2
 								.form-group
 									label Aulas de Carro
 									input.form-control(type="number", name= "aula_carro", value="#{aluno.qnt_aulas.carro || ''}", disabled, required)
-							.col-xs-6.col-sm-6.col-md-3
+							.col-xs-6.col-sm-6.col-md-2
 								.form-group
 									label Aulas de Moto
 									input.form-control(type="number", name= "aula_moto", value="#{aluno.qnt_aulas.moto || '' }", disabled, required)

@@ -61,9 +61,27 @@ a:hover {
     color:#111;
 }
 
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
 
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
 
-#sexChoose, #labSex, #nasc, #atualizar, .onlyInstrutor{
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+#sexChoose, #labSex, #nasc, #atualizar, .onlyInstrutor, .praticoPasso2{
   display: none;
 }
 

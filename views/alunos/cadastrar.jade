@@ -30,12 +30,19 @@ block content
 						.col-xs-12.col-sm-6.col-md-4
 							.form-group
 								input.form-control#cpf(type="text", name="cpf", placeholder="CPF", value="#{aluno.cpf || ''}", tabindex="5", required)
-						.col-xs-12.col-sm-6.col-md-4
+						.col-xs-12.col-sm-6.col-md-2
 							.form-group
 								select.form-control(name="sexo", tabindex="6", required)
 									option(value="", disabled selected) Sexo
-									option(value="masculino") Masculino
-									option(value="feminino")  Feminino
+									option(value="Masculino") Masculino
+									option(value="Feminino")  Feminino
+						.col-xs-12.col-sm-6.col-md-2
+							.form-group
+								select.form-control(name="categoria", tabindex="6", required)
+									option(value="", disabled selected) Categoria
+									option(value="A") A - Moto
+									option(value="B") B - Carro
+									option(value="AB") AB - Moto e Carro
 					.row
 						.col-xs-12.col-sm-6.col-md-4
 							.form-group

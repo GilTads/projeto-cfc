@@ -42,6 +42,7 @@ module.exports = function(app){
 				modelo.telefones.opc 	= req.body.opc;
 				modelo.qnt_aulas.carro 	= req.body.aula_carro;
 				modelo.qnt_aulas.moto 	= req.body.aulas_moto;
+				modelo.categoria 		= req.body.categoria;
 
 				Aluno.findOne({'cpf' : modelo.cpf}, function(err, data){
 					if(data){
@@ -98,6 +99,7 @@ module.exports = function(app){
 					modelo.endereco.cep 	= req.body.cep;
 					modelo.endereco.uf 		= req.body.uf;
 					modelo.endereco.cidade 	= req.body.cidade;
+					modelo.categoria 		= req.body.categoria;
 
 					modelo.save(function(err){
 						if(err){

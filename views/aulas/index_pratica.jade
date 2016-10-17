@@ -42,13 +42,44 @@ block content
 								.col-xs-1.col-sm-1.col-md-1
 										a.btn.btn-danger.lab(data-toggle="modal", data-target="#veiculoModal")
 											span.glyphicon.glyphicon-search
+							.row.cateoria
+								.col-xs-3.col-sm-3.col-md-2
+									label Categoria
+									if aluno
+										if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto > 0
+											select.form-control
+												option(value="A") Moto
+												option(value="B") Carro
+										else
+											if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto == 0
+												select.form-control
+													option(value="B") Carro
+											else
+												if aluno.qnt_aulas.carro == 0 && aluno.qnt_aulas.moto > 0
+													select.form-control
+														option(value="A") Moto
+								.col-xs-3.col-sm-3.col-md-2
+									.form-group
+										label Data
+										input.form-control#date(type="text",name="nasc", value="#{moment().format('DD/MM/YYYY')}", required)
+								.col-xs-6.col-sm-6.col-md-8
+									.table-responsive
+										table.table.table-inverse
+											thead
+												tr
+													th Hora
+													th Aluno
+													th veículo
+											tbody
+												tr
+													td 07:00hs
+												tr
+													td 07:50hs
+												tr
+													td 08:40hs
+
 						hr
 							
-									
-									
-						
-
-
 					.tab-pane.fade#menu1
 						h3 Profile
 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto error similique hic dolorem cumque eius delectus exercitationem dicta ipsa, inventore, voluptatibus fugiat quasi quos. Voluptatem vitae quibusdam blanditiis rerum necessitatibus.
@@ -60,7 +91,7 @@ block content
 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum dicta adipisci consectetur aspernatur, eius necessitatibus voluptatem qui vero soluta magnam harum quod nemo pariatur impedit a vel itaque. Asperiores.
 
 	.modal.fade#instrutorModal(role="dialog",aria-labelledby="instrutorModal", aria-hiden="true")
-		.modal-dialog.modal-md
+		.modal-dialog.modal-lg
 			.modal-content
 				.modal-header
 					button.close(type="button",data-dismiss="modal", aria-label="Close")
@@ -90,7 +121,7 @@ block content
 
 
 	.modal.fade#alunoModal(role="dialog",aria-labelledby="alunoModal", aria-hiden="true")
-		.modal-dialog.modal-md
+		.modal-dialog.modal-lg
 			.modal-content
 				.modal-header
 					button.close(type="button",data-dismiss="modal", aria-label="Close")
@@ -105,6 +136,8 @@ block content
 										th Nome
 										th CPF
 										th RENACH
+										th Aulas Carro
+										th Aulas Moto
 										th Selecionar
 								tbody
 									each aluno in lista_aluno
@@ -112,6 +145,8 @@ block content
 											td #{aluno.nome}
 											td #{aluno.cpf}
 											td #{aluno.renach}
+											td #{aluno.qnt_aulas.carro}
+											td #{aluno.qnt_aulas.moto}
 											td
 												form(method="post", action="/aulas/praticas/aluno/#{aluno._id}")
 													button.btn(type="submit")
@@ -121,7 +156,7 @@ block content
 
 
 	.modal.fade#veiculoModal(role="dialog",aria-labelledby="veiculoModal", aria-hiden="true")
-		.modal-dialog.modal-md
+		.modal-dialog.modal-lg
 			.modal-content
 				.modal-header
 					button.close(type="button",data-dismiss="modal", aria-label="Close")
@@ -149,8 +184,3 @@ block content
 														span.glyphicon.glyphicon-search
 				.modal-footer
 					button.btn.btn-secondary(data-dismiss="modal") Close
-
-	
-
-
-
