@@ -115,7 +115,6 @@ module.exports = function(app){
 		},
 
 		excluir: function(req, res){
-			console.log("Entrou no exluir aluno");
 			Aluno.remove({_id: req.params.id}, function(err){
 				if(err){
 					req.flash('erro', 'Erro ao excluir aluno: '+err);

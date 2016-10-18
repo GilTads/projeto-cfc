@@ -2,12 +2,13 @@ module.exports = function(app){
 
 	var aluno	   = app.controllers.alunos;
 	var autenticar = require('../middleware/autenticar');
+	var permissao = require('../middleware/permissao');
 
 	app.route('/alunos')
 		.get(autenticar, aluno.index);
 
 	app.route('/cadastro/aluno')
-		.get(autenticar, aluno.cadastro)
+		.get(autenticar,permissao, aluno.cadastro)
 		.post(aluno.create);
 
 
@@ -15,9 +16,9 @@ module.exports = function(app){
 		.get(autenticar, aluno.listar);
 
 	app.route('/alunos/editar/:id')
-		.post(autenticar, aluno.update);
+		.post(autenticar,permissao, aluno.update);
 
 
 	app.route('/alunos/excluir/:id')
-		.post(aluno.excluir);
+		.post(permissao, aluno.excluir);
 }

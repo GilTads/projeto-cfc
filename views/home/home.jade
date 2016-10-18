@@ -2,6 +2,14 @@ extends ../layout
 block content
 	section.container
 		div.page-header.text-center
+			if messages.erro
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
+					br
+				if messages.info
+					.alert.alert-success#success-alert
+						p #{messages.info}
+					br
 		div.row
 			div.col-sm-6
 				div.well
