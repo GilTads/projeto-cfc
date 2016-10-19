@@ -1,7 +1,29 @@
 $(document).ready(function(){
 
+  
+  $('#chamaAjax').click(function(){
+    $.ajax({
+      url: '/aluno',
+      type: 'post',
+      dataType: 'html',
+      data: {'nome': 'Joao das Coxas'},
+      success: function(dados){
+        $('#content').val(dados);
+      }
+    });
+  });
 
-
+$('#aluno').click(function(){
+  $.ajax({
+    url: '/aulas/praticas/aluno/:id',
+    type: 'post',
+    dataType: 'html',
+    data: {'id': '_id'},
+    sucess: function(dados){
+      $('#inputAluno').val(dados);
+    }
+  });
+});
 //$('#myModal').modal({'backdrop': 'static'});
 
 
