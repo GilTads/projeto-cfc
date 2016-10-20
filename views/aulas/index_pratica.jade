@@ -1,3 +1,193 @@
+//- extends ../layout
+//- block content
+//- 	section.container.nav-top
+//- 		.panel.panel-default
+//- 			.panel-heading.text-center
+//- 				h3
+//- 					span.fa.fa-car  Aulas Práticas  
+//- 			.panel-body
+//- 				ul.nav.nav-tabs
+//- 					li.active(role="presentation")
+//- 						a(href="#main", data-toggle="tab") Agendamento de Aulas
+//- 					li(role="presentation")
+//- 						a(href="#menu1", data-toggle="tab") Profile
+//- 					li(role="presentation")
+//- 						a(href="#menu2", data-toggle="tab") Messages
+//- 					li(role="presentation")
+//- 						a(href="#menu3" data-toggle="tab") Settings
+//- 				.tab-content
+//- 					.tab-pane.active.fade.in#main
+//- 						h3 Agendamento de Aulas
+//- 						hr
+//- 						form(role="form", action="", method="")
+//- 							.row
+//- 								.col-xs-8.col-sm-8.col-md-3
+//- 									.form-group
+//- 										label Aluno
+//- 										input.form-control(type="text", name="aluno", value="#{aluno.nome || ''}" disabled, placeholder="Aluno")
+//- 								.col-xs-1.col-sm-1.col-md-1
+//- 										a.btn.btn-danger.lab(data-toggle="modal", data-target="#alunoModal")
+//- 											span.glyphicon.glyphicon-search
+//- 								.col-xs-8.col-sm-8.col-md-3
+//- 									.form-group
+//- 										label Instrutor
+//- 										input.form-control(type="text", name="instrutor", value="#{instrutor.nome || ''}",disabled, placeholder="Instrutor")
+//- 								.col-xs-1.col-sm-1.col-md-1
+//- 										a.btn.btn-danger.lab(data-toggle="modal", data-target="#instrutorModal")
+//- 											span.glyphicon.glyphicon-search
+//- 								.col-xs-8.col-sm-8.col-md-3
+//- 									.form-group
+//- 										label Veículo
+//- 										input.form-control(type="text", name="veiculo", value="#{veiculo.nome || ''}#{veiculo.placa || ''}", disabled, placeholder="Veículo")
+//- 								.col-xs-1.col-sm-1.col-md-1
+//- 										a.btn.btn-danger.lab(data-toggle="modal", data-target="#veiculoModal")
+//- 											span.glyphicon.glyphicon-search
+//- 							.row.cateoria
+//- 								.col-xs-3.col-sm-3.col-md-2
+//- 									label Categoria
+//- 									if aluno
+//- 										if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto > 0
+//- 											select.form-control
+//- 												option(value="A") Moto
+//- 												option(value="B") Carro
+//- 										else
+//- 											if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto == 0
+//- 												select.form-control
+//- 													option(value="B") Carro
+//- 											else
+//- 												if aluno.qnt_aulas.carro == 0 && aluno.qnt_aulas.moto > 0
+//- 													select.form-control
+//- 														option(value="A") Moto
+//- 								.col-xs-3.col-sm-3.col-md-2
+//- 									.form-group
+//- 										label Data
+//- 										input.form-control#date(type="text",name="nasc", value="#{moment().format('DD/MM/YYYY')}", required)
+//- 								.col-xs-6.col-sm-6.col-md-8
+//- 									.table-responsive
+//- 										table.table.table-inverse
+
+
+
+//- 								.col-xs-4.col-sm-4.col-md-4
+//- 									form(method="POST",action="")
+//- 										label AJAX!
+//- 										input.btn.btn-primary.form-control#chamaAjax(type="button", value="ajax")
+//- 								.col-xs-4.col-sm-4.col-md-4
+//- 									label Result
+//- 									img#loader.img(src="../img/ajaxLoader.gif") 
+//- 									&nbsp;
+//- 									input.form-control#content(type="text" , value="")
+
+//- 						hr
+							
+//- 					.tab-pane.fade#menu1
+//- 						h3 Profile
+//- 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto error similique hic dolorem cumque eius delectus exercitationem dicta ipsa, inventore, voluptatibus fugiat quasi quos. Voluptatem vitae quibusdam blanditiis rerum necessitatibus.
+//- 					.tab-pane.fade#menu2
+//- 						h3 Messages
+//- 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ipsa, officiis expedita et odio qui. Facilis minima, unde sapiente cupiditate pariatur, laboriosam aliquam quaerat, doloremque aut in consectetur amet non.
+//- 					.tab-pane.fade#menu3
+//- 						h3 Settings
+//- 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum dicta adipisci consectetur aspernatur, eius necessitatibus voluptatem qui vero soluta magnam harum quod nemo pariatur impedit a vel itaque. Asperiores.
+
+//- 	.modal.fade#instrutorModal(role="dialog",aria-labelledby="instrutorModal", aria-hiden="true")
+//- 		.modal-dialog.modal-lg
+//- 			.modal-content
+//- 				.modal-header
+//- 					button.close(type="button",data-dismiss="modal", aria-label="Close")
+//- 						span(aria-hiden="true")
+//- 					h4.modal-title Instrutor
+//- 				.modal-body
+//- 					if lista_instrutor.length > 0
+//- 						.table-responsive
+//- 							table.table.table-stripped.listar-usuarios
+//- 								thead
+//- 									tr
+//- 										th Nome
+//- 										th CPF
+//- 										th Selecionar
+//- 								tbody
+//- 									each instrutor in lista_instrutor
+//- 										tr
+//- 											td #{instrutor.nome}
+//- 											td #{instrutor.cpf}
+//- 											td
+//- 												form(method="post", action="/aulas/praticas/instrutor/#{instrutor._id}")
+//- 													button.btn(type="submit")
+//- 														span.glyphicon.glyphicon-search
+//- 				.modal-footer
+//- 					button.btn.btn-secondary(data-dismiss="modal") Close
+
+
+
+//- 	.modal.fade#alunoModal(role="dialog",aria-labelledby="alunoModal", aria-hiden="true")
+//- 		.modal-dialog.modal-lg
+//- 			.modal-content
+//- 				.modal-header
+//- 					button.close(type="button",data-dismiss="modal", aria-label="Close")
+//- 						span(aria-hiden="true")
+//- 					h4.modal-title Alunos
+//- 				.modal-body
+//- 					if lista_aluno.length > 0
+//- 						.table-responsive
+//- 							table.table.table-striped.listar-usuarios
+//- 								thead
+//- 									tr
+//- 										th Nome
+//- 										th CPF
+//- 										th RENACH
+//- 										th Aulas Carro
+//- 										th Aulas Moto
+//- 										th Selecionar
+//- 								tbody
+//- 									each aluno in lista_aluno
+//- 										tr
+//- 											td #{aluno.nome}
+//- 											td #{aluno.cpf}
+//- 											td #{aluno.renach}
+//- 											td #{aluno.qnt_aulas.carro}
+//- 											td #{aluno.qnt_aulas.moto}
+//- 											td
+//- 												//- TRABALHANDO COM AJAX DANGER! DANGER!
+//- 												form(method="post", action="")
+//- 													button.btn(type="submit")
+//- 														span.glyphicon.glyphicon-search
+//- 				.modal-footer
+//- 					button.btn.btn-secondary(data-dismiss="modal") Close
+
+
+//- 	.modal.fade#veiculoModal(role="dialog",aria-labelledby="veiculoModal", aria-hiden="true")
+//- 		.modal-dialog.modal-lg
+//- 			.modal-content
+//- 				.modal-header
+//- 					button.close(type="button",data-dismiss="modal", aria-label="Close")
+//- 						span(aria-hiden="true")
+//- 					h4.modal-title Veículos
+//- 				.modal-body
+//- 					if lista_veiculo.length > 0
+//- 						.table-responsive
+//- 							table.table.table-striped.listar-usuarios
+//- 								thead
+//- 									tr
+//- 										th Nome
+//- 										th Placa
+//- 										th Categoria
+//- 										th Selecionar
+//- 								tbody
+//- 									each veiculo in lista_veiculo
+//- 										tr
+//- 											td #{veiculo.nome}
+//- 											td #{veiculo.placa}
+//- 											td #{veiculo.categoria}
+//- 											td
+//- 												form(method="post", action="/aulas/praticas/veiculo/#{veiculo._id}")
+//- 													button.btn(type="submit")
+//- 														span.glyphicon.glyphicon-search
+//- 				.modal-footer
+//- 					button.btn.btn-secondary(data-dismiss="modal") Close
+
+
+
 extends ../layout
 block content
 	section.container.nav-top
@@ -23,66 +213,28 @@ block content
 							.row
 								.col-xs-8.col-sm-8.col-md-3
 									.form-group
-										label Aluno
-										input.form-control(type="text", name="aluno", value="#{aluno.nome || ''}" disabled, placeholder="Aluno")
+										label CPF do Aluno
+										input.form-control#cpf(type="text", name="cpf", value="" ,placeholder="CPF")
+										img#loader.img(src="../img/ajaxLoader.gif") 
+										label#aluno
 								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab(data-toggle="modal", data-target="#alunoModal")
+										a.btn.btn-danger.lab#searchAluno
 											span.glyphicon.glyphicon-search
 								.col-xs-8.col-sm-8.col-md-3
 									.form-group
 										label Instrutor
-										input.form-control(type="text", name="instrutor", value="#{instrutor.nome || ''}",disabled, placeholder="Instrutor")
+										input.form-control(type="text", name="instrutor", value="" ,placeholder="Instrutor")
 								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab(data-toggle="modal", data-target="#instrutorModal")
+										a.btn.btn-danger.lab#searchInstrutor
 											span.glyphicon.glyphicon-search
 								.col-xs-8.col-sm-8.col-md-3
 									.form-group
 										label Veículo
-										input.form-control(type="text", name="veiculo", value="#{veiculo.nome || ''}#{veiculo.placa || ''}", disabled, placeholder="Veículo")
+										input.form-control(type="text", name="veiculo", value="", placeholder="Veículo")
 								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab(data-toggle="modal", data-target="#veiculoModal")
+										a.btn.btn-danger.lab#searchVeiculo
 											span.glyphicon.glyphicon-search
-							.row.cateoria
-								.col-xs-3.col-sm-3.col-md-2
-									label Categoria
-									if aluno
-										if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto > 0
-											select.form-control
-												option(value="A") Moto
-												option(value="B") Carro
-										else
-											if aluno.qnt_aulas.carro > 0 && aluno.qnt_aulas.moto == 0
-												select.form-control
-													option(value="B") Carro
-											else
-												if aluno.qnt_aulas.carro == 0 && aluno.qnt_aulas.moto > 0
-													select.form-control
-														option(value="A") Moto
-								.col-xs-3.col-sm-3.col-md-2
-									.form-group
-										label Data
-										input.form-control#date(type="text",name="nasc", value="#{moment().format('DD/MM/YYYY')}", required)
-								.col-xs-6.col-sm-6.col-md-8
-									.table-responsive
-										table.table.table-inverse
-											thead
-												tr
-													th Hora
-													th Aluno
-													th veículo
-											tbody
-												tr
-													td 07:00hs
-												tr
-													td 07:50hs
-												tr
-													td 08:40hs
-							.row
-								.col-xs-4.col-sm-4.col-md-4
-									form(method="POST",action="")
-										label AJAX!
-										input.form-control#chamaAjax(type="button", value="ajax")
-										input#content(type="text" , value="")
+							
 
 						hr
 							
@@ -96,97 +248,4 @@ block content
 						h3 Settings
 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum dicta adipisci consectetur aspernatur, eius necessitatibus voluptatem qui vero soluta magnam harum quod nemo pariatur impedit a vel itaque. Asperiores.
 
-	.modal.fade#instrutorModal(role="dialog",aria-labelledby="instrutorModal", aria-hiden="true")
-		.modal-dialog.modal-lg
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal", aria-label="Close")
-						span(aria-hiden="true")
-					h4.modal-title Instrutor
-				.modal-body
-					if lista_instrutor.length > 0
-						.table-responsive
-							table.table.table-stripped.listar-usuarios
-								thead
-									tr
-										th Nome
-										th CPF
-										th Selecionar
-								tbody
-									each instrutor in lista_instrutor
-										tr
-											td #{instrutor.nome}
-											td #{instrutor.cpf}
-											td
-												form(method="post", action="/aulas/praticas/instrutor/#{instrutor._id}")
-													button.btn(type="submit")
-														span.glyphicon.glyphicon-search
-				.modal-footer
-					button.btn.btn-secondary(data-dismiss="modal") Close
-
-
-
-	.modal.fade#alunoModal(role="dialog",aria-labelledby="alunoModal", aria-hiden="true")
-		.modal-dialog.modal-lg
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal", aria-label="Close")
-						span(aria-hiden="true")
-					h4.modal-title Alunos
-				.modal-body
-					if lista_aluno.length > 0
-						.table-responsive
-							table.table.table-striped.listar-usuarios
-								thead
-									tr
-										th Nome
-										th CPF
-										th RENACH
-										th Aulas Carro
-										th Aulas Moto
-										th Selecionar
-								tbody
-									each aluno in lista_aluno
-										tr
-											td #{aluno.nome}
-											td #{aluno.cpf}
-											td #{aluno.renach}
-											td #{aluno.qnt_aulas.carro}
-											td #{aluno.qnt_aulas.moto}
-											td
-												form(method="post", action="/aulas/praticas/aluno/#{aluno._id}")
-													button.btn(type="submit")
-														span.glyphicon.glyphicon-search
-				.modal-footer
-					button.btn.btn-secondary(data-dismiss="modal") Close
-
-
-	.modal.fade#veiculoModal(role="dialog",aria-labelledby="veiculoModal", aria-hiden="true")
-		.modal-dialog.modal-lg
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal", aria-label="Close")
-						span(aria-hiden="true")
-					h4.modal-title Veículos
-				.modal-body
-					if lista_veiculo.length > 0
-						.table-responsive
-							table.table.table-striped.listar-usuarios
-								thead
-									tr
-										th Nome
-										th Placa
-										th Categoria
-										th Selecionar
-								tbody
-									each veiculo in lista_veiculo
-										tr
-											td #{veiculo.nome}
-											td #{veiculo.placa}
-											td #{veiculo.categoria}
-											td
-												form(method="post", action="/aulas/praticas/veiculo/#{veiculo._id}")
-													button.btn(type="submit")
-														span.glyphicon.glyphicon-search
-				.modal-footer
-					button.btn.btn-secondary(data-dismiss="modal") Close
+	

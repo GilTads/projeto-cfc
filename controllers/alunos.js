@@ -124,6 +124,26 @@ module.exports = function(app){
 					res.redirect('/alunos');
 				}
 			});
+		},
+		// ROTA PARA TESTES DE AJAX
+		ajaxing: function(req, res){
+			Aluno.findOne({nome: req.body.nome}, function(err, data){
+				if(err){
+					res.send('nada encontrado');
+				}else{
+					res.send(data);
+				}
+			});
+		},
+
+		busca: function(req, res){
+			Aluno.findOne({cpf: req.body.cpf}, function(err, data){
+				if(err){
+					res.send('Aluno não encontrado');
+				}else{
+					res.send(data);
+				}
+			});
 		}
 		
 	}

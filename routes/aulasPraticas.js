@@ -1,6 +1,7 @@
 module.exports = function(app){
 
-	var aula = app.controllers.aulasPraticas;
+	var aula 	= app.controllers.aulasPraticas;
+	var aluno 	= app.controllers.alunos;
 	var autenticar = require('../middleware/autenticar');
 
 	app.route('/aulas/praticas') //Atualiza a lista de instrutores, alunos e veículos
@@ -17,4 +18,11 @@ module.exports = function(app){
 
 	app.route('/aulas/praticas/veiculo/:id')
 		.post(aula.seleciona_veiculo);
+
+
+
+		// LIDANDO COM AJAX
+
+	app.route('/busca/aluno')
+		.post(aluno.busca);
 }

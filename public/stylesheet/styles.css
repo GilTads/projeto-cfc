@@ -53,6 +53,11 @@ html,body {
   }
 }
 
+#loader {
+    display: none;
+    float: left;
+}
+
 a {
     color:#999;
 }

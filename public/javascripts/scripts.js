@@ -3,27 +3,65 @@ $(document).ready(function(){
   
   $('#chamaAjax').click(function(){
     $.ajax({
-      url: '/aluno',
+      url: '/ajaxing',
       type: 'post',
-      dataType: 'html',
-      data: {'nome': 'Joao das Coxas'},
+      dataType: 'json',
+      data: {'nome': 'Ana'},
+      timeout: 8000,
+      error: function(err){
+        alert('Nenhum dado encontrado');
+      },
       success: function(dados){
-        $('#content').val(dados);
-      }
+        setTimeout(function() {$('#content').val(dados.nome)}, 1000);
+        
+      },
+      beforeSend: function(){
+        $('#loader').css({display:'block'});
+      },
+      complete: function(){
+        setTimeout(function() {$('#loader').hide()}, 1000);
+      },
     });
   });
 
-$('#aluno').click(function(){
-  $.ajax({
-    url: '/aulas/praticas/aluno/:id',
-    type: 'post',
-    dataType: 'html',
-    data: {'id': '_id'},
-    sucess: function(dados){
-      $('#inputAluno').val(dados);
-    }
+
+  $('#searchAluno').click(function(){
+    var cpf = $('#cpf').val();
+    $.ajax({
+      url: '/busca/aluno',
+      type: 'post',
+      dataType: 'json',
+      data: {cpf: cpf},
+      error: function(err){
+        
+        alert('Nenhum dado encontrado');
+        $('#aluno').html('');
+      },
+      success: function(dados){
+        console.log(dados);
+        setTimeout(function() {$('#aluno').html(dados.nome)}, 1000);
+        
+      },
+       beforeSend: function(){
+        $('#loader').css({display:'block'});
+      },
+      complete: function(){
+        setTimeout(function() {$('#loader').hide()}, 1000);
+      },
+    });
   });
-});
+
+// $('#aluno').click(function(){
+//   $.ajax({
+//     url: '/aulas/praticas/aluno/:id',
+//     type: 'post',
+//     dataType: 'html',
+//     data: {'id': '_id'},
+//     sucess: function(dados){
+//       $('#inputAluno').val(dados);
+//     }
+//   });
+// });
 //$('#myModal').modal({'backdrop': 'static'});
 
 
@@ -179,7 +217,5 @@ new dgCidadesEstados({
   estado: document.getElementById('estado')
   ,cidade: document.getElementById('cidade')
  });
-
-
 
 });
