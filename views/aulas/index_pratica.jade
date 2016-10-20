@@ -207,36 +207,61 @@ block content
 						a(href="#menu3" data-toggle="tab") Settings
 				.tab-content
 					.tab-pane.active.fade.in#main
-						h3 Agendamento de Aulas
-						hr
-						form(role="form", action="", method="")
+						.col-xs-12.col-sm-12.col-md-12
+							.panel.panel-default
+										.panel-heading
+											.panel-title
+												h4 Agendamento de Aulas
+										.panel-body
+											form(role="form", action="", method="")
+												.row
+													.col-xs-8.col-sm-8.col-md-3
+														.form-group
+															label CPF do Aluno
+															input.form-control#cpf(type="text", name="cpf", value="" ,placeholder="CPF")
+													.col-xs-1.col-sm-1.col-md-1
+															a.btn.btn-danger.lab#searchAluno
+																span.glyphicon.glyphicon-search
+													.col-xs-8.col-sm-8.col-md-3
+														.form-group
+															label Instrutor
+															select.form-control#selIns(name="instrutor",value="" ,placeholder="Instrutor")
+																option(value="", disabled)
+																each instrutor in lista_instrutor 
+																	option#optIns(value="#{instrutor.nome}") #{instrutor.nome}
+													.col-xs-8.col-sm-8.col-md-3
+														.form-group
+															label Veículo
+															select.form-control(type="text", name="veiculo")
+																each veiculo in lista_veiculo
+																	option(value="#{veiculo.nome}") #{veiculo.nome + ' / '} #{veiculo.placa}
 							.row
-								.col-xs-8.col-sm-8.col-md-3
-									.form-group
-										label CPF do Aluno
-										input.form-control#cpf(type="text", name="cpf", value="" ,placeholder="CPF")
-										img#loader.img(src="../img/ajaxLoader.gif") 
-										label#aluno
-								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab#searchAluno
-											span.glyphicon.glyphicon-search
-								.col-xs-8.col-sm-8.col-md-3
-									.form-group
-										label Instrutor
-										input.form-control(type="text", name="instrutor", value="" ,placeholder="Instrutor")
-								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab#searchInstrutor
-											span.glyphicon.glyphicon-search
-								.col-xs-8.col-sm-8.col-md-3
-									.form-group
-										label Veículo
-										input.form-control(type="text", name="veiculo", value="", placeholder="Veículo")
-								.col-xs-1.col-sm-1.col-md-1
-										a.btn.btn-danger.lab#searchVeiculo
-											span.glyphicon.glyphicon-search
-							
-
-						hr
+								.col-xs-12.col-sm-12.col-md-12.afterAjax
+									.panel.panel-info
+										.panel-heading
+											.panel-title
+												h4
+													span.fa.fa-cogs   Dados da Aula	
+										.panel-body
+											.row.alunoPratico
+												.col-xs-6.col-sm-6.col-md-4
+													.form-group
+														label Aluno:
+														input.form-control(type="text", disabled)#aluno
+														img#loader.img(src="../img/ajaxLoader.gif")
+											.row.instrutorPratico
+												.col-xs-6.col-sm-6.col-md-4
+													.form-group
+														img#loader.img(src="../img/ajaxLoader.gif")
+														label Instrutor:
+														input.form-control(type="text", disabled)#instrutor
+											.row.veiculoPratico
+												.col-xs-6.col-sm-6.col-md-4
+													.form-group
+														img#loader.img(src="../img/ajaxLoader.gif")
+														label Veículo:
+														input.form-control(type="text", disabled)#veiculo
+						
 							
 					.tab-pane.fade#menu1
 						h3 Profile

@@ -1,30 +1,5 @@
 $(document).ready(function(){
 
-  
-  $('#chamaAjax').click(function(){
-    $.ajax({
-      url: '/ajaxing',
-      type: 'post',
-      dataType: 'json',
-      data: {'nome': 'Ana'},
-      timeout: 8000,
-      error: function(err){
-        alert('Nenhum dado encontrado');
-      },
-      success: function(dados){
-        setTimeout(function() {$('#content').val(dados.nome)}, 1000);
-        
-      },
-      beforeSend: function(){
-        $('#loader').css({display:'block'});
-      },
-      complete: function(){
-        setTimeout(function() {$('#loader').hide()}, 1000);
-      },
-    });
-  });
-
-
   $('#searchAluno').click(function(){
     var cpf = $('#cpf').val();
     $.ajax({
@@ -37,19 +12,26 @@ $(document).ready(function(){
         alert('Nenhum dado encontrado');
         $('#aluno').html('');
       },
-      success: function(dados){
-        console.log(dados);
-        setTimeout(function() {$('#aluno').html(dados.nome)}, 1000);
-        
-      },
        beforeSend: function(){
         $('#loader').css({display:'block'});
       },
       complete: function(){
         setTimeout(function() {$('#loader').hide()}, 1000);
       },
+      success: function(dados){
+        setTimeout(function() {$('#aluno').val(dados.nome)}, 1000);
+        $('.afterAjax').css({display: 'block'});
+        $('.alunoPratico').css({display: 'block'});
+      }
     });
   });
+
+
+$(document).on('change', "#selIns", function(){
+    var instrutor = ($(this).val()); 
+    console.log(instrutor);
+});
+  
 
 // $('#aluno').click(function(){
 //   $.ajax({

@@ -53,10 +53,6 @@ html,body {
   }
 }
 
-#loader {
-    display: none;
-    float: left;
-}
 
 a {
     color:#999;
@@ -86,7 +82,9 @@ a:hover {
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
-#sexChoose, #labSex, #nasc, #atualizar, .onlyInstrutor, .praticoPasso2{
+#sexChoose, #labSex,#loader, #nasc, #atualizar,
+ .onlyInstrutor, .praticoPasso2, .afterAjax, .alunoPratico
+ ,.veiculoPratico, .instrutorPratico{
   display: none;
 }
 
