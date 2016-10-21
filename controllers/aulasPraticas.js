@@ -1,8 +1,9 @@
 module.exports = function(app){
 
-	var Aluno 	  = app.models.aluno;
-	var Instrutor = app.models.usuario;
-	var Veiculo	  = app.models.veiculo;
+	var Aluno 	  	= app.models.aluno;
+	var Instrutor 	= app.models.usuario;
+	var Veiculo	  	= app.models.veiculo;
+	var AulaPratica = app.models.aulaPratica;
 	var alunos
 	   ,instrutores
 	   ,veiculos
@@ -55,6 +56,7 @@ module.exports = function(app){
 			});
 		},
 
+		//INUTILIZADO
 		seleciona_aluno: function(req, res){
 			Aluno.findById(req.params.id, function(err, dados){
 				if(err){
@@ -72,7 +74,7 @@ module.exports = function(app){
 				}
 			});
 		},
-
+		//INUTILIZADO
 		seleciona_instrutor: function(req, res){
 			Instrutor.findById(req.params.id, function(err, data){
 				if(err){
@@ -90,7 +92,7 @@ module.exports = function(app){
 				}
 			});	
 		},
-
+		//INUTILIZADO
 		seleciona_veiculo: function(req, res){
 			Veiculo.findById(req.params.id, function(err, data){
 				if(err){
@@ -107,6 +109,61 @@ module.exports = function(app){
 					});
 				}
 			});
+		},
+
+		aulaPratica: function(req, res){
+			var aluno 	  = req.body.aluno
+			,	instrutor = req.body.instrutor
+			,	veiculo   = req.body.veiculo
+			, 	data 	  = req.body.dataToMongo
+			,	idAluno
+			,	idInstrutor
+			,	idVeiculo;
+			
+			Aluno.findOne({cpf: aluno}, function(err, dados){
+				if(err){
+					res.send('erro', 'Erro ao buscar aluno');
+				}else{
+					idAluno = dados._id;
+				}
+			});
+
+			Instrutor.findOne({_id: instrutor}, function(err, dados){
+				if(err){
+					res.send('erro', 'Erro ao buscar instrutor');
+				}else{
+					idInstrutor = dados._id;
+				}
+			});
+
+			Veiculo.findOne({_id: veiculo}, function(err, dados){
+				if(err){
+					res.send('erro', 'Erro ao buscar veículo');
+				}else{
+					idVeiculo = dados._id;
+				}
+			});		
+			var modelo = new AulaPratica({
+				_aluno : idAluno,
+				_instrutor: idInstrutor,
+				_veiculo  : idVeiculo
+			});
+
+			modelo.save(function(err){
+				if(err) return handleError(err);
+				console.log(modelo._aluno, modelo._instrutor, modelo._veiculo)
+			});
+
+			// AulaPratica
+			// .populate('_aluno')
+			// .populate('_instrutor')
+			// .populate('_veiculo')
+			// .exec(function(err, aulas){
+			// 	if(err) return handleError(err);
+			// 	console.log('O aluno é: ', modelo._aluno.nome);
+			// });
+
+
 		}
 	
 	}

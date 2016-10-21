@@ -39,13 +39,32 @@ $(document).ready(function(){
 
 var id_instrutor;
 var id_veiculo;
+var dataToMongo;
+
+
+
   // AGENDAR AULA PRATICA
 $('#confAulaPr').click(function(){
   var cpf_aluno = $('#cpf').val();
   var data = $('#data').val();
-  console.log('Aluno: '+cpf_aluno+' '+ 'instrutor: '+ id_instrutor+ ' '+ 'veiculo: '+ id_veiculo
-    +' '+ 'data: '+ data);
+  $.ajax({
+    url: '/agenda/aula/pratica',
+    type: 'POST',
+    dataType: 'json',
+    data: {aluno: cpf_aluno,
+      instrutor : id_instrutor,
+      veiculo   : id_veiculo},
+    error: function(err){
+      console.log('Deu pau ao gravar aula pratica');
+    },
+    success: function(dados){
+      console.log('Deu certo ao gravar aula pratica');
+    }
+  });
 });
+
+
+
 
 // SELECIONA INSTRUTOR PARA A AGENDA PRATICA
 $(document).on('change', "#selIns", function(){
@@ -180,9 +199,10 @@ $('#datetimepicker').datetimepicker({
   ],
   onSelectTime : function(dp, $input){
     var atual = $($input).val();
-    console.log(dp);
+    var data = dp.getMonth()+'/'+dp.getDate()+'/'+dp.getFullYear();
     $('#data').val(atual);
-    
+    dataToMongo = data;
+    console.log(data);
   }
 
 });

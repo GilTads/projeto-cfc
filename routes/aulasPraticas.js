@@ -25,4 +25,7 @@ module.exports = function(app){
 
 	app.route('/busca/aluno')
 		.post(aluno.busca);
+
+	app.route('/agenda/aula/pratica')
+		.post(aula.aulaPratica)
 }
