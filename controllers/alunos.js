@@ -40,8 +40,8 @@ module.exports = function(app){
 				modelo.telefones.res 	= req.body.res;
 				modelo.telefones.cel 	= req.body.cel;
 				modelo.telefones.opc 	= req.body.opc;
-				modelo.qnt_aulas.carro 	= req.body.aula_carro;
-				modelo.qnt_aulas.moto 	= req.body.aulas_moto;
+				modelo.qnt_aulas.carro 	= 25;
+				modelo.qnt_aulas.moto 	= 20;
 				modelo.categoria 		= req.body.categoria;
 
 				Aluno.findOne({'cpf' : modelo.cpf}, function(err, data){
@@ -100,7 +100,7 @@ module.exports = function(app){
 					modelo.endereco.uf 		= req.body.uf;
 					modelo.endereco.cidade 	= req.body.cidade;
 					modelo.categoria 		= req.body.categoria;
-
+					console.log(req.body.nasc);
 					modelo.save(function(err){
 						if(err){
 							req.flash('erro', 'Erro ao atualizar os dados: ' + err);

@@ -83,7 +83,7 @@ a:hover {
 .right-addon input { padding-right: 30px; }
 
 #sexChoose, #labSex,#loader, #nasc, #atualizar,
- .onlyInstrutor, .praticoPasso2, .afterAjax, .alunoPratico
+ .onlyInstrutor, .praticoPasso2, .alunoPratico
  ,.veiculoPratico, .instrutorPratico{
   display: none;
 }

@@ -19,17 +19,49 @@ $(document).ready(function(){
         setTimeout(function() {$('#loader').hide()}, 1000);
       },
       success: function(dados){
-        setTimeout(function() {$('#aluno').val(dados.nome)}, 1000);
+        if(dados.categoria == "AB"){
+          setTimeout(function() {$('#aluno').val(dados.nome),
+         $('#aulasCarro').val(dados.qnt_aulas.carro),
+         $('#aulasMoto').val(dados.qnt_aulas.moto)}, 1000);
+        }else if(dados.categoria == 'B'){
+          setTimeout(function() {$('#aluno').val(dados.nome),
+         $('#aulasCarro').val(dados.qnt_aulas.carro)}, 1000);
+        }else if(dados.categoria == 'A'){
+          setTimeout(function() {$('#aluno').val(dados.nome),
+         $('#aulasMoto').val(dados.qnt_aulas.moto)}, 1000);
+        }
+        
         $('.afterAjax').css({display: 'block'});
         $('.alunoPratico').css({display: 'block'});
       }
     });
   });
 
+var id_instrutor;
+var id_veiculo;
+  // AGENDAR AULA PRATICA
+$('#confAulaPr').click(function(){
+  var cpf_aluno = $('#cpf').val();
+  var data = $('#data').val();
+  console.log('Aluno: '+cpf_aluno+' '+ 'instrutor: '+ id_instrutor+ ' '+ 'veiculo: '+ id_veiculo
+    +' '+ 'data: '+ data);
+});
 
+// SELECIONA INSTRUTOR PARA A AGENDA PRATICA
 $(document).on('change', "#selIns", function(){
-    var instrutor = ($(this).val()); 
-    console.log(instrutor);
+    var instrutor = $(this).find('option:selected').text();
+    id_instrutor = ($(this).val()); 
+    $('#instrutor').val(instrutor);
+    $('.instrutorPratico').css({display: 'block'});
+});
+
+
+// SELECIONA O VEÍCULO PARA A AGENDA PRATICA
+$(document).on('change', '#selVeic', function(){
+  var veiculo = $(this).find('option:selected').text();
+  id_veiculo = ($(this).val());
+  $('#veiculo').val(veiculo);
+  $('.veiculoPratico').css({display: 'block'});
 });
   
 
@@ -99,6 +131,9 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
       }
     });
 
+
+
+// CONFIGURANDO DATEPICKER
     $.datepicker.regional['pt-BR'] = {
     changeYear: true,
     yearRange: '1900:2100',
@@ -124,7 +159,36 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
   $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
 
    $('#date').datepicker();
- 
+
+  
+
+
+
+// AGENDAMENTO DE AULAS PRATICAS DATETIMEPICKER
+$.datetimepicker.setLocale('pt-BR');
+var dateToDisable = '10.12.2016 08:40';
+$('#datetimepicker').datetimepicker({
+  format:'d.m.Y H:i',
+  minDate: 0,
+  inline: true,
+  allowTimes: [
+    '07:00','07:50','08:40',
+    '09:20','10:10','11:00',
+    '13:00','13:50','14:40',
+    '15:30','16:20','17:10',
+    '18:00'
+  ],
+  onSelectTime : function(dp, $input){
+    var atual = $($input).val();
+    console.log(dp);
+    $('#data').val(atual);
+    
+  }
+
+});
+
+
+
 
 
 
