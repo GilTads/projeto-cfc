@@ -3,7 +3,7 @@ module.exports = function(app){
 	var Aluno 	  	= app.models.aluno;
 	var Instrutor 	= app.models.usuario;
 	var Veiculo	  	= app.models.veiculo;
-	var AulaPratica = app.models.aulaPratica;
+	var Pratico		= app.models.pratico;
 	var alunos
 	   ,instrutores
 	   ,veiculos
@@ -115,16 +115,27 @@ module.exports = function(app){
 			var aluno 	  = req.body.aluno
 			,	instrutor = req.body.instrutor
 			,	veiculo   = req.body.veiculo
-			, 	data 	  = req.body.dataToMongo
-			,	idAluno
-			,	idInstrutor
-			,	idVeiculo;
+			, 	data 	  = req.body.dataToMongo;
 			
 			Aluno.findOne({cpf: aluno}, function(err, dados){
 				if(err){
 					res.send('erro', 'Erro ao buscar aluno');
 				}else{
-					idAluno = dados._id;
+					var pratico = new Pratico();
+					pratico._aluno = dados._id;
+					pratico.save(function(err){
+						if(err){
+							console.log('Não salvou');
+						}else{
+							console.log('Deu certo');
+							Pratico
+							.populate('_aluno')
+							.exec(function(err, aula){
+								if(err) return handleError(err);
+								console.log('O aluno é: ', pratico._aluno.nome);
+							});
+						}
+					});
 				}
 			});
 
@@ -143,16 +154,7 @@ module.exports = function(app){
 					idVeiculo = dados._id;
 				}
 			});		
-			var modelo = new AulaPratica({
-				_aluno : idAluno,
-				_instrutor: idInstrutor,
-				_veiculo  : idVeiculo
-			});
-
-			modelo.save(function(err){
-				if(err) return handleError(err);
-				console.log(modelo._aluno, modelo._instrutor, modelo._veiculo)
-			});
+		
 
 			// AulaPratica
 			// .populate('_aluno')
