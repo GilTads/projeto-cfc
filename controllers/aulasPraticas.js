@@ -128,12 +128,13 @@ module.exports = function(app){
 							console.log('Não salvou');
 						}else{
 							console.log('Deu certo');
-							Pratico
-							.populate('_aluno')
-							.exec(function(err, aula){
-								if(err) return handleError(err);
-								console.log('O aluno é: ', pratico._aluno.nome);
-							});
+							console.log(this);
+							// Pratico
+							// .populate('_aluno')
+							// .exec(function(err, aula){
+							// 	if(err) return handleError(err);
+							// 	console.log('O aluno é: ', aula._aluno.nome);
+							// });
 						}
 					});
 				}
