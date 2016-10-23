@@ -44,22 +44,27 @@ var dataToMongo;
 
 
   // AGENDAR AULA PRATICA
-$('#confAulaPr').click(function(){
+$('#confAulaPr').click(function(e){
+  e.preventDefault();
+
   var cpf_aluno = $('#cpf').val();
   var data = $('#data').val();
   $.ajax({
-    url: '/agenda/aula/pratica',
+    url: '/pratico/buscaId',
     type: 'POST',
     dataType: 'json',
-    data: {aluno: cpf_aluno,
+    data: {
+      aluno     : cpf_aluno,
       instrutor : id_instrutor,
-      veiculo   : id_veiculo},
+      veiculo   : id_veiculo
+    },
+    success: function(dados){
+      
+    },
     error: function(err){
       console.log('Deu pau ao gravar aula pratica');
     },
-    success: function(dados){
-      console.log('Deu certo ao gravar aula pratica');
-    }
+    
   });
 });
 
@@ -69,7 +74,7 @@ $('#confAulaPr').click(function(){
 // SELECIONA INSTRUTOR PARA A AGENDA PRATICA
 $(document).on('change', "#selIns", function(){
     var instrutor = $(this).find('option:selected').text();
-    id_instrutor = ($(this).val()); 
+    id_instrutor = ($(this).val());
     $('#instrutor').val(instrutor);
     $('.instrutorPratico').css({display: 'block'});
 });

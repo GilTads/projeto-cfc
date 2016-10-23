@@ -19,6 +19,8 @@ module.exports = function(app){
 	app.route('/aulas/praticas/veiculo/:id')
 		.post(aula.seleciona_veiculo);
 
+	app.route('/agenda/aula/pratica')
+		.post(aula.aulaPratica);
 
 
 		// LIDANDO COM AJAX
@@ -26,6 +28,7 @@ module.exports = function(app){
 	app.route('/busca/aluno')
 		.post(aluno.busca);
 
-	app.route('/agenda/aula/pratica')
-		.post(aula.aulaPratica)
+	app.route('/pratico/buscaId')
+		.post(aula.buscaId);
+
 }

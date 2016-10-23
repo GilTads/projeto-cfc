@@ -22,6 +22,15 @@ block content
 										.panel-heading
 											.panel-title
 												h4 Agendamento de Aulas
+												br
+											if messages.erro
+												.alert.alert-danger#success-alert
+													p #{messages.erro}
+												br
+											if messages.info
+												.alert.alert-success#success-alert
+													p #{messages.info}
+												br
 										.panel-body
 											form(role="form", action="", method="")
 												.row
@@ -29,20 +38,20 @@ block content
 														.form-group
 															label CPF do Aluno
 															.input-group
-																input.form-control#cpf(type="text", name="cpf", value="" ,placeholder="CPF")
+																input.form-control#cpf(type="text", value="" ,placeholder="CPF")
 																span.input-group-addon#searchAluno
 																	span.glyphicon.glyphicon-search
 													.col-xs-8.col-sm-8.col-md-3
 														.form-group
 															label Instrutor
-															select.form-control#selIns(name="instrutor",value="" ,placeholder="Instrutor")
+															select.form-control#selIns(value="" ,placeholder="Instrutor")
 																option(value="", disabled, selected)
 																each instrutor in lista_instrutor 
 																	option#optIns(value="#{instrutor._id}") #{instrutor.nome}
 													.col-xs-8.col-sm-8.col-md-3
 														.form-group
 															label Veículo
-															select.form-control#selVeic(type="text", name="veiculo")
+															select.form-control#selVeic(type="text")
 																option(value="", disabled, selected)
 																each veiculo in lista_veiculo
 																	option#optVeic(value="#{veiculo._id}") #{veiculo.nome + ' / '} #{veiculo.placa}
@@ -58,42 +67,48 @@ block content
 												.col-xs-8.col-sm-8.col-md-8
 													.input-group.date
 														input.form-control(type="text")#datetimepicker
-											form(method="POST", action="")
+											form(action="/agenda/aula/pratica", method="post",role="form")
 												.col-xs-4.col-sm-4.col-md-4
 													.row.alunoPratico
 														.col-xs-12.col-sm-12.col-md-12
 															img#loader.img(src="../img/ajaxLoader.gif")
 															.form-group
 																label Aluno:
-																input.form-control(type="text", disabled,value="", required)#aluno
+																input.form-control(type="text", readyonly,value="", required)#aluno
+																input.shadowForm(name="aluno")
 													.row.aulaPratica
 														.col-xs-6.col-sm-6.col-md-6#aulaCarro
 															img#loader.img(src="../img/ajaxLoader.gif")
 															.form-group
 																label Carro:
-																input.form-control(type="text",value="", disabled, required)#aulasCarro
+																input.form-control(type="text",value="", readyonly, required)#aulasCarro
+																input.shadowForm()
 														.col-xs-6.col-sm-6.col-md-6#aulaMoto
 															.form-group
 																label Moto:
-																input.form-control(type="text",value="", disabled, required)#aulasMoto
+																input.form-control(type="text",value="", readyonly, required)#aulasMoto
+																input.shadowForm()
 													.row.instrutorPratico
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
 																label Instrutor:
-																input.form-control(type="text",value="", disabled, required)#instrutor
+																input.form-control(type="text",value="", readyonly, required)#instrutor
+																input.shadowForm(name="instrutor")
 													.row.veiculoPratico
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
 																label Veículo:
-																input.form-control(type="text",value="", disabled, required)#veiculo
+																input.form-control(type="text",value="", readyonly, required)#veiculo
+																input.shadowForm(name="veiculo")
 													.row.dataAula
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
 																label Data:
-																input.form-control(type="text",value="", disabled, required)#data
+																input.form-control(name="data",type="text",value="", readyonly, required)#data
+																input.shadowForm()
 													.row
 														.col-xs-12.col-sm-12.col-md-12
-															input.btn.btn-danger.btn-lg#confAulaPr(type="button", value="Confirmar Aula")
+															button.btn.btn-danger.btn-lg.btn-block#confAulaPr(type="submit", value="Confirmar Aula") Confirmar Aula
 														
 
 						

@@ -111,50 +111,77 @@ module.exports = function(app){
 			});
 		},
 
-		aulaPratica: function(req, res){
-			var aluno 	  = req.body.aluno
-			,	instrutor = req.body.instrutor
-			,	veiculo   = req.body.veiculo
-			, 	data 	  = req.body.dataToMongo;
-			
-			Aluno.findOne({cpf: aluno}, function(err, dados){
+		buscaId: function(req, res){
+			Aluno.findOne({cpf: req.body.cpf}, function(err, aluno){
 				if(err){
 					res.send('erro', 'Erro ao buscar aluno');
-				}else{
-					var pratico = new Pratico();
-					pratico._aluno = dados._id;
-					pratico.save(function(err){
+				} else{
+					Instrutor.findOne({_id: req.body.instrutor}, function(err, instrutor){
 						if(err){
-							console.log('Não salvou');
+							res.send('erro', 'Erro ao buscar instrutor')
 						}else{
-							console.log('Deu certo');
-							console.log(this);
-							// Pratico
-							// .populate('_aluno')
-							// .exec(function(err, aula){
-							// 	if(err) return handleError(err);
-							// 	console.log('O aluno é: ', aula._aluno.nome);
-							// });
+							Veiculo.findOne({_id: req.body.veiculo}, function(err, veiculo){
+								if(err){
+									res.send('erro', 'Erro ao buscar veículo');
+								} else{
+									res.send(aluno, instrutor, veiculo);
+								}
+							});
+						}
+					});
+				}
+			});
+		},
+
+		aulaPratica: function(req, res){
+			//var aluno 	  = req.body.aluno
+			//,	instrutor = req.body.instrutor
+			//,	veiculo   = req.body.veiculo
+			//, 	data 	  = req.body.data;
+
+			console.log('corpo: ', req.body.aluno);
+			Aluno.findOne({cpf: req.body.aluno}, function(err, aluno){
+				if(err){
+					res.send('erro', 'Erro ao buscar aluno');
+				} else{
+					Instrutor.findOne({_id: req.body.instrutor}, function(err, instrutor){
+						if(err){
+							res.send('erro', 'Erro ao buscar instrutor')
+						}else{
+							Veiculo.findOne({_id: req.body.veiculo}, function(err, veiculo){
+								if(err){
+									res.send('erro', 'Erro ao buscar veículo');
+								} else{
+									var pratico = new Pratico();
+									
+									// pratico._aluno 		= aluno._id;
+									// pratico._instrutor  = instrutor._id;
+									// pratico._veiculo 	= veiculo._id;
+
+									// pratico.save(function(err){
+									// 	if(err){
+									// 		req.flash('erro', 'Aula não pode ser salva');
+									// 		res.redirect('/aulas/index');
+									// 	}else{
+									// 		req.flash('info', 'Aula agendada com sucesso');
+									// 		res.redirect('/aulas/index');
+									// 	}
+									// });
+									res.redirect('/aulas/index');
+								}
+							});
 						}
 					});
 				}
 			});
 
-			Instrutor.findOne({_id: instrutor}, function(err, dados){
-				if(err){
-					res.send('erro', 'Erro ao buscar instrutor');
-				}else{
-					idInstrutor = dados._id;
-				}
-			});
+			
 
-			Veiculo.findOne({_id: veiculo}, function(err, dados){
-				if(err){
-					res.send('erro', 'Erro ao buscar veículo');
-				}else{
-					idVeiculo = dados._id;
-				}
-			});		
+			
+
+			
+
+			
 		
 
 			// AulaPratica
@@ -165,7 +192,6 @@ module.exports = function(app){
 			// 	if(err) return handleError(err);
 			// 	console.log('O aluno é: ', modelo._aluno.nome);
 			// });
-
 
 		}
 	
