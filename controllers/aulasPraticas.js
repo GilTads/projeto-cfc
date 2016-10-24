@@ -162,51 +162,37 @@ module.exports = function(app){
 											Pratico
 											.findOne({_aluno: aluno._id})
 											.populate('_aluno')
+											.populate('_instrutor')
+											.populate('_veiculo')
 											.exec(function(err, aluno){
 												if(err){
 													req.flash('erro', 'Deu pau no populate');
 													res.redirect('/aulas/index');
-												} else{
-													console.log('Olha Aqui: ', aluno._aluno.nome);
-													console.log('Olha Aqui: ', aluno._aluno.endereco.rua);
-												 }
+												}
 
-											});
-
-											Pratico
-											.findOne({_instrutor: instrutor._id})
-											.populate('_instrutor')
-											.exec(function(err, instrutor){
-												if(err){
-													req.flash('erro', 'Deu pau no populate');
-													res.redirect('/aulas/index');
-												} else{
-													console.log('Olha Aqui: ', instrutor._instrutor.nome);
-													console.log('Olha Aqui: ', instrutor._instrutor.email);
-												 }
 											});
 
 											//Popula o array de aulas praticas da collection Aluno
 											aluno.aula.pratica.push(pratico);
 											aluno.save(function(err){
 												if(err) console.log('Erro no cb');
-											});
 
+
+											});
+											
 ///////////////////////////////////////////////////
 												//VERIFICAR AQUI///////////////
 											Aluno
-											.findOne({nome: 'Gilmar'})
-											.populate({
-												path: 'aula',
-												populate:{path: 'pratica'}
-											})
+											.findOne({_id: aluno._id})
+											.populate('aula.pratica')
 											.exec(function(err, aula){
 												if(err) console.log('Erro na aula do schema aluno');
-												console.log('Finalmente: ', aula);
+												console.log(JSON.stringify(aula, null, "\t"));
 											});
 
 											req.flash('info', 'Aula agendada com sucesso');
 											res.redirect('/aulas/index');
+											console.log(JSON.stringify('Detalhado: ',aluno.aula.pratica, null, "\t"));
 												
 										}
 									});
@@ -229,8 +215,8 @@ module.exports = function(app){
 		},
 
 		testePop: function(req, res){
-			Aluno.findOne({nome: 'Gilmar'},function(err, aluno){
-				res.json(aluno.aula);
+			Aluno.findOne({'aula.pratica.instrutor': 'Popye' },function(err, aluno){
+				console.log(JSON.stringify(aluno, null, "\t"));
 			});
 			// Aluno.findOne({'aula.pratica' : {$elemMatch: {nome: 'Gilmar'}}}, function(err, aluno){
 			// 	if(err) res.json('ERRO nada feito');
