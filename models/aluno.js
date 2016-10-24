@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var Schema = mongoose.Schema;
 
 module.exports = function(){
 	var alunoSchema = mongoose.Schema({
@@ -33,6 +33,9 @@ module.exports = function(){
 			carro:{type:Number},
 			moto: {type:Number},
 		},
+		aula: {
+			pratica: [{type: Schema.Types.ObjectId, ref: 'Pratico'}]
+		}
 
 	});
 

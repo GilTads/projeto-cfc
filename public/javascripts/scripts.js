@@ -44,11 +44,12 @@ var dataToMongo;
 
 
   // AGENDAR AULA PRATICA
-$('#confAulaPr').click(function(e){
-  e.preventDefault();
-
+$('#praticaForm').submit(function(e){
+ 
   var cpf_aluno = $('#cpf').val();
   var data = $('#data').val();
+  e.preventDefault();
+  var form = this;
   $.ajax({
     url: '/pratico/buscaId',
     type: 'POST',
@@ -58,11 +59,15 @@ $('#confAulaPr').click(function(e){
       instrutor : id_instrutor,
       veiculo   : id_veiculo
     },
-    success: function(dados){
-      
+    success: function({aluno, instrutor, veiculo}){
+      $('#al').val(aluno._id);
+      $('#ins').val(instrutor._id);
+      $('#veic').val(veiculo._id);
+      form.submit();
     },
     error: function(err){
       console.log('Deu pau ao gravar aula pratica');
+
     },
     
   });
@@ -207,7 +212,6 @@ $('#datetimepicker').datetimepicker({
     var data = dp.getMonth()+'/'+dp.getDate()+'/'+dp.getFullYear();
     $('#data').val(atual);
     dataToMongo = data;
-    console.log(data);
   }
 
 });

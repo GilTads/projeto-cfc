@@ -84,7 +84,7 @@ a:hover {
 
 #sexChoose, #labSex,#loader, #nasc, #atualizar,
  .onlyInstrutor, .praticoPasso2, .alunoPratico
- ,.veiculoPratico, .instrutorPratico,.shadowForm{
+ ,.veiculoPratico, .instrutorPratico{
   display: none;
 }
 
