@@ -9,8 +9,7 @@ module.exports = function(app){
 	   ,veiculos
 	   ,aluno_input
 	   ,instrutor_input
-	   ,veiculo_input
-
+	   ,veiculo_input;
 
 
 
@@ -134,11 +133,13 @@ module.exports = function(app){
 		},
 
 		aulaPratica: function(req, res){
+			
 
 			Aluno.findOne({_id: req.body.aluno}, function(err, aluno){
 				if(err){
 					console.log('erro', 'Erro ao buscar aluno');
 				} else{
+					alunoPop = aluno._id;
 					Instrutor.findOne({_id: req.body.instrutor}, function(err, instrutor){
 						if(err){
 							console.log('erro', 'Erro ao buscar instrutor')
@@ -150,9 +151,14 @@ module.exports = function(app){
 									var pratico = new Pratico();
 
 									pratico._aluno 		= aluno._id;
-									pratico._instrutor  = instrutor._id;
-									pratico._veiculo 	= veiculo._id;
-									console.log('O pratico: ', pratico);
+									pratico._instrutor 	= instrutor._id;
+									pratico._veiculo	= veiculo._id;
+									// pratico._aluno.nome 	= aluno.nome,
+									// pratico._instrutor.nome = instrutor.nome,
+									// pratico._veiculo.nome	= veiculo.nome
+									//console.log('O pratico: ', pratico);
+
+
 									pratico.save(function(err){
 										if(err){
 											req.flash('erro', 'Aula não pode ser salva');
@@ -160,68 +166,77 @@ module.exports = function(app){
 										}else{
 											//Popula a collection aula com os dados do aluno
 											Pratico
-											.findOne({_aluno: aluno._id})
+											.findOne({
+												'_aluno'		: aluno._id,
+												'_instrutor'	: instrutor._id,
+												'_veiculo'		: veiculo._id
+											})
 											.populate('_aluno')
 											.populate('_instrutor')
 											.populate('_veiculo')
-											.exec(function(err, aluno){
+											.exec(function(err, aula){
 												if(err){
 													req.flash('erro', 'Deu pau no populate');
 													res.redirect('/aulas/index');
 												}
+												console.log('Pelo menos isso: ',
+												'Instru: ',aula._instrutor.nome,
+												'Aluno: ', aula._aluno.nome,'Veic: ', aula._veiculo.nome);
 
+												//Popula o array de aulas praticas da collection Aluno
+												aluno.aula.pratica.push(aula);
+												aluno.save(function(err){
+													if(err) console.log('Erro no cb');
+													// console.log('Aluno: ',aula._aluno.nome,
+													// 	'Instrutor: ', aula._instrutor.nome,
+													// 	'Veiculo: ', aula._veiculo.nome);
+												});
+												// Aluno
+												// .findOne({'aula.pratica': aula._id})
+												// .populate('aula.pratica')
+												// .exec(function(err, aula){
+												// 	if(err) console.log('Erro na aula do schema aluno');
+												// 	console.log(JSON.stringify(aluno.aula.pratica._aluno, null, "\t"));
+												// });
 											});
 
-											//Popula o array de aulas praticas da collection Aluno
-											aluno.aula.pratica.push(pratico);
-											aluno.save(function(err){
-												if(err) console.log('Erro no cb');
-
-
-											});
 											
-///////////////////////////////////////////////////
-												//VERIFICAR AQUI///////////////
-											Aluno
-											.findOne({_id: aluno._id})
-											.populate('aula.pratica')
-											.exec(function(err, aula){
-												if(err) console.log('Erro na aula do schema aluno');
-												console.log(JSON.stringify(aula, null, "\t"));
-											});
 
 											req.flash('info', 'Aula agendada com sucesso');
 											res.redirect('/aulas/index');
-											console.log(JSON.stringify('Detalhado: ',aluno.aula.pratica, null, "\t"));
+											
 												
 										}
 									});
-									//res.redirect('/aulas/index');
 								}
 							});
 						}
 					});
 				}
 			});
-		// 	// AulaPratica
-		// 	// .populate('_aluno')
-		// 	// .populate('_instrutor')
-		// 	// .populate('_veiculo')
-		// 	// .exec(function(err, aulas){
-		// 	// 	if(err) return handleError(err);
-		// 	// 	console.log('O aluno é: ', modelo._aluno.nome);
-		// 	// });
 
 		},
 
 		testePop: function(req, res){
-			Aluno.findOne({'aula.pratica.instrutor': 'Popye' },function(err, aluno){
-				console.log(JSON.stringify(aluno, null, "\t"));
+			Pratico.findOne({'_aluno': "57ef2755ab0d7a494540916a"})
+			.populate('_aluno')
+			.exec(function(err, aula){
+				if(aula) console.log(aula._veiculo.nome);
+				res.redirect('/home');
 			});
-			// Aluno.findOne({'aula.pratica' : {$elemMatch: {nome: 'Gilmar'}}}, function(err, aluno){
-			// 	if(err) res.json('ERRO nada feito');
-			// 	res.json('aluno');
+			// TESTE DE BUSCA FAKE 
+
+			// Pratico.find({$and: [{'_aluno.nome': 'Gilmar'},
+			//  {'_instrutor.nome' : 'João'}]},function(err, aula){
+			// 	if(aula) console.log(aula);
 			// });
+
+			//Conta quantas vezes existe o documento no banco
+
+			// Pratico.count({_aluno: "57ef2755ab0d7a494540916a"}, function(err,c){
+			// 	if(!err) console.log('Count is: ', c);
+			// })
+
 		}
 	
 	}
