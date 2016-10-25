@@ -21,7 +21,8 @@ module.exports = function(){
 	var praticoSchema = mongoose.Schema({
 		_aluno	:   {type: Schema.Types.ObjectId, ref: 'Alunos' },
 		_instrutor: {type: Schema.Types.ObjectId, ref: 'Usuarios'},
-		_veiculo: 	{type: Schema.Types.ObjectId, ref: 'Veiculos'}
+		_veiculo: 	{type: Schema.Types.ObjectId, ref: 'Veiculos'},
+		data 	: 	{type: Date}
 	});
 
 	return mongoose.model('Pratico', praticoSchema);

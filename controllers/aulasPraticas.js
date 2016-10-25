@@ -1,5 +1,6 @@
 module.exports = function(app){
 
+	var moment = require('moment');
 	var Aluno 	  	= app.models.aluno;
 	var Instrutor 	= app.models.usuario;
 	var Veiculo	  	= app.models.veiculo;
@@ -153,10 +154,14 @@ module.exports = function(app){
 									pratico._aluno 		= aluno._id;
 									pratico._instrutor 	= instrutor._id;
 									pratico._veiculo	= veiculo._id;
-									// pratico._aluno.nome 	= aluno.nome,
-									// pratico._instrutor.nome = instrutor.nome,
-									// pratico._veiculo.nome	= veiculo.nome
-									//console.log('O pratico: ', pratico);
+									data 				= req.body.data;
+									
+									data = 	moment(data).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+									pratico.data = data;
+									pratico._aluno.nome 	= aluno.nome,
+									pratico._instrutor.nome = instrutor.nome,
+									pratico._veiculo.nome	= veiculo.nome
+									console.log('O pratico: ', pratico);
 
 
 									pratico.save(function(err){
@@ -218,10 +223,10 @@ module.exports = function(app){
 		},
 
 		testePop: function(req, res){
-			Pratico.findOne({'_aluno': "57ef2755ab0d7a494540916a"})
+			Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"})
 			.populate('_aluno')
 			.exec(function(err, aula){
-				if(aula) console.log(aula._veiculo.nome);
+				if(aula) console.log('O negocio: ',aula);
 				res.redirect('/home');
 			});
 			// TESTE DE BUSCA FAKE 
