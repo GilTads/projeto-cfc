@@ -156,7 +156,8 @@ module.exports = function(app){
 									pratico._veiculo	= veiculo._id;
 									data 				= req.body.data;
 									
-									data = 	moment(data).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+									// data = 	moment(data).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+									data = data;
 									pratico.data = data;
 									pratico._aluno.nome 	= aluno.nome,
 									pratico._instrutor.nome = instrutor.nome,
@@ -223,12 +224,19 @@ module.exports = function(app){
 		},
 
 		testePop: function(req, res){
-			Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"})
-			.populate('_aluno')
-			.exec(function(err, aula){
-				if(aula) console.log('O negocio: ',aula);
-				res.redirect('/home');
-			});
+
+			Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"}, function(err, hora){
+				if(!err) var horaStr = hora.data;
+				res.send(horaStr);
+			})
+			// Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"})
+			// .populate('_aluno')
+			// .populate('_instrutor')
+			// .populate('_veiculo')
+			// .exec(function(err, aula){
+			// 	if(aula) console.log('O negocio: ',aula);
+			// 	res.redirect('/home');
+			// });
 			// TESTE DE BUSCA FAKE 
 
 			// Pratico.find({$and: [{'_aluno.nome': 'Gilmar'},

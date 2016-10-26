@@ -196,7 +196,7 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
 // AGENDAMENTO DE AULAS PRATICAS DATETIMEPICKER
 $.datetimepicker.setLocale('pt-BR');
 $('#datetimepicker').datetimepicker({
-  format:'d/m/y H:i',
+  //format:'d/m/y H:i',
   minDate: 0,
   inline: true,
   allowTimes: [
