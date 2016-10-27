@@ -75,7 +75,7 @@ block content
 															.form-group
 																label Aluno:
 																input.form-control(type="text", readonly,value="", required)#aluno
-																input.shadowForm#al(name="aluno")
+																input.shadowForm#al(type="hidden",name="aluno")
 													.row.aulaPratica
 														.col-xs-6.col-sm-6.col-md-6#aulaCarro
 															img#loader.img(src="../img/ajaxLoader.gif")
@@ -91,18 +91,19 @@ block content
 															.form-group
 																label Instrutor:
 																input.form-control(type="text",value="", readonly, required)#instrutor
-																input.shadowForm#ins(name="instrutor")
+																input.shadowForm#ins(type="hidden",name="instrutor")
 													.row.veiculoPratico
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
 																label Veículo:
 																input.form-control(type="text",value="", readonly, required)#veiculo
-																input.shadowForm#veic(name="veiculo")
+																input.shadowForm#veic(type="hidden",name="veiculo")
 													.row.dataAula
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
 																label Data:
 																input.form-control(name="data",type="text",value="", readonly, required)#data
+																input(type="hidden")#dataMongo
 																
 													.row
 														.col-xs-12.col-sm-12.col-md-12

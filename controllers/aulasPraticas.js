@@ -154,9 +154,10 @@ module.exports = function(app){
 									pratico._aluno 		= aluno._id;
 									pratico._instrutor 	= instrutor._id;
 									pratico._veiculo	= veiculo._id;
-									data 				= req.body.data;
+									dataStr				= req.body.data;
 									
-									// data = 	moment(data).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+									var data = moment(dataStr, 'DD-MM-YYYY HH:mm');
+									console.log("Data: ", data);
 									data = data;
 									pratico.data = data;
 									pratico._aluno.nome 	= aluno.nome,
@@ -168,6 +169,7 @@ module.exports = function(app){
 									pratico.save(function(err){
 										if(err){
 											req.flash('erro', 'Aula não pode ser salva');
+											console.log(err);
 											res.redirect('/aulas/index');
 										}else{
 											//Popula a collection aula com os dados do aluno
@@ -185,18 +187,18 @@ module.exports = function(app){
 													req.flash('erro', 'Deu pau no populate');
 													res.redirect('/aulas/index');
 												}
-												console.log('Pelo menos isso: ',
-												'Instru: ',aula._instrutor.nome,
-												'Aluno: ', aula._aluno.nome,'Veic: ', aula._veiculo.nome);
+												// console.log('Pelo menos isso: ',
+												// 'Instru: ',aula._instrutor.nome,
+												// 'Aluno: ', aula._aluno.nome,'Veic: ', aula._veiculo.nome);
 
-												//Popula o array de aulas praticas da collection Aluno
-												aluno.aula.pratica.push(aula);
-												aluno.save(function(err){
-													if(err) console.log('Erro no cb');
-													// console.log('Aluno: ',aula._aluno.nome,
-													// 	'Instrutor: ', aula._instrutor.nome,
-													// 	'Veiculo: ', aula._veiculo.nome);
-												});
+												// //Popula o array de aulas praticas da collection Aluno
+												// aluno.aula.pratica.push(aula);
+												// aluno.save(function(err){
+												// 	if(err) console.log('Erro no cb');
+												// 	// console.log('Aluno: ',aula._aluno.nome,
+												// 	// 	'Instrutor: ', aula._instrutor.nome,
+												// 	// 	'Veiculo: ', aula._veiculo.nome);
+												// });
 												// Aluno
 												// .findOne({'aula.pratica': aula._id})
 												// .populate('aula.pratica')
@@ -225,18 +227,23 @@ module.exports = function(app){
 
 		testePop: function(req, res){
 
-			Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"}, function(err, hora){
-				if(!err) var horaStr = hora.data;
-				res.send(horaStr);
-			})
-			// Pratico.findOne({'_aluno': "57ea63a09e5fc4b41268b6c7"})
-			// .populate('_aluno')
-			// .populate('_instrutor')
-			// .populate('_veiculo')
-			// .exec(function(err, aula){
-			// 	if(aula) console.log('O negocio: ',aula);
-			// 	res.redirect('/home');
-			// });
+			
+			Pratico.findOne({'_veiculo':"580ab668afac4f7b72bbab99"})
+			.populate('_aluno')
+			.populate('_instrutor')
+			.populate('_veiculo')
+			.exec(function(err, aula){
+				var diaStr = aula.data.getDate();
+				var mesStr = aula.data.getMonth()+1;
+				var anoStr = aula.data.getFullYear();
+				var hora   = aula.data.getHours();
+				var min = aula.data.getMinutes();
+				if(aula) console.log('Dia: ',diaStr, 'Mes: ',mesStr, 'Ano: ',anoStr,
+				 'hora: ',hora, ' Min: ', min, "Aula Agendada: ", aula._instrutor.nome );
+				
+			});
+
+
 			// TESTE DE BUSCA FAKE 
 
 			// Pratico.find({$and: [{'_aluno.nome': 'Gilmar'},
