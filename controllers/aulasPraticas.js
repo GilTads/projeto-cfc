@@ -132,7 +132,7 @@ module.exports = function(app){
 				}
 			});
 		},
-		verificaAulaAluno: function(req, res, next){
+		verificaAulaAluno: function(req, res){
 			Aluno.findOne({cpf: req.body.cpf}, function(err, aluno){
 				if(aluno) var id = aluno._id; //Variavel que guarda o id do aluno para ser buscado no Schema 'Pratico'
 				Pratico.findOne({'_aluno': id})
@@ -142,7 +142,7 @@ module.exports = function(app){
 				.exec(function(err, aula){
 					res.send(aula);	
 				});
-			
+
 			});
 		},
 

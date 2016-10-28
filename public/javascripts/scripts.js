@@ -43,8 +43,22 @@ $(document).ready(function(){
       type: 'post',
       dataType: 'json',
       data: {cpf: cpf},
+      error: function(){
+        console.log('Não deu certo');
+      },
       success: function(aula){
-        console.log(aula.data);
+        console.log('Data: '+ aula.data);
+        var dadosAula = new Date(aula.data);
+        var hora = dadosAula.getHours();
+        var min = dadosAula.getMinutes();
+        var dia = dadosAula.getDate();
+        var mes = dadosAula.getMonth()+1;
+        var ano = dadosAula.getFullYear();
+        console.log('Hora: '+hora +
+          ' Min: '+min+
+          ' Dia: '+dia+
+          ' Mes: '+mes+
+          ' Ano: '+ano);
       }
 
     });
