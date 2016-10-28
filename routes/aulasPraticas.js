@@ -32,4 +32,7 @@ module.exports = function(app){
 	app.route('/pratico/buscaId')
 		.post(aula.buscaId);
 
+	app.route('/verificaAula/aluno')
+		.post(aula.verificaAulaAluno);
+
 }

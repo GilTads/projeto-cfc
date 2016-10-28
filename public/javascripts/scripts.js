@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+  var id_instrutor
+    ,id_veiculo
+
   $('#searchAluno').click(function(){
     var cpf = $('#cpf').val();
     $.ajax({
@@ -35,11 +38,18 @@ $(document).ready(function(){
         $('.alunoPratico').css({display: 'block'});
       }
     });
+    $.ajax({//Verifica se há dados de aula para este aluno
+      url: '/verificaAula/aluno',
+      type: 'post',
+      dataType: 'json',
+      data: {cpf: cpf},
+      success: function(aula){
+        console.log(aula.data);
+      }
+
+    });
   });
 
-var id_instrutor;
-var id_veiculo;
-var dataToMongo;
 
 
 
@@ -208,9 +218,8 @@ $('#datetimepicker').datetimepicker({
   ],
   onSelectTime : function(dp, $input){
     var atual = $($input).val();
-    var data = dp.getMonth()+'/'+dp.getDate()+'/'+dp.getFullYear();
     $('#data').val(atual);
-    dataToMongo = data;
+  
   }
 
 });

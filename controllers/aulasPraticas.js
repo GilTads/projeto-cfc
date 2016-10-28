@@ -132,6 +132,19 @@ module.exports = function(app){
 				}
 			});
 		},
+		verificaAulaAluno: function(req, res, next){
+			Aluno.findOne({cpf: req.body.cpf}, function(err, aluno){
+				if(aluno) var id = aluno._id; //Variavel que guarda o id do aluno para ser buscado no Schema 'Pratico'
+				Pratico.findOne({'_aluno': id})
+				.populate('_aluno')
+				.populate('_instrutor')
+				.populate('_veiculo')
+				.exec(function(err, aula){
+					res.send(aula);	
+				});
+			
+			});
+		},
 
 		aulaPratica: function(req, res){
 			
@@ -237,7 +250,7 @@ module.exports = function(app){
 				var mesStr = aula.data.getMonth()+1;
 				var anoStr = aula.data.getFullYear();
 				var hora   = aula.data.getHours();
-				var min = aula.data.getMinutes();
+				var min    = aula.data.getMinutes();
 				if(aula) console.log('Dia: ',diaStr, 'Mes: ',mesStr, 'Ano: ',anoStr,
 				 'hora: ',hora, ' Min: ', min, "Aula Agendada: ", aula._instrutor.nome );
 				
