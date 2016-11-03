@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
   var id_instrutor
     ,id_veiculo
 
@@ -234,15 +235,11 @@ $('#datetimepicker').datetimepicker({
   ],
   onSelectTime : function(dp, $input){ //dp é a data no formato ISO e $input é o elemento HTML do campo selecionado
     var atual = $($input).val();
+  
     $('#data').val(atual);
-    console.log($('.xdsoft_time_variant').data('-hour'));
   }
 
 });
-
-
-
-
 
 
       //JQUERY CONFIRM EXCLUIR USUARIO
