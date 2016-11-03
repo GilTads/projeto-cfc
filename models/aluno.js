@@ -32,10 +32,10 @@ module.exports = function(){
 		qnt_aulas:{
 			carro:{type:Number},
 			moto: {type:Number},
+		},
+		horario: {
+			pratico: [{type: Date}]
 		}
-		// aula: {
-		// 	pratica: [{type: Schema.Types.ObjectId, ref: 'Pratico'}]
-		// }
 
 	});
 

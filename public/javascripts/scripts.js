@@ -44,25 +44,27 @@ $(document).ready(function(){
       dataType: 'json',
       data: {cpf: cpf},
       error: function(){
-        console.log('Não deu certo');
+        console.log('Não foram encontradas aulas');
       },
       success: function(aula){
-        console.log('Data: '+ aula.data);
-        var dadosAula = new Date(aula.data);
-        var hora = dadosAula.getHours();
-        var min = dadosAula.getMinutes();
-        var dia = dadosAula.getDate();
-        var mes = dadosAula.getMonth()+1;
-        var ano = dadosAula.getFullYear();
-        console.log('Hora: '+hora +
-          ' Min: '+min+
-          ' Dia: '+dia+
-          ' Mes: '+mes+
-          ' Ano: '+ano);
-      }
+        for(var i =0; i < aula.horario.pratico.length; i++){
 
+            var dadosAula = new Date(aula.horario.pratico[i]);
+            var hora = dadosAula.getHours();
+            var min = dadosAula.getMinutes();
+            var dia = dadosAula.getDate();
+            var mes = dadosAula.getMonth()+1;
+            var ano = dadosAula.getFullYear();
+            
+
+        }
+      }
     });
   });
+
+ // function agendada(dia,mes,ano,hora,min){
+ //  if($('data-date').)
+ // }
 
 
 
@@ -230,10 +232,10 @@ $('#datetimepicker').datetimepicker({
     '15:30','16:20','17:10',
     '18:00'
   ],
-  onSelectTime : function(dp, $input){
+  onSelectTime : function(dp, $input){ //dp é a data no formato ISO e $input é o elemento HTML do campo selecionado
     var atual = $($input).val();
     $('#data').val(atual);
-  
+    console.log($('.xdsoft_time_variant').data('-hour'));
   }
 
 });

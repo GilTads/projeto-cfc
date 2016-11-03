@@ -22,8 +22,6 @@ module.exports = function(app){
 	app.route('/agenda/aula/pratica')
 		.post(aula.aulaPratica);
 
-	app.route('/teste')
-		.get(aula.testePop);
 		// LIDANDO COM AJAX
 
 	app.route('/busca/aluno')
