@@ -1,7 +1,19 @@
 $(document).ready(function(){
 
 
-$('.calendario').pickadate();
+$('.calendario').pickadate({
+     // Day states
+  day: 'picker__day',
+  disabled: 'picker__day--disabled',
+  selected: 'picker__day--selected',
+  highlighted: 'picker__day--highlighted',
+  now: 'picker__day--today',
+  infocus: 'picker__day--infocus',
+  outfocus: 'picker__day--outfocus',
+
+  // The picker footer
+  footer: 'picker__footer',
+});
 
 
 
