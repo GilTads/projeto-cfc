@@ -1,6 +1,42 @@
 $(document).ready(function(){
 
 
+$('.calendario').pickadate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+// AGENDAMENTO DE AULAS PRATICAS DATETIMEPICKER
+$.datetimepicker.setLocale('pt-BR');
+$('#datetimepicker').datetimepicker({
+  format:'d-m-Y H:i',
+  minDate: 0,
+  inline: true,
+  allowTimes: [
+    '07:00','07:50','08:40',
+    '09:20','10:10','11:00',
+    '13:00','13:50','14:40',
+    '15:30','16:20','17:10',
+    '18:00'
+  ],
+  onSelectTime : function(dp, $input){ //dp é a data no formato ISO e $input é o elemento HTML do campo selecionado
+    var atual = $($input).val();
+  
+    $('#data').val(atual);
+  }
+  
+
+});
+
   var id_instrutor
     ,id_veiculo
 
@@ -56,16 +92,26 @@ $(document).ready(function(){
             var dia = dadosAula.getDate();
             var mes = dadosAula.getMonth()+1;
             var ano = dadosAula.getFullYear();
-            
 
+            console.log('HoraAula: '+ dia +'/' +mes+'/'+ ano+'--'+hora+':'+min);
+            agendada(dia,mes,ano,hora,min);
+            
+            
         }
+
       }
     });
   });
 
- // function agendada(dia,mes,ano,hora,min){
- //  if($('data-date').)
- // }
+function agendada(dia,mes,ano,hora,min){
+  if($('.xdsoft_time').data({'hour'  : hora}) && 
+    $('td').data({'date'    : dia})  &&
+    $('td').data({'month'   : mes})  &&
+    $('td').data({'year'    : ano})  &&
+    $('.xdsoft_time').data({'minute' : min})){
+    $('.xdsoft_time').data({'hour': hora}).data({'minute': min}).addClass('agendado');
+  }
+}
 
 
 
@@ -220,26 +266,7 @@ $("#success-alert").fadeTo(2000, 1000).slideUp(800, function(){
 
 
 
-// AGENDAMENTO DE AULAS PRATICAS DATETIMEPICKER
-$.datetimepicker.setLocale('pt-BR');
-$('#datetimepicker').datetimepicker({
-  format:'d-m-Y H:i',
-  minDate: 0,
-  inline: true,
-  allowTimes: [
-    '07:00','07:50','08:40',
-    '09:20','10:10','11:00',
-    '13:00','13:50','14:40',
-    '15:30','16:20','17:10',
-    '18:00'
-  ],
-  onSelectTime : function(dp, $input){ //dp é a data no formato ISO e $input é o elemento HTML do campo selecionado
-    var atual = $($input).val();
-  
-    $('#data').val(atual);
-  }
 
-});
 
 
       //JQUERY CONFIRM EXCLUIR USUARIO

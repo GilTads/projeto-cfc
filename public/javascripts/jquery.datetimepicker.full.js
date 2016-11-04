@@ -1111,7 +1111,7 @@ var DateFormatter;
 		formatTime:	'H:i',
 		formatDate:	'Y/m/d',
 
-		startDate:	false, // new Date(), '1986/12/08', '-1970/01/05','-1970/01/05',
+		startDate:	true, // new Date(), '1986/12/08', '-1970/01/05','-1970/01/05',
 		step: 60,
 		monthChangeSpinner: true,
 
@@ -1120,7 +1120,7 @@ var DateFormatter;
 		closeOnWithoutClick: true,
 		closeOnInputClick: true,
 
-		timepicker: true,
+		timepicker: false,
 		datepicker: true,
 		weeks: false,
 
@@ -1137,7 +1137,7 @@ var DateFormatter;
 		allowTimes: [],
 		opened: false,
 		initTime: true,
-		inline: false,
+		inline: true,
 		theme: '',
 
 		onSelectDate: function () {},
@@ -2022,7 +2022,7 @@ var DateFormatter;
 			});
 			month_picker
 				.find('.xdsoft_today_button')
-				.on('touchend mousedown.xdsoft', function () {
+				.on('touchenzd mousedown.xdsoft', function () {
 					datetimepicker.data('changed', true);
 					_xdsoft_datetime.setCurrentTime(0, true);
 					datetimepicker.trigger('afterOpen.xdsoft');
