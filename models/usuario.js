@@ -15,7 +15,11 @@
 				credencial: {type: String},
 				categoria : {type: String}
 			},
-			data_cad 	: {type:Date, default:Date.now}
+			data_cad 	: {type:Date, default:Date.now},
+			horario: {
+				pratico: [{type: Date}]
+			}
+
 		});
 
 		usuarioSchema.methods.generateHash = function(senha){

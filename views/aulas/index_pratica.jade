@@ -34,21 +34,21 @@ block content
 										.panel-body
 											form(role="form", action="", method="")
 												.row
-													.col-xs-8.col-sm-8.col-md-3
+													.col-xs-12.col-sm-8.col-md-3
 														.form-group
 															label CPF do Aluno
 															.input-group
 																input.form-control#cpf(type="text", value="",name="cpfAluno" ,placeholder="CPF")
 																span.input-group-addon#searchAluno
 																	span.glyphicon.glyphicon-search
-													.col-xs-8.col-sm-8.col-md-3
+													.col-xs-12.col-sm-8.col-md-3
 														.form-group
 															label Instrutor
 															select.form-control#selIns(value="" ,placeholder="Instrutor")
 																option(value="", disabled, selected)
 																each instrutor in lista_instrutor 
 																	option#optIns(value="#{instrutor._id}") #{instrutor.nome}
-													.col-xs-8.col-sm-8.col-md-3
+													.col-xs-12.col-sm-8.col-md-3
 														.form-group
 															label Veículo
 															select.form-control#selVeic(type="text")
@@ -63,57 +63,58 @@ block content
 												h4
 													span.fa.fa-cogs   Dados da Aula	
 										.panel-body
-											.col-xs-8.col-sm-8.col-md-8
+											.col-xs-12.col-sm-8.col-md-8
 												.input-group.date
-													//input.form-control(type="text")#datetimepicker
-													input.calendario.form-control(type="text")
-											.col-xs-8.col-sm-8.col-md-8#horarios
+													//-input.form-control(type="text")#datetimepicker
+													input.calendario.form-control(type="text",readyonly)
+											.col-xs-12.col-sm-8.col-md-8#horarios
 												.panel.panel-default
 													.panel-body
-														.col-xs-4.col-sm-4.col-md-4
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="7:00")
-														.col-xs-.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="7:00")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="7:50")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="7:50")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="8:40")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="8:40")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="9:20")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="9:20")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="10:10")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="10:10")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="13:00")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="13:00")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="13:50")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="13:50")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="14:40")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="14:40")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="15:30")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="15:30")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="16:20")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="16:20")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="17:10")
-														.col-xs-4.col-sm-4.col-md-4
+																input.btn.btn-block.livre.hora(type="button", value="17:10")
+														.col-xs-12.col-sm-4.col-md-4
 															.form-group
-																input.btn.btn-block.btn-success(type="button", value="18:00")
+																input.btn.btn-block.livre.hora(type="button", value="18:00")
 											form#praticaForm(action="/agenda/aula/pratica", method="POST")
-												.col-xs-4.col-sm-4.col-md-4
+												.col-xs-12.col-sm-4.col-md-4
 													.row.alunoPratico
-														img#loader.img(src="../img/ajaxLoader.gif")
-														.form-group
-															label Aluno:
-															input.form-control(type="text", readonly,value="", required)#aluno
-															input.shadowForm#al(type="hidden",name="aluno")
+														.col-xs-12.col-sm-12.col-md-12
+															img#loader.img(src="../img/ajaxLoader.gif")
+															.form-group
+																label Aluno:
+																input.form-control(type="text", readonly,value="", required)#aluno
+																input.shadowForm#al(type="hidden",name="aluno")
 													.row.aulaPratica
 														.col-xs-6.col-sm-6.col-md-6#aulaCarro
 															img#loader.img(src="../img/ajaxLoader.gif")
@@ -139,7 +140,7 @@ block content
 													.row.dataAula
 														.col-xs-6.col-sm-6.col-md-12
 															.form-group
-																label Data:
+																label Data Aula:
 																input.form-control(name="data",type="text",value="", readonly, required)#data
 																input(type="hidden")#dataMongo
 																

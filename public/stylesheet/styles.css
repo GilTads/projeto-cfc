@@ -53,6 +53,14 @@ html,body {
   }
 }
 
+.agendadoAluno, .agendadoInstrutor, .agendadoVeiculo{
+  background: #f44d3c !important;
+
+}
+.livre{
+  background: #04B486;
+  color: white;
+}
 
 a {
     color:#999;
@@ -66,6 +74,8 @@ a:hover {
 .inner-addon { 
     position: relative; 
 }
+
+
 
 /* style icon */
 .inner-addon .glyphicon {

@@ -140,6 +140,20 @@ module.exports = function(app){
 
 			});
 		},
+		verificaAulaInstrutor: function(req, res){
+			Instrutor.findOne({_id: req.body.id}, function(err, instrutor){
+				if(instrutor){
+					res.send(instrutor);
+				}
+			});
+		},
+		verificaAulaVeiculo: function(req, res){
+			Veiculo.findOne({_id: req.body.id}, function(err, veiculo){
+				if(veiculo){
+					res.send(veiculo);
+				}
+			});
+		},
 
 		aulaPratica: function(req, res){	
 			Aluno.findOne({_id: req.body.aluno}, function(err, aluno){
@@ -167,11 +181,21 @@ module.exports = function(app){
 									pratico._aluno.nome 	= aluno.nome;
 									pratico._instrutor.nome = instrutor.nome;
 									pratico._veiculo.nome	= veiculo.nome;
+
 									aluno.horario.pratico.push(data);
-									console.log('Data servidor', data)
+									instrutor.horario.pratico.push(data);
+									veiculo.horario.pratico.push(data);
+
+									
 
 									aluno.save(function(err){
 										if(!err) console.log('Salvou no horario aluno');
+									});
+									instrutor.save(function(err){
+										if(!err) console.log('Salvou no horario instrutor');
+									});
+									veiculo.save(function(err){
+										if(!err) console.log('Salvou no horario veículo');
 									});
 									
 									pratico.save(function(err){
