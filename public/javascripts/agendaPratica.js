@@ -85,7 +85,8 @@ $(document).ready(function(){
           //RESETA AS CONFIGURAÇÕES DOS HORARIOS
          $('.hora').each(function(){
             $(this).removeClass('agendadoAluno');
-                if($(this).hasClass(!'agendadoInstrutor') && $(this).hasClass(!'agendadoVeiculo')){
+                if($(this).hasClass('agendadoInstrutor') || $(this).hasClass('agendadoVeiculo')){
+                }else{
                   $(this).removeAttr('disabled','disabled');
                 }
                 
@@ -106,9 +107,10 @@ $(document).ready(function(){
 
           $('.hora').each(function(){
             $(this).removeClass('agendadoInstrutor');
-              if( $(this).hasClass(!'agendadoAluno') && $(this).hasClass(!'agendadoVeiculo') ){
-                $(this).removeAttr('disabled','disabled');
-              }
+              if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoVeiculo')){
+                }else{
+                  $(this).removeAttr('disabled','disabled');
+                }
             
             
           });
@@ -118,6 +120,27 @@ $(document).ready(function(){
           }
         }
       });
+      $.ajax({
+      url: '/verificaAula/veiculo',
+      type: 'POST',
+      data:{id: id_veiculo},
+      success: function(aula){
+
+        $('.hora').each(function(){
+          $(this).removeClass('agendadoVeiculo');
+          if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoInstrutor')){
+              }else{
+                $(this).removeAttr('disabled','disabled');
+              }
+          
+          
+        });
+        for(var i =0; i < aula.horario.pratico.length; i++){
+            var dadosAula = new Date(aula.horario.pratico[i]);
+            verificaHorario(dadosAula, 'agendadoVeiculo');
+        }
+      }
+    });
   });
 
 
@@ -127,22 +150,28 @@ $(document).ready(function(){
 
     $('#searchAluno').click(function(){
       var cpf = $('#cpf').val();
-      $('#dadosAula').css({'display':'block'});
       $.ajax({
         url: '/busca/aluno',
         type: 'post',
         dataType: 'json',
         data: {cpf: cpf},
         error: function(err){
-          
-          alert('Nenhum dado encontrado');
+          $.dialog({
+            theme: 'black',
+            icon: 'fa fa-warning',  
+            title: 'Aviso!!',
+            content: 'Nenhum aluno encontrado!',
+            animationSpeed: 500,
+            animationBounce: 2.5,
+          });
           $('#aluno').html('');
         },
          beforeSend: function(){
-          $('#loader').css({display:'block'});
+          $('#loadCalendar').css({display: 'block'});
         },
         complete: function(){
-          setTimeout(function() {$('#loader').hide()}, 1000);
+          setTimeout(function() {$('#loadCalendar').hide()}, 1000);
+
         },
         success: function(dados){
           if(dados.categoria == "AB"){
@@ -172,7 +201,8 @@ $(document).ready(function(){
         success: function(aula){
             $('.hora').each(function(){
                 $(this).removeClass('agendadoAluno');
-                if($(this).hasClass(!'agendadoInstrutor') ){
+                if($(this).hasClass('agendadoInstrutor') || $(this).hasClass('agendadoVeiculo')){
+                }else{
                   $(this).removeAttr('disabled','disabled');
                 }
                 
@@ -198,32 +228,44 @@ $(document).ready(function(){
 
     // AGENDAR AULA PRATICA
   $('#praticaForm').submit(function(e){
-   
-    var cpf_aluno = $('#cpf').val();
-    var data = $('#data').val();
-    e.preventDefault();
-    var form = this;
-    $.ajax({
-      url: '/pratico/buscaId',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        aluno     : cpf_aluno,
-        instrutor : id_instrutor,
-        veiculo   : id_veiculo
-      },
-      success: function({aluno, instrutor, veiculo}){
-        $('#al').val(aluno._id);
-        $('#ins').val(instrutor._id);
-        $('#veic').val(veiculo._id);
-        form.submit();
-      },
-      error: function(err){
-        console.log('Deu pau ao gravar aula pratica');
+      var cpf_aluno = $('#cpf').val();
+      var data = $('#data').val();
+      e.preventDefault();
 
-      },
-      
-    });
+      //VERIFICA SE TODOS OS CAMPOS ESTÃO PREENCHIDOS ANTES DE SUBMETER
+      if($('#aluno').val() =='' || $('#instrutor').val()==''  ||  $('#veiculo').val()=='' ){
+      $.dialog({
+        theme: 'black',
+        icon: 'fa fa-warning',  
+        title: 'Aviso!!',
+        content: 'Preencha Todos os Campos!',
+        animationSpeed: 500,
+        animationBounce: 2.5,
+      });
+    }else{
+      var form = this;
+      $.ajax({
+        url: '/pratico/buscaId',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          aluno     : cpf_aluno,
+          instrutor : id_instrutor,
+          veiculo   : id_veiculo
+        },
+        success: function({aluno, instrutor, veiculo}){
+          $('#al').val(aluno._id);
+          $('#ins').val(instrutor._id);
+          $('#veic').val(veiculo._id);
+          form.submit();
+        },
+        error: function(err){
+          console.log('Deu pau ao gravar aula pratica');
+
+        },
+        
+      });
+    }
   });
 
 
@@ -241,9 +283,10 @@ $(document).ready(function(){
 
           $('.hora').each(function(){
             $(this).removeClass('agendadoInstrutor');
-            if($(this).hasClass(!'agendadoAluno') && $(this).hasClass(!'agendadoVeiculo')){
-              $(this).removeAttr('disabled','disabled');
-            }
+            if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoVeiculo')){
+                }else{
+                  $(this).removeAttr('disabled','disabled');
+                }
             
             
           });
@@ -262,6 +305,29 @@ $(document).ready(function(){
   $(document).on('change', '#selVeic', function(){
     var veiculo = $(this).find('option:selected').text();
     id_veiculo = ($(this).val());
+
+    $.ajax({
+    url: '/verificaAula/veiculo',
+    type: 'POST',
+    data:{id: id_veiculo},
+    success: function(aula){
+
+      $('.hora').each(function(){
+        $(this).removeClass('agendadoVeiculo');
+        if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoInstrutor')){
+            }else{
+              $(this).removeAttr('disabled','disabled');
+            }
+        
+        
+      });
+      for(var i =0; i < aula.horario.pratico.length; i++){
+          var dadosAula = new Date(aula.horario.pratico[i]);
+          verificaHorario(dadosAula, 'agendadoVeiculo');
+      }
+    }
+  });
+
     $('#veiculo').val(veiculo);
     $('.veiculoPratico').css({display: 'block'});
   });

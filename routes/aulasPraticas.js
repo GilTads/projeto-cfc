@@ -36,4 +36,7 @@ module.exports = function(app){
 	app.route('/verificaAula/instrutor')
 		.post(aula.verificaAulaInstrutor);
 
+	app.route('/verificaAula/veiculo')
+		.post(aula.verificaAulaVeiculo);
+
 }

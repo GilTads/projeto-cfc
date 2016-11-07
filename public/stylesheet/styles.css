@@ -94,7 +94,7 @@ a:hover {
 
 #sexChoose, #labSex,#loader, #nasc, #atualizar,
  .onlyInstrutor, .praticoPasso2, .alunoPratico
- ,.veiculoPratico, .instrutorPratico{
+ ,.veiculoPratico, .instrutorPratico, .afterAjax{
   display: none;
 }
 
@@ -114,6 +114,9 @@ a:hover {
   border-radius: 5px;
 }
 
+.panelPratico{
+  padding-top: 30px;
+}
 
 .alert{
   text-align: center;
