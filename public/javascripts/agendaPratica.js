@@ -233,7 +233,10 @@ $(document).ready(function(){
       e.preventDefault();
 
       //VERIFICA SE TODOS OS CAMPOS ESTÃO PREENCHIDOS ANTES DE SUBMETER
-      if($('#aluno').val() =='' || $('#instrutor').val()==''  ||  $('#veiculo').val()=='' ){
+      if($('#aluno').val() =='' ||
+       $('#instrutor').val()==''  ||
+         $('#veiculo').val()=='' ||
+          $('#data').val()==''){
       $.dialog({
         theme: 'black',
         icon: 'fa fa-warning',  
