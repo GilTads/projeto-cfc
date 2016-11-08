@@ -232,6 +232,28 @@ module.exports = function(app){
 				}
 			});
 
+		},
+		aulaAluno: function(req, res){
+			Aluno.findOne({cpf: req.body.cpfA}, function(err, aluno){
+				if(err){
+					req.flash('erro', 'Aluno não encontrado');
+					res.redirect('/aulas/index');
+				}else{
+					Pratico.find({'_aluno': aluno._id})
+					.sort('data')
+					.populate('_aluno')
+					.populate('_instrutor')
+					.populate('_veiculo')
+					.exec(function(err, aulas){
+						if(err){
+							req.flash('err', 'Falha ao gerar relatório');
+						}else{
+							res.render('aulas/aluno', {dados: aulas});
+						}
+					});
+					
+				}
+			});
 		}
 	
 	}

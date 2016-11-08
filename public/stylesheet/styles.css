@@ -53,6 +53,13 @@ html,body {
   }
 }
 
+#searchAluno:hover,#aulaAluno:hover{
+  cursor: pointer;
+  text-shadow: 1px 1px 1px #555;
+}
+#searchAluno{
+  text-decoration: underline;
+}
 .agendadoAluno, .agendadoInstrutor, .agendadoVeiculo{
   background: #f44d3c !important;
 

@@ -336,4 +336,10 @@ $(document).ready(function(){
   });
 
 
+
+  $('#aulaAluno').on('click', function(){
+    $('#aulaAlunoForm').submit();
+  });
+
+
 });

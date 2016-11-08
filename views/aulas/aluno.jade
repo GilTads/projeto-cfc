@@ -1,0 +1,42 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-users  Aulas de #{dados[0]._instrutor.nome}
+			.panel-body
+				br
+				br
+				if messages.erro
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
+					br
+				if messages.info
+					.alert.alert-success#success-alert
+						p #{messages.info}
+					br
+				if dados.length > 0
+					.table-responsive
+						table.table.table-hover.table-striped.listar-usuarios
+							thead
+								tr
+									th Data
+									th Instrutor
+									th Veículo
+									th Categoria
+									th
+							tbody
+								each i in dados
+									tr
+										td #{moment(i.data).format('DD/MM/YYYY HH:mm')}
+										td #{i._instrutor.nome}
+										td #{i._veiculo.nome + '--' + i._veiculo.placa}
+										td #{i._veiculo.categoria}
+										td
+											input.btn.btn-danger(type="button", value="Excluir")
+						h3
+							a(href="/aulas/praticas")
+								span.fa.fa-arrow-left   Voltar
+				else
+					p Nenhum registro encontrado.

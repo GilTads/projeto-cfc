@@ -38,20 +38,20 @@ block content
 														.form-group
 															label CPF do Aluno
 															.input-group
-																input.form-control#cpf(type="text", value="",name="cpfAluno" ,placeholder="CPF")
-																span.input-group-addon#searchAluno
+																input.form-control.cpf#cpf(type="text", value="",name="cpfAluno" ,placeholder="CPF",tabindex='1')
+																span(tabindex='2').input-group-addon#searchAluno
 																	span.glyphicon.glyphicon-search
 													.col-xs-12.col-sm-8.col-md-3
 														.form-group
 															label Instrutor
-															select.form-control#selIns(value="" ,placeholder="Instrutor")
+															select.form-control#selIns(value="" ,placeholder="Instrutor",tabindex='3')
 																option(value="", disabled, selected)
 																each instrutor in lista_instrutor 
 																	option#optIns(value="#{instrutor._id}") #{instrutor.nome}
 													.col-xs-12.col-sm-8.col-md-3
 														.form-group
 															label Veículo
-															select.form-control#selVeic(type="text")
+															select.form-control#selVeic(type="text",tabindex='4')
 																option(value="", disabled, selected)
 																each veiculo in lista_veiculo
 																	option#optVeic(value="#{veiculo._id}") #{veiculo.nome + ' / '} #{veiculo.placa}
@@ -67,7 +67,7 @@ block content
 												.input-group.date
 													//-input.form-control(type="text")#datetimepicker
 													label Data
-													input.calendario.form-control(type="text",readyonly)
+													input.calendario.form-control(type="text",readyonly,tabindex='5')
 											.col-xs-12.col-sm-8.col-md-8
 												.panel.panel-default#horarios
 													.panel-heading
@@ -158,8 +158,30 @@ block content
 						
 							
 					.tab-pane.fade#menu1
-						h3 Profile
-						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto error similique hic dolorem cumque eius delectus exercitationem dicta ipsa, inventore, voluptatibus fugiat quasi quos. Voluptatem vitae quibusdam blanditiis rerum necessitatibus.
+						.col-xs-12.col-sm-12.col-md-12
+							.panel.panel-default
+										.panel-heading
+											.panel-title
+												h4 Consultar Aulas do Aluno
+												br
+											if messages.erro
+												.alert.alert-danger#success-alert
+													p #{messages.erro}
+												br
+											if messages.info
+												.alert.alert-success#success-alert
+													p #{messages.info}
+												br
+										.panel-body
+											form#aulaAlunoForm(role="form", action="/aula/aluno", method="POST")
+												.row
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label CPF do Aluno
+															.input-group
+																input.form-control.cpf(type="text", value="",name="cpfA" ,placeholder="CPF",tabindex='1')
+																span(tabindex='2').input-group-addon#aulaAluno
+																	span.glyphicon.glyphicon-search
 					.tab-pane.fade#menu2
 						h3 Messages
 						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ipsa, officiis expedita et odio qui. Facilis minima, unde sapiente cupiditate pariatur, laboriosam aliquam quaerat, doloremque aut in consectetur amet non.
