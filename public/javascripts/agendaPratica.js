@@ -13,13 +13,22 @@ $(document).ready(function(){
     footer: 'picker__footer',
 });
 
+function zeroEsquerda(n){
+  alert('menor que 10')
+  if(n <10){
+    return '0'+n;
 
+  }else{
+    return n;
+  }
+}
 
 
   function verificaHorario(dadosAula,classe){
       var hora = dadosAula.getHours();
       var min = dadosAula.getMinutes();
       var dia = dadosAula.getDate();
+      dia = zeroEsquerda(dia);
       var mes = dadosAula.getMonth()+1;
       var ano = dadosAula.getFullYear();
 
@@ -29,8 +38,10 @@ $(document).ready(function(){
 
       var dataAula = dia +'/' +mes+'/'+ ano;
       var horaAula = hora+':'+min;
-      console.log('HoraAula: '+dataAula+' '+horaAula);
+      // console.log('HoraAula: '+dataAula+' '+horaAula);
       //BUSCA A HORA DA AULA  E PASSA PRO CALENDARIO
+      console.log('Valor do calendario: ' + $('.calendario').val());
+      console.log('Dia: '+ dia);
       if($('.calendario').val() == dataAula ){
         $('.hora').each(function(){
           if($(this).val() == horaAula){
