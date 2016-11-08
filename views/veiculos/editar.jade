@@ -1,0 +1,42 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-pencil &nbsp; Atualizar Veículo
+			.panel-body
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/veiculos/editar/#{veiculo._id}", method="POST",role="form")
+					if messages.erro
+						.alert.alert-danger
+							each msg in messages.erro
+								b=msg
+								br
+						br
+					.row
+						.col-xs-12.col-sm-6.col-md-6		
+							.form-group
+								label Nome
+								input.form-control(type="text", name="nome",placeholder="Nome",value="#{veiculo.nome || ''}", tabindex="1", required, disabled)
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label Placa
+								input.form-control#placa(type="text", name="placa", placeholder="Placa", value="#{veiculo.placa || ''}", tabindex="2", required, disabled)
+						.col-xs-12.col-sm-6.col-md-6
+							.form-group
+								label Categoria
+								select.form-control(name="categoria", tabindex="3", value="#{veiculo.categoria}", required, disabled)
+									option(value="", disabled, selected) #{veiculo.categoria}
+									option(value="A") A - Moto
+									option(value="B") B - Carro
+									option(value="C") C - Caminhão
+									option(value="D") D - Ônibus
+									option(value="E") E - Carreta
+					input.btn.btn-warning.btn-lg.btn-block.editar(type="button", tabindex="4", value="Editar")
+					input#atualizar.btn.btn-warning.btn-lg.btn-block.atualizar(type="submit" value="Atualizar")
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(method="POST",action="/veiculos/excluir/#{veiculo._id}", role="form", id="excluir-user")
+					br
+					input.btn.btn-danger.btn-lg.btn-block(type="submit",id="myBtn", value="Excluir")
+					h3
+						a(href="/veiculos")
+							span.fa.fa-arrow-left   Voltar

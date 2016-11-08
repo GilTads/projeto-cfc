@@ -25,11 +25,16 @@ block content
 									th Nome
 									th Placa
 									th Categoria
+									th Visualizar
 							tbody
 								each valor in lista
 									tr
 										td #{valor.nome}
 										td #{valor.placa}
 										td #{valor.categoria}
+										td
+											a.btn(href="/veiculos/editar/#{valor._id}")
+												span.glyphicon.glyphicon-search
+
 				else
 					p Nenhum registro encontrado.
