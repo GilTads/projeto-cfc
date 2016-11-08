@@ -168,6 +168,22 @@ module.exports = function(app){
 								if(err){
 									console.log('erro', 'Erro ao buscar veículo');
 								} else{
+									if(veiculo.categoria == 'A'){
+										if(aluno.qnt_aulas.moto == 0){
+											req.flash('erro', 'Saldo de aulas de moto insuficiente');
+											res.redirect('/aulas/index');
+											return;
+										}else if(aluno.qnt_aulas.carro == 0){
+											req.flash('erro', 'Saldo de aulas de carro insuficiente');
+											res.redirect('/aulas/index');
+											return;
+										}else{
+											aluno.qnt_aulas.moto -= 1;
+										}
+										
+									}else{
+										aluno.qnt_aulas.carro -= 1;
+									}
 									var pratico = new Pratico();
 
 									pratico._aluno 		= aluno._id;

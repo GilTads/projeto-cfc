@@ -9,6 +9,9 @@ module.exports= function(app){
 
 	app.route('/cadastroVeiculo')
 		.get(permissao,veiculo.cadastro)
-		.post(veiculo.create)
+		.post(veiculo.create);
 
+	app.route('/veiculos/editar/:id')
+		.get(veiculo.editar)
+		.post(veiculo.update);
 }

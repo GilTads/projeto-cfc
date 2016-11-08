@@ -42,6 +42,34 @@ module.exports = function(app){
 				}
 			});
 			// res.render('veiculos/cadastroVeiculo', {veiculo: req.body});
+		},
+		editar: function(req, res){
+			Veiculo.findById(req.params.id, function(err, data){
+				if(err){
+					req.flash('erro', 'Erro ao editar: '+err);
+					res.redirect('veiculos');
+				}else{
+					res.render('veiculos/editar', {veiculo: data});
+				}
+			});
+		},
+		update: function(req, res){
+			Veiculo.findById(req.params.id, function(err, data){
+				var modelo 		 = data;
+				modelo.nome 	 = req.body.nome;
+				modelo.placa 	 = req.body.placa;
+				modelo.categoria = req.body.categoria;
+
+				modelo.save(function(err){
+					if(err){
+						req.flash('erro', 'Erro ao editar veículo');
+						res.redirect('/veiculos');
+					}else{
+						req.flash('info', 'Veículo atualizado com sucesso!');
+						res.redirect('/veiculos');
+					}
+				})
+			});
 		}
 	}
 
