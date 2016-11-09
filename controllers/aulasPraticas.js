@@ -136,6 +136,8 @@ module.exports = function(app){
 			Aluno.findOne({cpf: req.body.cpf}, function(err, aluno){
 				if(aluno){
 					res.send(aluno);
+				}else{
+					return;
 				}
 
 			});
@@ -144,6 +146,8 @@ module.exports = function(app){
 			Instrutor.findOne({_id: req.body.id}, function(err, instrutor){
 				if(instrutor){
 					res.send(instrutor);
+				}else{
+					return;
 				}
 			});
 		},
@@ -151,6 +155,8 @@ module.exports = function(app){
 			Veiculo.findOne({_id: req.body.id}, function(err, veiculo){
 				if(veiculo){
 					res.send(veiculo);
+				}else{
+					return;
 				}
 			});
 		},
@@ -238,6 +244,7 @@ module.exports = function(app){
 				if(err){
 					req.flash('erro', 'Aluno não encontrado');
 					res.redirect('/aulas/index');
+					return;
 				}else{
 					Pratico.find({'_aluno': aluno._id})
 					.sort('data')
@@ -254,7 +261,31 @@ module.exports = function(app){
 					
 				}
 			});
-		}
+		},
+		excluir: function(req, res){
+			Pratico.findOne({_id: req.params.id}, function(err, aula){
+				if(err){
+					req.flash('erro', 'Falha ao Excluir');
+				}else{
+					var h = aula.data;
+					Aluno.update({_id: aula._aluno}, {$unset: {horario:{pratico: aula.data}}},function(err){
+						if(!err) req.flash('info', 'Sucesso') 
+							res.redirect('/aulas/index');
+					})
+				}
+			})
+
+
+			// Pratico.remove({_id: req.params.id}, function(err){
+			// 	if(err){
+			// 		req.flash('erro', 'Erro ao excluir aluno: '+err);
+			// 		res.redirect('/aulas/index');
+			// 	}else{
+			// 		req.flash('info', 'Aula excluída com sucesso!');
+			// 		res.redirect('/aulas/index');
+			// 	}
+			// });
+		},
 	
 	}
 	return aulasPraticasController;

@@ -4,7 +4,9 @@ block content
 		.panel.panel-default
 			.panel-heading.text-center
 				h3
-					span.fa.fa-users  Aulas de #{dados[0]._aluno.nome}
+					span.fa.fa-users  Aulas Práticas 
+					if dados.length > 0 
+						span de #{dados[0]._aluno.nome}
 			.panel-body
 				br
 				br
@@ -34,9 +36,13 @@ block content
 										td #{i._veiculo.nome + '--' + i._veiculo.placa}
 										td #{i._veiculo.categoria}
 										td
-											input.btn.btn-danger(type="button", value="Excluir")
+											form(method="post", action="/excluir/aula/pratica/#{i._id}")
+												input.btn.btn-danger(type="submit", value="Excluir")
 						h3
 							a(href="/aulas/praticas")
 								span.fa.fa-arrow-left   Voltar
 				else
 					p Nenhum registro encontrado.
+					h3
+							a(href="/aulas/praticas")
+								span.fa.fa-arrow-left   Voltar
