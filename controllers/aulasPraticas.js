@@ -47,9 +47,9 @@ module.exports = function(app){
 			instrutor_input= '';
 			veiculo_input  = '';
 			res.render('aulas/index_pratica',{
-				lista_veiculo  : veiculos,
 				lista_instrutor: instrutores,
 				lista_aluno	   : alunos,
+				lista_veiculo  : veiculos,
 				instrutor 	   : '',
 				aluno 		   : '',
 				veiculo		   : ''

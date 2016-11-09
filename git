@@ -1,0 +1,518 @@
+[33mcommit 3793c9ef7c31249381dab1c33af42ae3186eb541[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Nov 8 16:22:52 2016 -0300
+
+    bug getDate()
+
+[33mcommit 14a649a3b73d440d45e87d656c1c2a4c44237111[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Nov 8 00:04:57 2016 -0300
+
+    listando aulas praticas
+
+[33mcommit 707b836a37d5a5a5c0b4a2c5baede1b635d859de[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Nov 7 21:27:32 2016 -0300
+
+    saldo de aulas atualizado após agendamento
+
+[33mcommit 942a73e9a72ef5932fd245f4301ecb5bc02844b5[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Nov 7 21:25:38 2016 -0300
+
+    edição de veiculos concluída
+
+[33mcommit e6c79a525b295b32825b93cdf96d2a42b4f5e5d1[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Nov 7 18:02:34 2016 -0300
+
+    corrigindo bugs na agenda pratica
+
+[33mcommit 6a2fdc9bcc1c4b750debd47aa0e92df79f07c60c[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Nov 7 14:26:06 2016 -0300
+
+    agendamento pratico funcionando
+
+[33mcommit 34aa2db845648206126eeda3272e4869f6616fd2[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Nov 5 12:12:10 2016 -0300
+
+    ag pratico
+
+[33mcommit 7ea2619c24207933b6d85f31ef781ec87cd12394[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Nov 5 01:45:11 2016 -0300
+
+    buscando horarios agendados
+
+[33mcommit ff4769a93a13f2e8b2c4576481a610671ac47a61[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Nov 4 17:27:27 2016 -0300
+
+    agenda pratica com pickadate @-@
+
+[33mcommit 6e9e5863fed5739738baeb00d84b16ecfc48fa6f[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Nov 4 01:06:38 2016 -0300
+
+    mudando toda a agenda pratica com pickadate js
+
+[33mcommit 0ab75025e973a36f4514513803121305cf8165be[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Nov 3 18:13:41 2016 -0300
+
+    buscando aulas agendadas -aluno
+
+[33mcommit 37a66ffd5370d3aa8c2465104fc9cbeed388672f[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Nov 3 15:51:59 2016 -0300
+
+    buscando aulas agendadas -aluno
+
+[33mcommit f4af67f9200f9c9fb41420124adae42e0735de09[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Oct 28 18:13:47 2016 -0300
+
+    agenda pratica 71%
+
+[33mcommit 745c638bd8ec178dacdeb9e49415b0bb7876c68c[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Oct 27 22:59:28 2016 -0300
+
+    agendamento pratico 70%
+
+[33mcommit 29e776cdca5243a5d00002ac89ffcbfa529a6271[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Oct 27 00:00:02 2016 -0300
+
+    agendamento pratico quase lá
+
+[33mcommit bb875d56e1766e6bd23f10d5773de97182e2e683[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Wed Oct 26 18:04:36 2016 -0300
+
+    ISODate mongodb
+
+[33mcommit c7be0f88bda7600ff1f2a0f840249c4ca45ff302[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Oct 25 18:08:54 2016 -0300
+
+    workando na agenda pratica  - no bg
+
+[33mcommit e1f4df6a972b50a6d74c69aa5d2ba559ecab88ab[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Oct 25 01:27:36 2016 -0300
+
+    agenda pratica no bg
+
+[33mcommit 2bae1981d601fad7362cece1a5a9526ad7201cac[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Oct 24 17:56:45 2016 -0300
+
+    schema-design
+
+[33mcommit 2da0a353a9af53f4e2e3e515576ca564858cdda7[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Oct 24 16:06:59 2016 -0300
+
+    agenda pratica
+
+[33mcommit e0f9fa5789d3224a8965427205b20d85be4e31a3[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Oct 24 06:23:54 2016 -0300
+
+    ag pratica
+
+[33mcommit 34256e6c037fd36096cad8562d32c28ce6ea7e7e[m
+Author: Gilmar Ezaquel dos Santos <Gilmar Ezaquel dos Santos>
+Date:   Sat Oct 22 22:42:58 2016 -0200
+
+    trabalhando no agendamento pratico
+
+[33mcommit a9eae76fd5806bcedf0f4cbfef005046ad56d749[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Oct 22 12:09:01 2016 -0300
+
+    bug agenda pratica
+
+[33mcommit 7f13f35e83e7645798b7c338c5d9ba93f80b1762[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Oct 21 23:19:44 2016 -0300
+
+    resolvendo population
+
+[33mcommit 7501b3e3b24eaf2d395ad03efbfa0ae6b89cd2a1[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Oct 21 17:58:37 2016 -0300
+
+    trabalhando no agendamento pratico
+
+[33mcommit 4516887bfb7cbc37f3066f6c6b5e70de0f50801c[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Oct 21 02:09:52 2016 -0300
+
+    criando agenda pratica
+
+[33mcommit 4b62c961200890b0b1af6c2859fecc294c417cea[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Oct 20 18:08:27 2016 -0300
+
+    criando agendamento pratico com ajax
+
+[33mcommit 332cf282903d651aab0aa032510f69137ba880f8[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Oct 20 01:07:11 2016 -0300
+
+    mudança de planos - adaptando ajax ao projeto
+
+[33mcommit af584177d2b5f6eec3e4d9e5989fd6b5dded86b3[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Wed Oct 19 18:08:55 2016 -0300
+
+    inserindo testes com AJAX
+
+[33mcommit 9ad626f27ad7b44f9b55a84aeb9764cf71bc99c8[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Oct 18 16:20:14 2016 -0300
+
+    ´correção na sintaxe
+
+[33mcommit 308dfa32ffe85638126340030d47cdbcfaf45b44[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Oct 18 09:59:44 2016 -0300
+
+    rm folder
+
+[33mcommit 5e3b9844597d89efcd3eca0e864d734d084948e1[m
+Author: Gilmar Ezaquel dos Santos <Gilmar Ezaquel dos Santos>
+Date:   Tue Oct 18 01:55:16 2016 -0200
+
+    liberando cadastro de usuarios para fins didáticos
+
+[33mcommit be3b403fec9e21dcb62f510c7ed79ea227493059[m
+Author: Gilmar Ezaquel dos Santos <Gilmar Ezaquel dos Santos>
+Date:   Tue Oct 18 01:40:59 2016 -0200
+
+    definindo permissões
+
+[33mcommit 18abb93525bc6bfab3318b5f83f665a9fe48c2dd[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sun Oct 16 21:21:34 2016 -0300
+
+    criando agendamento
+
+[33mcommit af1257c390e3401b3cba3725b8052cf294901292[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sun Oct 9 13:12:29 2016 -0400
+
+    up crud
+
+[33mcommit 608e377f2574a565ac35ec11c33299d51adcaf61[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Wed Oct 5 00:31:27 2016 -0400
+
+    update alunos
+
+[33mcommit 0b420766ec5c5d8ee60ce3f5da70ecec5ff87784[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Oct 4 00:52:37 2016 -0400
+
+    busca de alunos e intrutores funfando :D
+
+[33mcommit df482ca3bae66856a2da5a94a35bc650a16dcadd[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Oct 3 20:54:04 2016 -0400
+
+    busca de alunos e intrutores funfando :D
+
+[33mcommit 89150bdc448bdc09ae31ca73a1c0ac785219ab2c[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Oct 3 16:50:24 2016 -0400
+
+    agenda pratica
+
+[33mcommit ac5adeafaac53cf59a4b77e3275523c1e999d817[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Oct 1 09:02:41 2016 -0400
+
+    trocando ids para classes
+
+[33mcommit 64838fc3d757c75c7ee5c24d3100f1db43c3c4ce[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Oct 1 00:58:30 2016 -0400
+
+    criando agendamento de aula pratica
+
+[33mcommit 086a3339f2bcf6679976aed41fb4a4f69a8c7e3b[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Sep 30 16:02:48 2016 -0400
+
+    rotas
+
+[33mcommit 86158c3fb26d893c069ff749af908b32f45b1081[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Sep 30 01:15:13 2016 -0400
+
+    criando agendamento de aula pratica
+
+[33mcommit 6b2e1abd7c77ec3d5e8e396482d76cd10f63c6b9[m
+Merge: 0db62b4 52fca6c
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Sep 30 01:07:36 2016 -0400
+
+    Merge branch 'master' of https://github.com/gilTads/projeto-cfc
+
+[33mcommit 0db62b4980981b186db8d88da50076625f2d7dbb[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Sep 30 01:06:43 2016 -0400
+
+    criando agendamento de aula pratica
+
+[33mcommit 52fca6c6cd873939833cf74254e500c937417e4d[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Sep 29 12:51:07 2016 -0400
+
+    alteração de id para class onlyInstrutor
+
+[33mcommit 3fadf12196c7d45dbe6918ecae90958d1c15ac86[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Wed Sep 28 17:58:05 2016 -0400
+
+    add tabs bootstrap na área de aulas
+
+[33mcommit 6106d3cf2cc51d297757e097729251dec62e766d[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 27 16:12:08 2016 -0400
+
+    add view aula prática
+
+[33mcommit 6f0f32bded623b77679420fccd28a497f8a0bdd6[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 27 00:24:56 2016 -0400
+
+    cad aluno 100%
+
+[33mcommit 2747ef9606b6fbce501e6dc84539d00d1a8b57d4[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 27 00:18:35 2016 -0400
+
+    cad aluno 100%
+
+[33mcommit a27efd1b97de65d253aec90489b825128b438a6e[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Sep 26 16:12:46 2016 -0400
+
+    add rota alunos
+
+[33mcommit 9c4a650ed510dcbb1bbbf4f37d898c77157117a5[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Sep 26 11:40:46 2016 -0400
+
+     add comments
+
+[33mcommit 094b1d6130e54b222fac034c43a848fa7a5cf74d[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sun Sep 25 23:17:06 2016 -0400
+
+    aprimorando instrutor
+
+[33mcommit 23388810a0b7e844df72a5d783c6fdbcd48f8dbf[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 20 23:15:05 2016 -0400
+
+    listando instrutores
+
+[33mcommit 929d413198792ef141ef883ac6ef072ac3b5519b[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 20 22:14:56 2016 -0400
+
+    padronizando nomes
+
+[33mcommit e49fd7902711586ea9586bed6cf3ecaf1573e44e[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Sep 20 21:59:25 2016 -0400
+
+    tratando a session
+
+[33mcommit cdc0c732d87dbf23dc4e59369e464967bc930dba[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Sep 19 22:25:48 2016 -0400
+
+    iniciando a edição
+
+[33mcommit 68fe17fb75b14d29e096f949d2fbebe66f9ab5ee[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Sep 17 12:05:27 2016 -0400
+
+     error 404
+
+[33mcommit 3db86674c0483d84fa8776f48cfc52513474b10a[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Sep 12 22:13:32 2016 -0400
+
+    cadastrando e listando veiculos, add rotas veiculos
+
+[33mcommit a356df81c75d17e7a2364cd4f9f9a543ea610253[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sun Sep 4 17:50:03 2016 -0400
+
+     veiculos
+
+[33mcommit eb71d49822d4b2ddc06956cb0c3b407da33b86b5[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Sat Sep 3 11:58:11 2016 -0400
+
+    ajustando rotas
+
+[33mcommit f25b604bc796f78f0ebb53b65888c8b5110923bf[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Sep 2 17:58:11 2016 -0400
+
+    add rota veiculos
+
+[33mcommit d57387453b036f01871e5331fdb797ad2d581e35[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Sep 1 21:40:03 2016 -0400
+
+    fail modal return errors
+
+[33mcommit 94c55697c64d2fcc82961f06152703285efa0927[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Aug 30 16:45:26 2016 -0400
+
+    add modal
+
+[33mcommit 27b704af6a5b69f9bbff5fe97a9a3dbd9c2adae6[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Aug 30 10:14:35 2016 -0400
+
+    rename file
+
+[33mcommit 4c877e29048bb7a471e6387dd10d88f7b5cd84b7[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 22:59:57 2016 -0400
+
+    readme :p
+
+[33mcommit b088cfef3a7d26cf1ff97e6ceb005bc05c18de4c[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 22:59:06 2016 -0400
+
+    readme :p
+
+[33mcommit b05b90cd46567914f41ebd0c683308f49b9cc4e6[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 22:54:07 2016 -0400
+
+    fade success alert and fixing cpf duplicated insertion
+
+[33mcommit 226398d1098929bda1a91a96dd2a68778585f8cb[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 21:39:59 2016 -0400
+
+    add jqueryTables
+
+[33mcommit a53e6371f06967d6fe7cb1e3802a256640cb924b[m
+Merge: b9a35f0 990720c
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 21:28:09 2016 -0400
+
+    Merge branch 'master' of github.com:gilTads/projeto-cfc
+
+[33mcommit b9a35f0de86b48abb4d5d304ef0b46624ec40e9e[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 29 21:27:05 2016 -0400
+
+    inserindo jqueryTables
+
+[33mcommit 990720c9024d1064d68ea6511447efcb3545ec07[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 22 12:24:37 2016 -0400
+
+    padronizando nomes de pastas
+
+[33mcommit d4ac9c0c78e6dcd5b51b44bf8f9d8f26f6e2c3ca[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 22 12:15:15 2016 -0400
+
+    add favicon
+
+[33mcommit 16c3f9cd9f49e10b4d5beebd4ec49371bb0f5f35[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 22 11:50:26 2016 -0400
+
+    add shortcut icon
+
+[33mcommit 1ed1e675aa4f01ef8c36b76f3c0910d8f4790d56[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Aug 19 21:16:21 2016 -0400
+
+    ajustes de validacao
+
+[33mcommit 4acd7a2afcaa8c2bd0a4b8c29fe76023cecf1062[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Fri Aug 5 18:00:33 2016 -0400
+
+    ajustes no jquery-confirm
+
+[33mcommit ef4e08c94cc2a2980159fcb8a0275c8415326533[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Aug 4 18:02:29 2016 -0400
+
+    ajustando jquery-confirm
+
+[33mcommit 39a2d6e74bebd5cf9eb558738a8609d4a2419c67[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Thu Aug 4 11:15:33 2016 -0400
+
+     add jquery-confirm
+
+[33mcommit 105d8f103822d173aba79bd7c5c070ffc4a874a1[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 1 22:06:49 2016 -0400
+
+    ajustes no css
+
+[33mcommit 8ead3feb65c1bccf52fa223cad3eed5ef17880f1[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 1 17:57:31 2016 -0400
+
+    listando o cargo
+
+[33mcommit 4eb83acd4e565ab64bb3706676069c02ddbc48b3[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Aug 1 17:46:48 2016 -0400
+
+    melhorias na autenticação
+
+[33mcommit f1275bc95c973a9e25c9d473c628466b3393b475[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Jun 28 00:03:30 2016 -0400
+
+    permissão
+
+[33mcommit d1f4040a6d9176ec75992f352f305769cb2fdb4a[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Tue Jun 28 00:01:06 2016 -0400
+
+    run to the hills
+
+[33mcommit f6a60be2a1d4d645317b90508fcd04f4c10f5346[m
+Merge: e31b79e cf59763
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Jun 27 21:52:57 2016 -0400
+
+    Merge branch 'master' of github.com:gilTads/projeto-cfc
+
+[33mcommit e31b79e9ceb80b1bfd9e63efc7b9fe1963975076[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Jun 27 21:40:04 2016 -0400
+
+    mandando bala no node js
+
+[33mcommit cf59763eae099605b4faf4bed38191de81a905ed[m
+Author: GilTads <gil.tads@gmail.com>
+Date:   Mon Jun 27 21:18:35 2016 -0400
+
+    Initial commit
