@@ -258,8 +258,6 @@ $(document).ready(function(){
     });
 
 
-
-
     // AGENDAR AULA PRATICA
   $('#praticaForm').submit(function(e){
       var cpf_aluno = $('#cpf').val();

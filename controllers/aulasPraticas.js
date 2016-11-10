@@ -275,6 +275,28 @@ module.exports = function(app){
 						if(err) {
 							req.flash('err', 'Erro ao excluir aula do aluno');
 							res.redirect('/aulas/index');
+						}else{
+							Aluno.findOne({_id: aula._aluno}, function(err, aluno){
+								if(aluno){
+									Veiculo.findOne({_id: aula._veiculo}, function(err, veiculo){
+										if(veiculo){
+											if(veiculo.categoria == 'A'){
+												aluno.qnt_aulas.moto += 1;
+											}else if(veiculo.categoria =='B'){
+												aluno.qnt_aulas.carro += 1;
+											}
+											aluno.save(function(err){
+												if(!err){
+													console.log('Estornou a aula');
+												}
+											});
+										}
+
+									});
+
+								}
+								
+							});	
 						}
 					});
 					Veiculo.update({_id: aula._veiculo},
