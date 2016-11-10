@@ -32,32 +32,34 @@ $(document).ready(function(){
 
       var dataAula = dia +'/' +mes+'/'+ ano;
       var horaAula = hora+':'+min;
-      //console.log('Hora do Mongo: '+dataAula+' '+horaAula);
+      console.log('Hora do Mongo: '+dataAula+' '+horaAula);
       //BUSCA A HORA DA AULA  E PASSA PRO CALENDARIO
 
       if($('.calendario').val() == dataAula ){
+      	console.log('dataAula: '+ dataAula);
         $('.hora').each(function(){
           if($(this).val() == horaAula){
-            console.log('Comparar-- Mongo: '+ dataAula+ ' '+ horaAula+
-             ' Calendário: '+ $('.calendario').val() + ' '+ $(this).val()+ ' Classe: '+classe );
+            // console.log('Comparar-- Mongo: '+ dataAula+ ' '+ horaAula+
+            //  ' Calendário: '+ $('.calendario').val() + ' '+ $(this).val()+ ' Classe: '+classe );
             $(this).addClass(classe);
             console.log($(this));
             $(this).attr('disabled','disabled');  
           }
         });
         
-      }else{
-            $('.hora').each(function(){
-              $(this).removeClass(classe);
-              if($(this).hasClass('agendadoInstrutor') || 
-                $(this).hasClass('agendadoVeiculo') ||
-                $(this).hasClass('agendadoaluno')){
-                }else{
-                  $(this).removeAttr('disabled','disabled');
-                }
-              
-            });
       }
+      // else{
+      //       $('.hora').each(function(){
+      //         $(this).removeClass(classe);
+      //         if($(this).hasClass('agendadoInstrutor') || 
+      //           $(this).hasClass('agendadoVeiculo') ||
+      //           $(this).hasClass('agendadoaluno')){
+      //           }else{
+      //             $(this).removeAttr('disabled','disabled');
+      //           }
+              
+      //       });
+      // }
   };
 
 
@@ -82,14 +84,6 @@ $(document).ready(function(){
 
 
   $('.calendario').on('change', function(){
-        //LIMPANDO TUDO ANTES DE BUSCAR
-        $('.hora').each(function(){
-          if($(this).hasClass('agendadoAluno')){
-            $(this).removeClass('agendadoAluno');
-            $(this).removeAttr('disabled','disabled');
-          }
-          
-        });
 
       $.ajax({//Verifica se há dados de aula para este aluno
         url: '/verificaAula/aluno',
@@ -118,54 +112,66 @@ $(document).ready(function(){
 
         }
       });
-    //   $.ajax({
-    //     url: '/verificaAula/instrutor',
-    //     type: 'POST',
-    //     data:{id: id_instrutor},
-    //     error: function(){
-    //       console.log('Não foram encontradas aulas');
-    //     },
-    //     success: function(aula){
+      if($('#selIns').val() != null){
+	      	$.ajax({
+	        url: '/verificaAula/instrutor',
+	        type: 'POST',
+	        data:{id: id_instrutor},
+	        error: function(){
+	          console.log('Não foram encontradas aulas');
+	        },
+	        success: function(aula){
 
-    //       $('.hora').each(function(){
-    //         $(this).removeClass('agendadoInstrutor');
-    //           if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoVeiculo')){
-    //             }else{
-    //               $(this).removeAttr('disabled','disabled');
-    //             }
-            
-            
-    //       });
-    //       for(var i =0; i < aula.horario.pratico.length; i++){
-    //           var dadosAula = new Date(aula.horario.pratico[i]);
-    //           verificaHorario(dadosAula, 'agendadoInstrutor');
-    //       }
-    //     }
-    //   });
-    //   $.ajax({
-    //   url: '/verificaAula/veiculo',
-    //   type: 'POST',
-    //   data:{id: id_veiculo},
-    //   error: function(){
-    //       console.log('Não foram encontradas aulas');
-    //   },
-    //   success: function(aula){
+	          $('.hora').each(function(){
+	            $(this).removeClass('agendadoInstrutor');
+	              if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoVeiculo')){
+	                }else{
+	                  $(this).removeAttr('disabled','disabled');
+	                }
+	            
+	            
+	          });
+	          for(var i =0; i < aula.horario.pratico.length; i++){
+	              var dadosAula = new Date(aula.horario.pratico[i]);
+	              if(dadosAula != null){
+	              	verificaHorario(dadosAula, 'agendadoInstrutor');
+	              }
+	              
+	          }
+	        }
+	      });
+      }
+      if($('#selVeic').val() != null){
+  	      $.ajax({
+	      url: '/verificaAula/veiculo',
+	      type: 'POST',
+	      data:{id: id_veiculo},
+	      error: function(){
+	          console.log('Não foram encontradas aulas');
+	      },
+	      success: function(aula){
 
-    //     $('.hora').each(function(){
-    //       $(this).removeClass('agendadoVeiculo');
-    //       if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoInstrutor')){
-    //           }else{
-    //             $(this).removeAttr('disabled','disabled');
-    //           }
-          
-          
-    //     });
-    //     for(var i =0; i < aula.horario.pratico.length; i++){
-    //         var dadosAula = new Date(aula.horario.pratico[i]);
-    //         verificaHorario(dadosAula, 'agendadoVeiculo');
-    //     }
-    //   }
-    // });
+	        $('.hora').each(function(){
+	          $(this).removeClass('agendadoVeiculo');
+	          if($(this).hasClass('agendadoAluno') || $(this).hasClass('agendadoInstrutor')){
+	              }else{
+	                $(this).removeAttr('disabled','disabled');
+	              }
+	          
+	          
+	        });
+	        for(var i =0; i < aula.horario.pratico.length; i++){
+	            var dadosAula = new Date(aula.horario.pratico[i]);
+	            if(dadosAula != null){
+	            	verificaHorario(dadosAula, 'agendadoVeiculo');
+	            }
+	            
+	        }
+	      }
+	    });
+      }
+
+
   });
 
 
@@ -221,7 +227,14 @@ $(document).ready(function(){
         dataType: 'json',
         data: {cpf: $('#cpf').val()},
         error: function(){
-          console.log('Não foram encontradas aulas');
+            $.dialog({
+            theme: 'black',
+            icon: 'fa fa-warning',  
+            title: 'Aviso!!',
+            content: 'Nenhuma aula encontrada!',
+            animationSpeed: 500,
+            animationBounce: 2.5,
+          });
         },
         success: function(aula){
             $('.hora').each(function(){
@@ -229,11 +242,9 @@ $(document).ready(function(){
                 if($(this).hasClass('agendadoInstrutor') || $(this).hasClass('agendadoVeiculo')){
                 }else{
                   $(this).removeAttr('disabled','disabled');
-                }
-                
+                } 
             });
-
-
+            console.log('Tamanho do vetor: '+aula.horario.pratico.length);
           for(var i =0; i < aula.horario.pratico.length; i++){
               var dadosAula = new Date(aula.horario.pratico[i]);
               

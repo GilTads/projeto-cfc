@@ -268,23 +268,44 @@ module.exports = function(app){
 					req.flash('erro', 'Falha ao Excluir');
 				}else{
 					var h = aula.data;
-					Aluno.update({_id: aula._aluno}, {$unset: {horario:{pratico: aula.data}}},function(err){
-						if(!err) req.flash('info', 'Sucesso') 
+					//EXCLUI A AULA DO CAMPO HORARIO AULA DA COLLECTION ALUNO
+					Aluno.update({_id: aula._aluno},
+					 {$pull: {'horario.pratico':{ $in: [h]}}},
+					 {multi: true},function(err){
+						if(err) {
+							req.flash('err', 'Erro ao excluir aula do aluno');
 							res.redirect('/aulas/index');
-					})
+						}
+					});
+					Veiculo.update({_id: aula._veiculo},
+					 {$pull: {'horario.pratico':{ $in: [h]}}},
+					 {multi: true},function(err){
+						if(err) {
+							req.flash('err', 'Erro ao excluir aula do veiculo');
+							res.redirect('/aulas/index');
+						}
+					});
+					Instrutor.update({_id: aula._instrutor},
+					 {$pull: {'horario.pratico':{ $in: [h]}}},
+					 {multi: true},function(err){
+						if(err) {
+							req.flash('err', 'Erro ao excluir aula do instrutor');
+							res.redirect('/aulas/index');
+						}
+					});
+
+					Pratico.remove({_id: req.params.id}, function(err){
+						if(err){
+							req.flash('erro', 'Erro ao excluir aluno: '+err);
+							res.redirect('/aulas/index');
+						}else{
+							req.flash('info', 'Aula excluída com sucesso!');
+							res.redirect('/aulas/index');
+						}
+					});
 				}
-			})
+			});
 
-
-			// Pratico.remove({_id: req.params.id}, function(err){
-			// 	if(err){
-			// 		req.flash('erro', 'Erro ao excluir aluno: '+err);
-			// 		res.redirect('/aulas/index');
-			// 	}else{
-			// 		req.flash('info', 'Aula excluída com sucesso!');
-			// 		res.redirect('/aulas/index');
-			// 	}
-			// });
 		},
 	
 	}
