@@ -44,4 +44,10 @@ module.exports = function(app){
 
 	app.route('/excluir/aula/pratica/:id')
 		.post(aula.excluir);
+
+	app.route('/aula/instrutor')
+		.post(aula.aulaInstrutor);
+
+	app.route('/aula/veiculo')
+		.post(aula.aulaVeiculo);
 }

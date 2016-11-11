@@ -4,10 +4,10 @@ block content
 		.panel.panel-default
 			.panel-heading.text-center
 				h3
-					span.fa.fa-graduation-cap  Aulas Práticas 
+					span.fa.fa-tachometer  Aulas Práticas do Instrutor:
 					if dados.length > 0 
-						span &nbsp; de 
-							b #{dados[0]._aluno.nome}
+						span &nbsp; 
+							b #{dados[0]._instrutor.nome}
 			.panel-body
 				br
 				br
@@ -25,24 +25,20 @@ block content
 							thead
 								tr
 									th Data
+									th Aluno
 									th Renach
 									th Celular
-									th Instrutor
 									th Veículo
 									th Categoria
-									th
 							tbody
 								each i in dados
 									tr
 										td #{moment(i.data).format('DD/MM/YYYY HH:mm')}
+										td #{i._aluno.nome}
 										td #{i._aluno.renach}
 										td #{i._aluno.telefones.cel}
-										td #{i._instrutor.nome}
 										td #{i._veiculo.nome + '--' + i._veiculo.placa}
 										td #{i._veiculo.categoria}
-										td
-											form(method="post", action="/excluir/aula/pratica/#{i._id}")
-												input.btn.btn-danger(type="submit", value="Excluir")
 						h3
 							a(href="/aulas/praticas")
 								span.fa.fa-arrow-left   Voltar

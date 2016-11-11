@@ -53,6 +53,15 @@ html,body {
   }
 }
 
+.red .active a,
+.red .active a:hover {
+    background-color: #ef786b !important;
+}
+
+#relatorioAluno{
+  margin-top: 24px;
+}
+
 #searchAluno:hover,#aulaAluno:hover{
   cursor: pointer;
   text-shadow: 1px 1px 1px #555;
@@ -91,6 +100,8 @@ a:hover {
   padding: 10px;
   pointer-events: none;
 }
+
+
 
 /* align icon */
 .left-addon .glyphicon  { left:  0px;}

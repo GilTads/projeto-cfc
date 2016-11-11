@@ -14,7 +14,9 @@ $(document).ready(function(){
 });
 
 
-
+$('#vVeiculo').click(function(){
+  $('a[href="#menu3"]').tab('show');
+})
 
   function verificaHorario(dadosAula,classe){
       var hora = dadosAula.getHours();

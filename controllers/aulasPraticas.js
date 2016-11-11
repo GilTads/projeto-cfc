@@ -241,12 +241,15 @@ module.exports = function(app){
 		},
 		aulaAluno: function(req, res){
 			Aluno.findOne({cpf: req.body.cpfA}, function(err, aluno){
-				if(err){
+				if(aluno === null){
 					req.flash('erro', 'Aluno não encontrado');
 					res.redirect('/aulas/index');
-					return;
 				}else{
-					Pratico.find({'_aluno': aluno._id})
+					var ini = req.body.dataIniAluno;
+					var fim = req.body.dataFinAluno;
+					var dataIni = moment(ini, 'DD-MM-YYYY');
+					var dataFim = moment(fim, 'DD-MM-YYYY');
+					Pratico.find({'_aluno': aluno._id, data:{'$gte': dataIni, '$lte': dataFim}})
 					.sort('data')
 					.populate('_aluno')
 					.populate('_instrutor')
@@ -259,6 +262,50 @@ module.exports = function(app){
 						}
 					});
 					
+				}
+			});
+		},
+		aulaInstrutor: function(req, res){
+			Instrutor.findOne({_id: req.body.cInstrutor}, function(err, instrutor){
+				console.log(req.body.cInstrutor);
+				if(instrutor === null){
+					req.flash('erro', 'Instrutor não encontrado');
+					res.redirect('/aulas/index');
+				}else{
+					Pratico.find({'_instrutor': instrutor._id})
+					.sort('data')
+					.populate('_aluno')
+					.populate('_instrutor')
+					.populate('_veiculo')
+					.exec(function(err, aulas){
+						if(err){
+							req.flash('err', 'Falha ao gerar relatório');
+						}else{
+							res.render('aulas/instrutor', {dados: aulas});
+						}
+					});
+				}
+			});
+		},
+		aulaVeiculo: function(req, res){
+			Veiculo.findOne({_id: req.body.cVeiculo}, function(err, veiculo){
+				console.log(req.body.cInstrutor);
+				if(veiculo === null){
+					req.flash('erro', 'Veículo não encontrado');
+					res.redirect('/aulas/index');
+				}else{
+					Pratico.find({'_veiculo':veiculo._id})
+					.sort('data')
+					.populate('_aluno')
+					.populate('_instrutor')
+					.populate('_veiculo')
+					.exec(function(err, aulas){
+						if(err){
+							req.flash('err', 'Falha ao gerar relatório');
+						}else{
+							res.render('aulas/veiculo', {dados: aulas});
+						}
+					});
 				}
 			});
 		},

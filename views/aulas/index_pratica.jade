@@ -6,15 +6,15 @@ block content
 				h3
 					span.fa.fa-car  Aulas Práticas  
 			.panel-body
-				ul.nav.nav-tabs
+				ul.nav.nav-tabs.red
 					li.active(role="presentation")
 						a(href="#main", data-toggle="tab") Agendamento de Aulas
 					li(role="presentation")
 						a(href="#menu1", data-toggle="tab") Aulas do Aluno
 					li(role="presentation")
-						a(href="#menu2", data-toggle="tab") Messages
+						a(href="#menu2", data-toggle="tab") Aulas do Instrutor
 					li(role="presentation")
-						a(href="#menu3" data-toggle="tab") Settings
+						a(href="#menu3" data-toggle="tab") Aulas do Veículo
 				.tab-content
 					.tab-pane.active.fade.in#main
 						.col-xs-12.col-sm-12.col-md-12
@@ -171,12 +171,77 @@ block content
 														.form-group
 															label CPF do Aluno
 															.input-group
-																input.form-control.cpf(type="text", value="",name="cpfA" ,placeholder="CPF",tabindex='1')
-																span(tabindex='2').input-group-addon#aulaAluno
-																	span.glyphicon.glyphicon-search
+																input.form-control.cpf(type="text", value="",name="cpfA" ,placeholder="CPF",tabindex='1', required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Inicial
+															.input-group
+																input.form-control.calendario(name="dataIniAluno",type="text", tabindex="2", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Final
+															.input-group
+																input.form-control.calendario(name="dataFinAluno",type="text",tabindex="3", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															input#relatorioAluno.form-control.btn.btn-danger(type="submit", value="Gerar Relatório", required)
 					.tab-pane.fade#menu2
-						h3 Messages
-						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut ipsa, officiis expedita et odio qui. Facilis minima, unde sapiente cupiditate pariatur, laboriosam aliquam quaerat, doloremque aut in consectetur amet non.
+						.col-xs-12.col-sm-12.col-md-12
+							.panel.panel-default
+										.panel-heading
+											.panel-title
+												h4 Consultar Aulas do Instrutor
+												br
+										.panel-body
+											form#aulaAlunoForm(role="form", action="/aula/instrutor", method="POST")
+												.row
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Instrutor
+															select.form-control#selIns(name="cInstrutor",placeholder="Instrutor",tabindex='3')
+																option(value="", disabled, selected)
+																each instrutor in lista_instrutor 
+																	option#optIns(value="#{instrutor._id}") #{instrutor.nome}
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Inicial
+															.input-group
+																input.form-control.calendario(type="text", tabindex="2", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Final
+															.input-group
+																input.form-control.calendario(type="text",tabindex="3", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															input#relatorioAluno.form-control.btn.btn-danger(type="submit", value="Gerar Relatório", required)
 					.tab-pane.fade#menu3
-						h3 Settings
-						p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum dicta adipisci consectetur aspernatur, eius necessitatibus voluptatem qui vero soluta magnam harum quod nemo pariatur impedit a vel itaque. Asperiores.	
+						.col-xs-12.col-sm-12.col-md-12
+							.panel.panel-default
+										.panel-heading
+											.panel-title
+												h4 Consultar Aulas do Veículo
+												br
+										.panel-body
+											form#aulaAlunoForm(role="form", action="/aula/veiculo", method="POST")
+												.row
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Veículo
+															select.form-control#selVeic(name="cVeiculo",type="text",tabindex='4',required)
+																option(value="", disabled, selected)
+																each veiculo in lista_veiculo
+																	option#optVeic(value="#{veiculo._id}") #{veiculo.nome + ' / '} #{veiculo.placa}
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Inicial
+															.input-group
+																input.form-control.calendario(type="text", tabindex="2", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Data Final
+															.input-group
+																input.form-control.calendario(type="text",tabindex="3", required)
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															input#relatorioAluno.form-control.btn.btn-danger(type="submit", value="Gerar Relatório", required)
