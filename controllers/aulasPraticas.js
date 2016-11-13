@@ -246,9 +246,11 @@ module.exports = function(app){
 					res.redirect('/aulas/index');
 				}else{
 					var ini = req.body.dataIniAluno;
-					var fim = req.body.dataFinAluno;
+					var fimStr = req.body.dataFinAluno;
 					var dataIni = moment(ini, 'DD-MM-YYYY');
-					var dataFim = moment(fim, 'DD-MM-YYYY');
+					var dataFim = moment(fimStr, 'DD-MM-YYYYHH:mm:ss');
+					//AVANÇA UM DIA NO CALENDARIO PARA O $lte FUNCIONAR
+					dataFim = moment(dataFim).add(24, 'hours').format('LLL');
 					Pratico.find({'_aluno': aluno._id, data:{'$gte': dataIni, '$lte': dataFim}})
 					.sort('data')
 					.populate('_aluno')
@@ -272,6 +274,12 @@ module.exports = function(app){
 					req.flash('erro', 'Instrutor não encontrado');
 					res.redirect('/aulas/index');
 				}else{
+					var ini = req.body.dataIniAluno;
+					var fimStr = req.body.dataFinAluno;
+					var dataIni = moment(ini, 'DD-MM-YYYY');
+					var dataFim = moment(fimStr, 'DD-MM-YYYYHH:mm:ss');
+					//AVANÇA UM DIA NO CALENDARIO PARA O $lte FUNCIONAR
+					dataFim = moment(dataFim).add(24, 'hours').format('LLL');
 					Pratico.find({'_instrutor': instrutor._id})
 					.sort('data')
 					.populate('_aluno')
@@ -294,6 +302,12 @@ module.exports = function(app){
 					req.flash('erro', 'Veículo não encontrado');
 					res.redirect('/aulas/index');
 				}else{
+					var ini = req.body.dataIniAluno;
+					var fimStr = req.body.dataFinAluno;
+					var dataIni = moment(ini, 'DD-MM-YYYY');
+					var dataFim = moment(fimStr, 'DD-MM-YYYYHH:mm:ss');
+					//AVANÇA UM DIA NO CALENDARIO PARA O $lte FUNCIONAR
+					dataFim = moment(dataFim).add(24, 'hours').format('LLL');
 					Pratico.find({'_veiculo':veiculo._id})
 					.sort('data')
 					.populate('_aluno')

@@ -14,10 +14,6 @@ $(document).ready(function(){
 });
 
 
-$('#vVeiculo').click(function(){
-  $('a[href="#menu3"]').tab('show');
-})
-
   function verificaHorario(dadosAula,classe){
       var hora = dadosAula.getHours();
       var min = dadosAula.getMinutes();
@@ -50,18 +46,12 @@ $('#vVeiculo').click(function(){
         });
         
       }
-      // else{
-      //       $('.hora').each(function(){
-      //         $(this).removeClass(classe);
-      //         if($(this).hasClass('agendadoInstrutor') || 
-      //           $(this).hasClass('agendadoVeiculo') ||
-      //           $(this).hasClass('agendadoaluno')){
-      //           }else{
-      //             $(this).removeAttr('disabled','disabled');
-      //           }
-              
-      //       });
-      // }
+var ini = req.body.dataIniAluno;
+          var fimStr = req.body.dataFinAluno;
+          var dataIni = moment(ini, 'DD-MM-YYYY');
+          var dataFim = moment(fimStr, 'DD-MM-YYYYHH:mm:ss');
+          //AVANÇA UM DIA NO CALENDARIO PARA O $lte FUNCIONAR
+          dataFim = moment(dataFim).add(24, 'hours').format('LLL');
   };
 
 
@@ -181,6 +171,8 @@ $('#vVeiculo').click(function(){
     var id_instrutor
       ,id_veiculo
 
+
+    //AO CLICAR NA LUPA DE BUSCA DE ALUNO
     $('#searchAluno').click(function(){
       var cpf = $('#cpf').val();
       $.ajax({
@@ -207,6 +199,7 @@ $('#vVeiculo').click(function(){
 
         },
         success: function(dados){
+          //RETORNA OS CAMPOS DE CATEGORIA DE ACORDO COM A CATEGORIA DE CADA ALUNO
           if(dados.categoria == "AB"){
             setTimeout(function() {$('#aluno').val(dados.nome),
            $('#aulasCarro').val(dados.qnt_aulas.carro),
@@ -247,7 +240,7 @@ $('#vVeiculo').click(function(){
                 } 
             });
             console.log('Tamanho do vetor: '+aula.horario.pratico.length);
-          for(var i =0; i < aula.horario.pratico.length; i++){
+            for(var i =0; i < aula.horario.pratico.length; i++){
               var dadosAula = new Date(aula.horario.pratico[i]);
               
               if(dadosAula != null){
