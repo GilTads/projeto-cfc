@@ -20,4 +20,10 @@ $(document).ready(function(){
 		$(this).tab('show');
 	});
 
+
+	$('a[href="#mainTeorico"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show')
+	});
+
 });

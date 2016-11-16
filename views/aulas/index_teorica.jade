@@ -1,0 +1,58 @@
+extends ../layout
+block content
+	link(rel="stylesheet", href="../fullcalendar/fullcalendar.css")
+	script(src="../fullcalendar/lib/jquery.min.js")
+	script(src="../fullcalendar/lib/moment.min.js")
+	script(src="../fullcalendar/fullcalendar.js")
+	.container.nav-top
+		.panel.panel-default.panelPratico
+			.panel-heading.text-center
+				h3
+					span.fa.fa-book  Aulas Tóricas  
+			.panel-body
+				ul.nav.nav-tabs.red
+					li.active(role="presentation")
+						a(href="#mainTeorico", data-toggle="tab") Agendamento de Aulas
+					li(role="presentation")
+						a(href="#menu1", data-toggle="tab") Aulas do Aluno
+					li(role="presentation")
+						a(href="#menu2", data-toggle="tab") Aulas do Instrutor
+					li(role="presentation")
+						a(href="#menu3" data-toggle="tab") Aulas do Veículo
+				.tab-content
+					.tab-pane.active.fade.in#mainTeorico
+						.col-xs-12.col-sm-12.col-md-12
+							.panel.panel-default
+										.panel-heading
+											.panel-title
+												h4 Agendamento de Aulas Teóricas
+												br
+											if messages.erro
+												.alert.alert-danger#success-alert
+													p #{messages.erro}
+												br
+											if messages.info
+												.alert.alert-success#success-alert
+													p #{messages.info}
+												br
+										.panel-body
+											form(role="form", action="", method="")
+												.row
+													.col-xs-12.col-sm-8.col-md-3
+														.form-group
+															label Disciplina
+															select.form-control#disciplina(name="disciplina")
+																option(disabled selected)
+																option() 1 - Legislação de Trânsito
+																option() 2 - Direção Defensiva
+																option() 3 - Primeiros Socorros
+																option() 4 - Meio Ambiente e Cidadania
+																option() 5 - Mecânica Básica
+											.panel.panel-default
+												.panel-heading
+													.panel-title
+														h4 Agenda
+												.panel-body
+													.col-xs-12.col-sm-12.col-md-12
+														div#calendar
+	
