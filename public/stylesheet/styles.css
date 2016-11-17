@@ -16,6 +16,10 @@ html,body {
 
 }*/
 
+a:focus, input:focus, select:focus, .btn:focus {
+    outline: 0;
+}
+
 @media (max-width: 1199px) {
   .navbar-header {
       float: none;
@@ -288,7 +292,7 @@ section {
 }
 
 #section6 {
-    background-color: #eee;
+  background-color: #eee;
   min-height:130px;
   padding-top:40px;
   padding-bottom:40px;
@@ -297,17 +301,17 @@ section {
 #section7 {
   background-color: #f44d3c;
   color: #f6f6f6;
-  min-height:130px;
-  padding-top:40px;
-  padding-bottom:40px;
+    min-height:10px;
+/*    padding-top:40px;
+    padding-bottom:40px;*/
 }
 
 footer {
   background-color:#2b2b2b;
   color:#ddd;
-  min-height:50px;
-  padding-top:20px;
-  padding-bottom:20px;
+  /*  min-height:50px;
+    padding-top:20px;
+    padding-bottom:20px;*/
 }
 footer .nav>li>a {
     padding: 3px;
