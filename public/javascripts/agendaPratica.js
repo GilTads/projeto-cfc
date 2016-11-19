@@ -46,12 +46,6 @@ $(document).ready(function(){
         });
         
       }
-var ini = req.body.dataIniAluno;
-          var fimStr = req.body.dataFinAluno;
-          var dataIni = moment(ini, 'DD-MM-YYYY');
-          var dataFim = moment(fimStr, 'DD-MM-YYYYHH:mm:ss');
-          //AVANÇA UM DIA NO CALENDARIO PARA O $lte FUNCIONAR
-          dataFim = moment(dataFim).add(24, 'hours').format('LLL');
   };
 
 

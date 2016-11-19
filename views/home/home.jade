@@ -16,12 +16,10 @@ block content
 					h3
 						span.fa.fa-user  Olá, #{session.nome.split(' ')[0]}
 					br
-					p 
-						span.fa.fa-key  <strong> Id de Sessão: </strong> #{session._id}
 					p
-						span.fa.fa-envelope <strong> Email:  </strong>  #{session.email}
+						span.fa.fa-envelope  #{session.email}
+					p
+						span.fa.fa-black-tie  #{session.setor}
 					br
 					a.btn.btn-danger.btn-sm(href="/logout") Sair
-
-					a(href='/teste') Listar
 
