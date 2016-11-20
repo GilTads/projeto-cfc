@@ -25,5 +25,9 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(this).tab('show')
 	});
+	$('a[href="#menuT1"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show')
+	});
 
 });

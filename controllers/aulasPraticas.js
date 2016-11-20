@@ -22,25 +22,25 @@ module.exports = function(app){
 					req.flash('erro', 'Erro ao buscar aluno');
 				}else{
 					alunos = data;
+					Instrutor.find({setor: 'Instrutor'}, function(err, data){
+						if(err){
+							req.flash('erro', 'Erro ao buscar intrutores');
+						}else{
+							instrutores = data;
+							Veiculo.find(function(err, data){
+								if(err){
+									req.flash('erro', 'Erro ao buscar veiculo');
+								}else{
+									veiculos = data;
+									res.redirect('/aulas/index');
+								}
+							});	
+						}
+					});
 				}
 			});
 
-			Instrutor.find({setor: 'Instrutor'}, function(err, data){
-				if(err){
-					req.flash('erro', 'Erro ao buscar intrutores');
-				}else{
-					instrutores = data;
-				}
-			});
-
-			Veiculo.find(function(err, data){
-				if(err){
-					req.flash('erro', 'Erro ao buscar veiculo');
-				}else{
-					veiculos = data;
-				}
-			});	
-			res.redirect('/aulas/index');
+			
 		},
 		index: function(req, res){
 			aluno_input    = '';

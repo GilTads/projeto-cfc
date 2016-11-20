@@ -57,6 +57,9 @@ a:focus, input:focus, select:focus, .btn:focus {
   }
 }
 
+.tab-pane{
+  margin-top: 20px;
+}
 .red .active a,
 .red .active a:hover {
     background-color: #ef786b !important;

@@ -7,4 +7,10 @@ module.exports = function(app){
 
 	app.route('/aulas/teoricas')
 		.get(autenticar, aula.index);
+
+	app.route('/cadastrar/pacote')
+		.post(aula.criarPacote);
+
+	app.route('/teorico/excluir/:id')
+		.get(autenticar,aula.excluir);
 }
