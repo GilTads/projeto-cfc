@@ -15,10 +15,35 @@ $(document).ready(function() {
 
 });
 
+function dma(data){
+      var dia = data.getDate();
+      var mes = data.getMonth()+1;
+      var ano = data.getFullYear();
+
+      
+      if(dia < 10){
+        dia = '0'+dia;
+      }
+
+      var dataAula = dia +'/' +mes+'/'+ ano;
+      console.log('Hora do Mongo: '+dataAula);
+      return dataAula;
+}
 
 
+// $('#cron').submit(function(e){
+//   e.preventDefault();
+  
 
-
+//   $.ajax({
+//     url: '/criar/cronograma',
+//     type: 'POST',
+//     dataType: 'json',
+//     data:{
+//       aulas: teorico 
+//     }
+//   })
+// });
 
 
 

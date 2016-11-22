@@ -26,8 +26,8 @@ module.exports = function(app){
 
 		criarPacote: function(req, res){
 			var teorico = new Teorico();
-			teorico.pacote.nome = req.body.pacoteNome;
-			teorico.pacote.dados = false;
+			teorico.nome = req.body.pacoteNome;
+			teorico.dados = false;
 			teorico.save(function(err){
 				if(err){
 					req.flash('erro', 'Erro ao salvar pacote');
@@ -46,11 +46,11 @@ module.exports = function(app){
 		cronograma: function(req, res){
 			Teorico.findOne({_id: req.params.id}, function(err, dados){
 				if(err){
-					req.flash('erro', 'Erro ao salvar no banco');
+					req.flash('erro', 'Erro');
 					res.render('aulas/cronograma_teorico',
 				 		{teorico: dados, lista_instrutor: lista});
 				}else{
-					console.log(dados);
+					
 					res.render('aulas/cronograma_teorico', {teorico: dados, lista_instrutor: lista});
 				}
 			});
@@ -66,7 +66,7 @@ module.exports = function(app){
 					console.log('Erro ao criar cronograma');
 				}else{
 					var dataStr	= req.body.data;
-					var dia 	= moment(dataStr, 'DD-MM-YYYY HH:mm');
+					var dia 	= moment(dataStr, 'DD/MM/YYYY');
 					dados.pacote._instrutor.push(req.body.instrutor);
 					dados.pacote.data.push(dia);
 					dados.pacote.disciplina.push(req.body.disciplina);
@@ -86,10 +86,11 @@ module.exports = function(app){
 									if(err){
 										req.flash('err', 'Erro ao listar');
 										res.render('aulas/cronograma_teorico',
-										 {teorico: data, lista_instrutor: instrutor});
+										 {teorico: dados, lista_instrutor: instrutor});
 									}else{
-										res.render('aulas/cronograma/teorico',
-											{teorico: aulas, lista_instrutor: instrutor})
+										console.log(dados);
+										res.render('aulas/cronograma_teorico',
+											{teorico: aulas, lista_instrutor: lista})
 									}
 								});
 						}
