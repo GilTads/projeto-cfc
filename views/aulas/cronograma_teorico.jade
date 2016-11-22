@@ -64,44 +64,72 @@ block content
 												i(style="color: white").glyphicon.glyphicon-plus
 												input.btn.btn-primary#cron(type="submit", value="Add")
 								.row
-									.col-xs-12.col-sm-6.col-md-12
-										if teorico
-											.col-xs-12.col-sm-6.col-md-2
-													ul.list-group Data
+									.table-responsive
+										table.table.table-striped.listar-usuarios
+											thead
+												if teorico
+													tr
+														
+														
+														
+														
+														
+											tbody
+												tr
+													th Data
 														each i in teorico.pacote.data
-															li= i
-											.col-xs-12.col-sm-6.col-md-2
-													ul.list-group Inicio
+															td=i
+													th Inicio
 														each i in teorico.pacote.horaIni
-															li=i
-											.col-xs-12.col-sm-6.col-md-2
-													ul.list-group Fim
+															td=i
+													th Fim
 														each i in teorico.pacote.horaFim
-															li=i
-											.col-xs-12.col-sm-6.col-md-2
-													ul.list-group Instrutor
+															td=i
+													th Instrutor
 														each i in teorico.pacote._instrutor
-															li=i
-											.col-xs-12.col-sm-6.col-md-2
-													ul.list-group Disciplina
+															td=i
+													th Disciplina
 														each i in teorico.pacote.disciplina
-															li=i
-											//- .table-responsive
-											//- 	table.table.table-striped.listar-usuarios
-											//- 		thead
-											//- 			tr
-											//- 				th Data
-											//- 				th Inicio
-											//- 				th Fim
-											//- 				th Instrutor
-											//- 				th Disciplina
-											//- 		tbody
-											//- 			for(var i =0; i < teorico.data.length; i++)
-											//- 				tr
-											//- 				td #{moment(teorico.pacote.data[i]).format() || ' '}
-											//- 				td #{teorico.pacote.horaIni[i]}
-											//- 				td #{teorico.pacote.horaFim[i]}
-											//- 				td #{teorico.pacote._instrutor[i]}
-											//- 				td #{teorico.pacote.disciplina[i]}
-										else
-											p Sem dados
+															td=i
+
+									//- .col-xs-12.col-sm-6.col-md-12
+									//- 	if teorico
+									//- 		.col-xs-12.col-sm-6.col-md-2
+									//- 				ul.list-group Data
+									//- 					each i in teorico.pacote.data
+									//- 						li= i
+									//- 		.col-xs-12.col-sm-6.col-md-2
+									//- 				ul.list-group Inicio
+									//- 					each i in teorico.pacote.horaIni
+									//- 						li=i
+									//- 		.col-xs-12.col-sm-6.col-md-2
+									//- 				ul.list-group Fim
+									//- 					each i in teorico.pacote.horaFim
+									//- 						li=i
+									//- 		.col-xs-12.col-sm-6.col-md-2
+									//- 				ul.list-group Instrutor
+									//- 					each i in teorico.pacote._instrutor
+									//- 						li=i
+									//- 		.col-xs-12.col-sm-6.col-md-2
+									//- 				ul.list-group Disciplina
+									//- 					each i in teorico.pacote.disciplina
+									//- 						li=i
+									//- 		.table-responsive
+									//- 			table.table.table-striped.listar-usuarios
+									//- 				thead
+									//- 					tr
+									//- 						th Data
+									//- 						th Inicio
+									//- 						th Fim
+									//- 						th Instrutor
+									//- 						th Disciplina
+									//- 				tbody
+									//- 					for(var i =0; i < teorico.data.length; i++)
+									//- 						tr
+									//- 						td #{moment(teorico.pacote.data[i]).format() || ' '}
+									//- 						td #{teorico.pacote.horaIni[i]}
+									//- 						td #{teorico.pacote.horaFim[i]}
+									//- 						td #{teorico.pacote._instrutor[i]}
+									//- 						td #{teorico.pacote.disciplina[i]}
+									//- 	else
+									//- 		p Sem dados

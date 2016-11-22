@@ -80,19 +80,8 @@ module.exports = function(app){
 							res.render('aulas/cronograma_teorico',
 						 		{teorico: dados, lista_instrutor: lista});
 						}else{
-							Teorico.findOne({'pacote._instrutor': req.body.instrutor})
-								.populate('pacote._instrutor')
-								.exec(function(err, aulas){
-									if(err){
-										req.flash('err', 'Erro ao listar');
-										res.render('aulas/cronograma_teorico',
-										 {teorico: dados, lista_instrutor: instrutor});
-									}else{
-										console.log(dados);
-										res.render('aulas/cronograma_teorico',
+							res.render('aulas/cronograma_teorico',
 											{teorico: aulas, lista_instrutor: lista})
-									}
-								});
 						}
 					});
 
