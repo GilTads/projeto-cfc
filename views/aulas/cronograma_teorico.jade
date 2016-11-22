@@ -1,0 +1,87 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-book  Teóricas 
+			.panel-body
+				.col-xs-12.col-sm-12.col-md-12
+					.panel.panel-info
+						.panel-heading
+							.panel-title
+								h3 Cronograma 
+								br
+							if messages.erro
+								.alert.alert-danger#success-alert
+									p #{messages.erro}
+								br
+							if messages.info
+								.alert.alert-success#success-alert
+									p #{messages.info}
+								br
+						.panel-body
+							form(role="form", action="/criar/cronograma/#{teorico._id}", method="POST")
+								.row
+									.col-xs-12.col-sm-12.col-md-4
+										.form-group
+											label Turma
+											input.form-control(type="text", name="sala",value="#{teorico.pacote.nome}", readonly)
+									.col-xs-12.col-sm-6.col-md-4
+										.form-group
+											label Instrutor
+											select.form-control(type="text", name="instrutor", required)
+												option(disabled selected)
+												each instrutor in lista_instrutor
+													option(value="#{instrutor._id}") #{instrutor.nome}
+									.col-xs-12.col-sm-6.col-md-4
+										.form-group
+											label Disciplina
+											select.form-control#disciplina(name="disciplina", required)
+												option(disabled selected)
+												option() 1 - Legislação de Trânsito
+												option() 2 - Direção Defensiva
+												option() 3 - Primeiros Socorros
+												option() 4 - Meio Ambiente e Cidadania
+												option() 5 - Mecânica Básica
+								.row
+									.col-xs-12.col-sm-6.col-md-4
+										.form-group
+											label Data
+											input.form-control.calendario(type="text", name="data")
+									.col-xs-6.col-sm-6.col-md-4
+										.form-group
+											label Inicio
+											input.form-control.timepicker(type="text", name="dataIniCron", required)
+									.col-xs-6.col-sm-6.col-md-4
+										.form-group
+											label Término
+											input.form-control.timepicker(type="text", name="dataFimCron", required)
+								.row
+									.col-xs-12.col-sm-6.col-md-4
+										.form-group
+											.inner-addon.left-addon
+												i(style="color: white").glyphicon.glyphicon-plus
+												input.btn.btn-primary(type="submit", value="Add")
+								.row
+									.col-xs-12.col-sm-6.col-md-12
+										if teorico
+											.table-responsive
+												table.table.table-striped.listar-usuarios
+													thead
+														tr
+															th Data
+															th Inicio
+															th Fim
+															th Instrutor
+															th Disciplina
+													tbody
+														each i in teorico
+															tr
+																td #{moment(i[0])}
+																td #{i[0]}
+																td #{i[0]}
+																td #{i[0]}
+																td #{i[0]}
+										else
+											p Sem dados

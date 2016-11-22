@@ -57,6 +57,7 @@ a:focus, input:focus, select:focus, .btn:focus {
   }
 }
 
+
 .tab-pane{
   margin-top: 20px;
 }
@@ -154,9 +155,9 @@ a:hover {
     border-radius:0;
 }
 
-.panel-default{
+/*.panel-default{
   margin-top: 1%;
-}
+}*/
 
 .btn-danger {
     background-color:#f44d3c;
@@ -302,9 +303,18 @@ section {
 }
 
 #section7 {
-  background-color: #f44d3c;
+  background-color: transparent; 
+  /*background-color: #f44d3c;*/
   color: #f6f6f6;
-    min-height:10px;
+    min-height:30px;
+/*    padding-top:40px;
+    padding-bottom:40px;*/
+}
+#section8 {
+  background-color: transparent; 
+  /*background-color: #f44d3c;*/
+  color: #f6f6f6;
+    min-height:30px;
 /*    padding-top:40px;
     padding-bottom:40px;*/
 }

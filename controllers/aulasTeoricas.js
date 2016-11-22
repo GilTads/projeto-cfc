@@ -1,5 +1,6 @@
 module.exports = function(app){
 
+	var moment = require('moment');
 	var Instrutor = app.models.usuario;	
 	var Teorico   = app.models.teorico;
 	var lista;
@@ -27,7 +28,6 @@ module.exports = function(app){
 			var teorico = new Teorico();
 			teorico.pacote.nome = req.body.pacoteNome;
 			teorico.pacote.dados = false;
-			console.log(teorico);
 			teorico.save(function(err){
 				if(err){
 					req.flash('erro', 'Erro ao salvar pacote');
@@ -36,12 +36,69 @@ module.exports = function(app){
 					req.flash('info', 'Pacote criado');
 					Teorico.find(function(err, data){
 						if(data){
-							pct = data;
-							res.render('aulas/index_teorica',{lista_instrutor: lista, pacote: data})
+							res.render('aulas/index_teorica',
+								{lista_instrutor: lista, pacote: data})
 						}
 					});
 				}
 			})
+		},
+		cronograma: function(req, res){
+			Teorico.findOne({_id: req.params.id}, function(err, dados){
+				if(err){
+					req.flash('erro', 'Erro ao salvar no banco');
+					res.render('aulas/cronograma_teorico',
+				 		{teorico: dados, lista_instrutor: lista});
+				}else{
+					console.log(dados);
+					res.render('aulas/cronograma_teorico', {teorico: dados, lista_instrutor: lista});
+				}
+			});
+				
+				
+					
+				
+		},
+
+		criarCronograma: function(req, res){
+			Teorico.findOne({_id: req.params.id}, function(err, dados){
+				if(err){
+					console.log('Erro ao criar cronograma');
+				}else{
+					var dataStr	= req.body.data;
+					var dia 	= moment(dataStr, 'DD-MM-YYYY HH:mm');
+					dados.pacote._instrutor.push(req.body.instrutor);
+					dados.pacote.data.push(dia);
+					dados.pacote.disciplina.push(req.body.disciplina);
+					dados.pacote.horaIni.push(req.body.dataIniCron);
+					dados.pacote.horaFim.push(req.body.dataFimCron);
+
+
+					dados.save(function(err){
+						if(err){
+							req.flash('erro', 'Erro ao salvar no banco');
+							res.render('aulas/cronograma_teorico',
+						 		{teorico: dados, lista_instrutor: lista});
+						}else{
+							Teorico.findOne({'pacote._instrutor': req.body.instrutor})
+								.populate('pacote._instrutor')
+								.exec(function(err, aulas){
+									if(err){
+										req.flash('err', 'Erro ao listar');
+										res.render('aulas/cronograma_teorico',
+										 {teorico: data, lista_instrutor: instrutor});
+									}else{
+										res.render('aulas/cronograma/teorico',
+											{teorico: aulas, lista_instrutor: instrutor})
+									}
+								});
+						}
+					});
+
+					
+						
+				}
+			});
 		},
 
 		excluir: function(req, res){

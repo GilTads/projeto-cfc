@@ -4,9 +4,14 @@ $(document).ready(function() {
 		format: 'H:i',
 		min: [7,0],
 		max: [23,0],
-		interval: 30
+		interval: 30,
+    onClose: function() {
+      $('.timepicker').blur();
+    }
 
 	});
+
+  $('.picker').appendTo('body');
 
 });
 

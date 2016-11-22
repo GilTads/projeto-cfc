@@ -6,6 +6,7 @@ module.exports = function(){
 		pacote : {
 			nome		: {type: String},
 			_instrutor 	: [{type: Schema.Types.ObjectId, ref: 'Usuarios'}],
+			disciplina  : [{type: String}],
 			data       	: [{type: Date}],
 			horaIni		: [{type: String}],
 			horaFim 	: [{type: String}],

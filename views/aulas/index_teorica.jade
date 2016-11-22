@@ -1,6 +1,6 @@
 extends ../layout
 block content
-	section.container.nav-top
+	.container.nav-top.panelPratico
 		.panel.panel-default
 			.panel-heading.text-center
 				h3
@@ -23,7 +23,7 @@ block content
 									i(style="color: white").glyphicon.glyphicon-plus
 									input.btn.btn-primary(type="submit", value="Novo Pacote", data-toggle="modal", data-target="#pacoteModal")
 						.col-xs-12.col-sm-12.col-md-12
-							.panel.panel-success
+							.panel.panel-info
 									.panel-heading
 										h4 Pacotes
 									.panel-body
@@ -48,7 +48,7 @@ block content
 															tr
 																td #{i.pacote.nome}
 																td 
-																	a.btn.btn-primary(href="")
+																	a.btn.btn-primary(href="/cadastrar/pacote/#{i._id}")
 																		span.glyphicon.glyphicon-pencil
 																td
 																	a.btn.btn-danger(href="/teorico/excluir/#{i._id}")
@@ -80,68 +80,10 @@ block content
 								.form-group
 									label Nome do Pacote
 									input.form-control(type="text", name="pacoteNome",required)
-										
+									fieldset
+										input.timepicker(type="text", readonly, aria-haspopup='true', aria-expanded="false", aria-readonly="false")		
 					.modal-footer
 						.form-group
 							.inner-addon.right-addon
 								i(style="color: white").glyphicon.glyphicon-plus
 								input.btn.btn-primary(type="submit", value="Criar")
-
-
-						//- .col-xs-12.col-sm-12.col-md-12
-						//- 	.panel.panel-default
-						//- 		.panel-heading
-						//- 			.panel-title
-						//- 				h4 Criar Pacote
-						//- 				br
-						//- 			if messages.erro
-						//- 				.alert.alert-danger#success-alert
-						//- 					p #{messages.erro}
-						//- 				br
-						//- 			if messages.info
-						//- 				.alert.alert-success#success-alert
-						//- 					p #{messages.info}
-						//- 				br
-						//- 		.panel-body
-						//- 			form(role="form", action="/cadastrar/cronograma", method="POST")
-						//- 				.row
-						//- 					.col-xs-12.col-sm-12.col-md-4
-						//- 						.form-group
-						//- 							label Sala
-						//- 							input.form-control(type="text", name="sala",required)
-						//- 					.col-xs-12.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							label Instrutor
-						//- 							select.form-control(type="text", name="instrutor", required)
-						//- 								option(disabled selected)
-						//- 								each instrutor in lista_instrutor
-						//- 									option(value="#{instrutor._id}") #{instrutor.nome}
-						//- 					.col-xs-12.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							label Disciplina
-						//- 							select.form-control#disciplina(name="disciplina", required)
-						//- 								option(disabled selected)
-						//- 								option() 1 - Legislação de Trânsito
-						//- 								option() 2 - Direção Defensiva
-						//- 								option() 3 - Primeiros Socorros
-						//- 								option() 4 - Meio Ambiente e Cidadania
-						//- 								option() 5 - Mecânica Básica
-						//- 				.row
-						//- 					.col-xs-12.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							label Data
-						//- 							input.form-control.calendario(type="text")
-						//- 					.col-xs-6.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							label Inicio
-						//- 							input.form-control.timepicker(type="text", name="dataIniCron", required)
-						//- 					.col-xs-6.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							label Término
-						//- 							input.form-control.timepicker(type="text", name="dataFimCron", required)
-						//- 				.row
-						//- 					.col-xs-12.col-sm-6.col-md-4
-						//- 						.form-group
-						//- 							.inner-addon.left-addon
-						//- 								i(style="color: white").glyphicon.glyphicon-plus
-						//- 								input.btn.btn-primary(type="submit", value="Add")
