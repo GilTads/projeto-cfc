@@ -4,38 +4,50 @@ module.exports = function(app){
 	var Aluno  = app.models.aluno;
 	var Instrutor = app.models.usuario;	
 	var Teorico   = app.models.teorico;
-	var instrutores;
+	var instrutores
+	   ,alunos;
 	var aulasTeoricasController = {
 
 		index: function(req, res){
-			Aluno.find(function(err, alunos){
+			Aluno.find(function(err, dados){
 				if(err){
 					req.flash('err', 'Não existem alunos cadastrados');
 					res.render('/alunos');
 				}else{
+					alunos = dados; 
 					Instrutor.find({setor: 'Instrutor'}, function(err, instrutor){
 						if(err){
 							req.flash('erro', 'Erro ao buscar Instrutores');
 							res.render('aulas/index_teorica');
 						}else{
 							instrutores = instrutor;
-							Teorico.find({})
-								.populate('_instrutor')
-								.sort('data')
-								.exec(function(err, aula){
-									if(aula){
-										res.render('aulas/index_teorica', 
-											{lista_instrutor: instrutor, teorico: aula,
-												aluno: alunos});
-										
-									}
-								});		
+							res.render('aulas/index_teorica', 
+								{lista_instrutor: instrutor, teorico: '',
+								 aluno: dados});
 						}
 					});
 				}
 			});	
 			
 			
+		},
+
+		buscarAulas: function(req, res){
+			var ini = req.body.dIni;
+			var fimStr = req.body.dFim;
+			var dataIni = moment(ini, 'DD-MM-YYYY');
+			var dataFim = moment(fimStr, 'DD-MM-YYYY');
+			Teorico.find({data:{'$gte': dataIni, '$lte': dataFim}})
+			.populate('_instrutor')
+			.sort('data')
+			.exec(function(err, aula){
+				if(aula){
+					res.render('aulas/index_teorica', 
+						{lista_instrutor: instrutores, teorico: aula,
+						 aluno: alunos});
+					
+				}
+			});		
 		},
 
 		criarPacote: function(req, res){
@@ -62,7 +74,7 @@ module.exports = function(app){
 						.exec(function(err, aula){
 							if(aula){
 								res.render('aulas/index_teorica', 
-									{lista_instrutor: instrutores, teorico: aula});
+									{lista_instrutor: instrutores, teorico: aula, aluno: alunos});
 								
 							}
 						});

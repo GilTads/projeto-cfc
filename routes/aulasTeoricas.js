@@ -11,12 +11,11 @@ module.exports = function(app){
 	app.route('/cadastrar/pacote')
 		.post(aula.criarPacote);
 
-	// app.route('/cadastrar/pacote/:id')
-	// 	.get(aula.cronograma)
+	app.route('/buscar/teoricas')
+		.post(aula.buscarAulas);
 
 	app.route('/teorico/excluir/:id')
 		.get(autenticar,aula.excluir);
 
-	// app.route('/criar/cronograma/:id')
-	// 	.post(aula.criarCronograma);
+
 }
