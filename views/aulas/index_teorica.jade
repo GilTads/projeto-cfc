@@ -1,6 +1,6 @@
 extends ../layout
 block content
-	.container.nav-top.panelPratico
+	section.container.nav-top.panelPratico
 		.panel.panel-default
 			.panel-heading.text-center
 				h3
@@ -17,54 +17,104 @@ block content
 						a(href="#menuT3" data-toggle="tab") Aulas do Veículo
 				.tab-content
 					.tab-pane.active.fade.in#mainTeorico
-						.col-xs-12.col-sm-12.col-md-12
-							.form-group
+
+						.panel.panel-info
+							.panel-heading
+								h4 Aulas Teóricas
+							.panel-body
+								if messages.erro
+									.alert.alert-danger#success-alert
+										p #{messages.erro}
+									br
+								if messages.info
+									.alert.alert-success#success-alert
+										p #{messages.info}
+									br
 								.inner-addon.left-addon
 									i(style="color: white").glyphicon.glyphicon-plus
 									input.btn.btn-primary(type="submit", value="Novo Pacote", data-toggle="modal", data-target="#pacoteModal")
-						.col-xs-12.col-sm-12.col-md-12
-							.panel.panel-info
-									.panel-heading
-										h4 Pacotes
-									.panel-body
-										if messages.erro
-											.alert.alert-danger#success-alert
-												p #{messages.erro}
-											br
-										if messages.info
-											.alert.alert-success#success-alert
-												p #{messages.info}
-											br
-										if pacote.length > 0
+									br
+									br
+								.row
+									form(action="", method="")
+										.col-xs-12.col-sm-4.col-md-6
+											select.form-control(name="alunos", placeholder="Aluno")
+												option(value="", disabled, selected) Alunos
+													each a in aluno
+														option(value="#{a._id}") #{a.nome} &nbsp; CPF: #{a.cpf}
+										.col-xs-12.col-sm-2.col-md-2
+											input.form-control.calendario(type="text", placeholder="Data Inicial")
+										.col-xs-12.col-sm-2.col-md-2
+											input.form-control.calendario(type="text", placeholder="Data Final")
+										.col-xs-12.col-sm-4.col-md-2
+												input.btn-danger.form-control.text-center(type="submit", value="Buscar")
+								br
+								.row
+									.col-xs-12.col-sm-12.col-md-12
+										if teorico.length > 0
 											.table-responsive
-												table.table.table-striped.listar-usuarios
+												table.table.table-hover
 													thead
 														tr
-															th Nome:
-															th Agendar:
-															th Excluir:
+															th Check
+															th Data
+															th Inicio
+															th Termino
+															th Instrutor
+															th Disciplina
+															th Excluir
 													tbody
-														each i in pacote
+														each t in teorico
 															tr
-																td #{i.nome}
-																td 
-																	a.btn.btn-primary(href="/cadastrar/pacote/#{i._id}")
-																		span.glyphicon.glyphicon-pencil
 																td
-																	a.btn.btn-danger(href="/teorico/excluir/#{i._id}")
-																		span.glyphicon.glyphicon-trash
-										else
-											p Nenhum Pacote
-										
+																	input(type="checkbox")
+																td #{moment(t.data).format('DD/MM/YYYY')}
+																td #{t.horaIni}
+																td #{t.horaFim}
+																td #{t._instrutor.nome}
+																td #{t.disciplina}
+																td
+																	a(href="/teorico/excluir/#{t._id}")
+																		span(style="color: #f44d3c").glyphicon.glyphicon-trash
+
+																	
+																
+
+
 
 
 					.tab-pane.fade#menuT1
 						.col-xs-12.col-sm-12.col-md-12
-							.panel.panel-default
-										.panel-heading
-											.panel-title
-												h4 Agendamento de Aulas Teóricas
-												br
+							.panel.panel-info
+								.panel-heading
+									.panel-title
+										h4 Agendamento de Aulas Teóricas
+										br
+								.panel-body
+									form(action="", method="")
+										.col-xs-12.col-sm-4.col-md-6
+											select.form-control(name="alunos", placeholder="Aluno")
+												option(value="", disabled, selected) Alunos
+													each a in aluno
+														option(value="#{a._id}") #{a.nome} &nbsp; CPF: #{a.cpf}
+										.col-xs-12.col-sm-2.col-md-2
+											input.form-control.calendario(type="text", placeholder="Data Inicial")
+										.col-xs-12.col-sm-2.col-md-2
+											input.form-control.calendario(type="text", placeholder="Data Final")
+										.col-xs-12.col-sm-4.col-md-2
+												input.btn-danger.form-control.text-center(type="submit", value="Buscar")
+
+
+
+
+
+
+
+
+
+
+
+
 	.modal.fade#pacoteModal(role="dialog",aria-labelledby="pacoteModal", aria-hiden="true")
 		.modal-dialog.modal-md
 			.modal-content
@@ -76,14 +126,43 @@ block content
 							i.glyphicon.glyphicon-plus
 					.modal-body
 						.row
-							.col-xs-12.col-sm-12.col-md-8
+							.col-xs-12.col-sm-6.col-md-6
 								.form-group
-									label Nome do Pacote
-									input.form-control(type="text", name="pacoteNome",required)
-									fieldset
-										input.timepicker(type="text", readonly, aria-haspopup='true', aria-expanded="false", aria-readonly="false")		
+									label Instrutor
+									select.form-control(type="text", name="instrutor", required)
+										option(disabled selected)
+										each instrutor in lista_instrutor
+											option(value="#{instrutor._id}") #{instrutor.nome}
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Disciplina
+									select.form-control#disciplina(name="disciplina", required)
+										option(disabled selected)
+										option() 1 - Legislação de Trânsito
+										option() 2 - Direção Defensiva
+										option() 3 - Primeiros Socorros
+										option() 4 - Meio Ambiente e Cidadania
+										option() 5 - Mecânica Básica
+						.row
+							.col-xs-12.col-sm-6.col-md-4
+								.form-group
+									label Data
+									input.form-control.calendario(type="text", name="data")
+							.col-xs-6.col-sm-6.col-md-4
+								.form-group
+									label Inicio
+									input.form-control.timepicker(type="text", name="dataIniCron", required)
+							.col-xs-6.col-sm-6.col-md-4
+								.form-group
+									label Término
+									input.form-control.timepicker(type="text", name="dataFimCron", required)
+						.row
+	
 					.modal-footer
 						.form-group
 							.inner-addon.right-addon
 								i(style="color: white").glyphicon.glyphicon-plus
 								input.btn.btn-primary(type="submit", value="Criar")
+
+
+						

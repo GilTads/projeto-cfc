@@ -19,7 +19,10 @@ html,body {
 a:focus, input:focus, select:focus, .btn:focus {
     outline: 0;
 }
-
+.nopadding{
+  padding: 0 !important;
+  margin: 0 !important;
+}
 @media (max-width: 1199px) {
   .navbar-header {
       float: none;
@@ -142,7 +145,7 @@ a:hover {
 }
 
 .panelPratico{
-  padding-top: 30px;
+  margin-top: 30px;
 }
 
 .alert{
