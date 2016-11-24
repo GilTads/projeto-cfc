@@ -17,5 +17,12 @@ module.exports = function(app){
 	app.route('/teorico/excluir/:id')
 		.get(autenticar,aula.excluir);
 
+	app.route('/cronograma')
+		.get(aula.cronograma);
 
+	app.route('/buscar/cronograma')
+		.post(aula.buscarCronograma);
+
+	app.route('/agendar/teorico')
+		.post(aula.agendar)
 }

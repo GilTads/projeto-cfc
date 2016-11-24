@@ -9,8 +9,8 @@ block content
 				ul.nav.nav-tabs.red
 					li.active(role="presentation")
 						a(href="#mainTeorico", data-toggle="tab") Agendamento
-					li(role="presentation")
-						a(href="#menuT1", data-toggle="tab") Pacotes
+					li
+						a(href="/cronograma") Pacotes
 					li(role="presentation")
 						a(href="#menuT2", data-toggle="tab") Aulas do Instrutor
 					li(role="presentation")
@@ -31,16 +31,16 @@ block content
 										p #{messages.info}
 									
 								.row
-									form(action="/buscar/teoricas", method="POST")
+									form#formT(action="/buscar/teoricas", method="POST")
 										.col-xs-12.col-sm-4.col-md-6
-											select.form-control(name="alunos", placeholder="Aluno")
-												option(value="", disabled, selected) Alunos
+											select.form-control#aluno(name="alunos", placeholder="Aluno")
+												option(disabled, selected) #{name || "Alunos"}
 													each a in aluno
 														option(value="#{a._id}") #{a.nome} &nbsp; CPF: #{a.cpf}
 										.col-xs-12.col-sm-2.col-md-2
-											input.form-control.calendario(type="text",name="dIni", placeholder="Data Inicial")
+											input.form-control.calendario#dIni(type="text",name="dIni", placeholder="Data Inicial",value="#{ini || ''}")
 										.col-xs-12.col-sm-2.col-md-2
-											input.form-control.calendario(type="text",name="dFim", placeholder="Data Final")
+											input.form-control.calendario#dFim(type="text",name="dFim", placeholder="Data Final",value="#{fim || ''}")
 										.col-xs-12.col-sm-4.col-md-2
 												input.btn-danger.form-control.text-center#listTeorico(type="submit", value="Buscar")
 								br
@@ -48,7 +48,7 @@ block content
 									.col-xs-12.col-sm-12.col-md-12
 										if teorico.length > 0
 											.table-responsive
-												table.table.table-hover
+												table.table.table-hover#teoricoTable
 													thead
 														tr
 															th Check
@@ -57,20 +57,19 @@ block content
 															th Termino
 															th Instrutor
 															th Disciplina
-															th Excluir
 													tbody
 														each t in teorico
 															tr
 																td
-																	input(type="checkbox")
+																	input(type="checkbox",name="ch",id="#{t._id}" )
 																td #{moment(t.data).format('DD/MM/YYYY')}
 																td #{t.horaIni}
 																td #{t.horaFim}
 																td #{t._instrutor.nome}
 																td #{t.disciplina}
-																td
-																	a(href="/teorico/excluir/#{t._id}")
-																		span(style="color: #f44d3c").glyphicon.glyphicon-trash
+											form(action="", method="POST")
+												.col-xs-2.col-sm-2.col-md-2
+													input.btn-success.form-control.text-center#agendarT(type="button", value="Agendar")
 
 
 					.tab-pane.fade#menuT1
@@ -79,100 +78,7 @@ block content
 									.panel-title
 										h4 Pacote de Aulas Teóricas
 								.panel-body
-									br
-									.inner-addon.left-addon
-										i(style="color: white").glyphicon.glyphicon-plus
-										input.btn.btn-primary(type="submit", value="Novo Pacote", data-toggle="modal", data-target="#pacoteModal")
-									br
-									br
-		
-									.row
-										.col-xs-12.col-sm-12.col-md-12
-											if teorico.length > 0
-												.table-responsive
-													table.table.table-hover
-														thead
-															tr
-																th Check
-																th Data
-																th Inicio
-																th Termino
-																th Instrutor
-																th Disciplina
-																th Excluir
-														tbody
-															each t in teorico
-																tr
-																	td
-																		input(type="checkbox")
-																	td #{moment(t.data).format('DD/MM/YYYY')}
-																	td #{t.horaIni}
-																	td #{t.horaFim}
-																	td #{t._instrutor.nome}
-																	td #{t.disciplina}
-																	td
-																		a(href="/teorico/excluir/#{t._id}")
-																			span(style="color: #f44d3c").glyphicon.glyphicon-trash
-
-
-
-
-
-
-
-
-
-
-
-
-	.modal.fade#pacoteModal(role="dialog",aria-labelledby="pacoteModal", aria-hiden="true")
-		.modal-dialog.modal-md
-			.modal-content
-				form(role="form", action="/cadastrar/pacote", method="POST")
-					.modal-header
-						button.close(type="button",data-dismiss="modal", aria-label="Close")
-							span(aria-hiden="true") &times;
-						h4 Novo Pacote &nbsp;
-							i.glyphicon.glyphicon-plus
-					.modal-body
-						.row
-							.col-xs-12.col-sm-6.col-md-6
-								.form-group
-									label Instrutor
-									select.form-control(type="text", name="instrutor", required)
-										option(disabled selected)
-										each instrutor in lista_instrutor
-											option(value="#{instrutor._id}") #{instrutor.nome}
-							.col-xs-12.col-sm-6.col-md-6
-								.form-group
-									label Disciplina
-									select.form-control#disciplina(name="disciplina", required)
-										option(disabled selected)
-										option() 1 - Legislação de Trânsito
-										option() 2 - Direção Defensiva
-										option() 3 - Primeiros Socorros
-										option() 4 - Meio Ambiente e Cidadania
-										option() 5 - Mecânica Básica
-						.row
-							.col-xs-12.col-sm-6.col-md-4
-								.form-group
-									label Data
-									input.form-control.calendario(type="text", name="data")
-							.col-xs-6.col-sm-6.col-md-4
-								.form-group
-									label Inicio
-									input.form-control.timepicker(type="text", name="dataIniCron", required)
-							.col-xs-6.col-sm-6.col-md-4
-								.form-group
-									label Término
-									input.form-control.timepicker(type="text", name="dataFimCron", required)
-						.row
-	
-					.modal-footer
-						.form-group
-							.inner-addon.right-addon
-								i(style="color: white").glyphicon.glyphicon-plus
-								input.btn.btn-primary(type="submit", value="Criar")
+									
 
 
 						

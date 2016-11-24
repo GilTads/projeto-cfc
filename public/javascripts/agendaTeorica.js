@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	
 	$('.timepicker').pickatime({
 		format: 'H:i',
 		min: [7,0],
@@ -11,10 +10,32 @@ $(document).ready(function() {
 
 	});
 
-  $('.picker').appendTo('body');
+  	$('.picker').appendTo('body');
 
+  	$('#agendarT').click(function(e){
+  		e.preventDefault();
+  		var id;
+  		$('#teoricoTable input:checkbox[name=ch]').each(function(){
+  			var $this = $(this);
+  			if($this.is(':checked')){
+  				id = $this.attr('id');
+  				$.ajax({
+		  			url: '/agendar/teorico',
+		  			type: 'post',
+		  			data: {ch: id},
+		  			success: function(res){
+		  				console.log(res);
+		  			}
+		  		})
+  				console.log(id);
+  			}
+  		});
+  		
+  		
+  	});
+
+
+  	
 });
 
-// $('#listTeorico').on('click', function(){
-//   $('#gradeTeorica').css({display: 'block'});
-// });
+	

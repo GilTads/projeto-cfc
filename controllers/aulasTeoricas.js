@@ -31,8 +31,27 @@ module.exports = function(app){
 			
 			
 		},
+		cronograma: function(req, res){
+			Teorico.find({})
+			.populate('_instrutor')
+			.sort('data')
+			.exec(function(err, aula){
+				if(aula){
+					res.render('aulas/cronograma_teorico', 
+						{lista_instrutor: instrutores,
+						 teorico: ''});
+					
+				}
+			});
+		},
 
 		buscarAulas: function(req, res){
+			var nome;
+			Aluno.findOne({_id: req.body.alunos}, function(err, _aluno){
+				if(_aluno){
+					nome = _aluno.nome;
+				}
+			});
 			var ini = req.body.dIni;
 			var fimStr = req.body.dFim;
 			var dataIni = moment(ini, 'DD-MM-YYYY');
@@ -44,7 +63,8 @@ module.exports = function(app){
 				if(aula){
 					res.render('aulas/index_teorica', 
 						{lista_instrutor: instrutores, teorico: aula,
-						 aluno: alunos});
+						 aluno: alunos, name: nome,
+						 ini: ini, fim: fimStr});
 					
 				}
 			});		
@@ -73,13 +93,33 @@ module.exports = function(app){
 						.sort('data')
 						.exec(function(err, aula){
 							if(aula){
-								res.render('aulas/index_teorica', 
+								res.render('aulas/cronograma_teorico', 
 									{lista_instrutor: instrutores, teorico: aula, aluno: alunos});
 								
 							}
 						});
 				}
 			})
+		},
+		buscarCronograma: function(req, res){
+			var ini = req.body.dIni;
+			var fimStr = req.body.dFim;
+			var dataIni = moment(ini, 'DD-MM-YYYY');
+			var dataFim = moment(fimStr, 'DD-MM-YYYY');
+			Teorico.find({data:{'$gte': dataIni, '$lte': dataFim}})
+			.populate('_instrutor')
+			.sort('data')
+			.exec(function(err, aula){
+				if(aula){
+					res.render('aulas/cronograma_teorico', 
+						{lista_instrutor: instrutores, teorico: aula,
+						 aluno: alunos, ini: ini, fim: fimStr});
+					
+				}
+			});		
+		},
+		agendar: function(req, res){
+			console.log(req.body.ch);
 		},
 
 		excluir: function(req, res){

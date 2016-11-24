@@ -193,6 +193,7 @@ $(document).ready(function(){
 
         },
         success: function(dados){
+          console.log(dados);
           //RETORNA OS CAMPOS DE CATEGORIA DE ACORDO COM A CATEGORIA DE CADA ALUNO
           if(dados.categoria == "AB"){
             setTimeout(function() {$('#aluno').val(dados.nome),

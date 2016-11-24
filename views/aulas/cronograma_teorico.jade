@@ -6,92 +6,113 @@ block content
 				h3
 					span.fa.fa-book  Teóricas 
 			.panel-body
-					.panel.panel-info
-						.panel-heading
-							.panel-title
-								h3 Cronograma 
-								br
-							if messages.erro
-								.alert.alert-danger#success-alert
-									p #{messages.erro}
-								br
-							if messages.info
-								.alert.alert-success#success-alert
-									p #{messages.info}
-								br
-						.panel-body
-							form(role="form", action="/criar/cronograma/#{teorico._id}", method="POST")
-								.row
-									.col-xs-12.col-sm-12.col-md-4
-										.form-group
-											label Turma
-											input.form-control(type="text", name="sala",value="#{teorico.nome}", readonly)
-									.col-xs-12.col-sm-6.col-md-4
-										.form-group
-											label Instrutor
-											select.form-control(type="text", name="instrutor", required)
-												option(disabled selected)
-												each instrutor in lista_instrutor
-													option(value="#{instrutor._id}") #{instrutor.nome}
-									.col-xs-12.col-sm-6.col-md-4
-										.form-group
-											label Disciplina
-											select.form-control#disciplina(name="disciplina", required)
-												option(disabled selected)
-												option() 1 - Legislação de Trânsito
-												option() 2 - Direção Defensiva
-												option() 3 - Primeiros Socorros
-												option() 4 - Meio Ambiente e Cidadania
-												option() 5 - Mecânica Básica
-								.row
-									.col-xs-12.col-sm-6.col-md-4
-										.form-group
-											label Data
-											input.form-control.calendario(type="text", name="data")
-									.col-xs-6.col-sm-6.col-md-4
-										.form-group
-											label Inicio
-											input.form-control.timepicker(type="text", name="dataIniCron", required)
-									.col-xs-6.col-sm-6.col-md-4
-										.form-group
-											label Término
-											input.form-control.timepicker(type="text", name="dataFimCron", required)
-								.row
-									.col-xs-12.col-sm-6.col-md-4
-										.form-group
-											.inner-addon.left-addon
-												i(style="color: white").glyphicon.glyphicon-plus
-												input.btn.btn-primary#cron(type="submit", value="Add")
-								.row
-									if teorico
-										.col-xs-3.col-sm-3.col-md-3.text-center.nopadding
-											ul.list-group
-												h4 Data
-												each i in teorico.pacote.data
-													li.list-group-item= moment(i).format('DD/MM/YYYY')
-										.col-xs-1.col-sm-3.col-md-1.text-center.nopadding
-											ul.list-group
-												h4 Inicio
-												each i in teorico.pacote.horaIni
-													li.list-group-item=i
-										.col-xs-1.col-sm-3.col-md-1.text-center.nopadding
-											ul.list-group
-												h4 Fim
-												each i in teorico.pacote.horaFim
-													li.list-group-item=i
-										.col-xs-3.col-sm-3.col-md-3.text-center.nopadding
-											ul.list-group
-												h4 Instrutor
-												each i in teorico.pacote._instrutor
-													li.list-group-item=i
-										.col-xs-3.col-sm-3.col-md-3.text-center.nopadding
-											ul.list-group
-												h4 Disciplina
-												each i in teorico.pacote.disciplina
-													li.list-group-item=i
-										.col-xs-1.col-sm-3.col-md-1.text-center.nopadding
-											ul.list-group
-												h4 Excluir
-												each i in teorico.pacote.data
-													a.list-group-item(href="")
-														span.glyphicon.glyphicon-trash
+				if messages.erro
+					.alert.alert-danger#success-alert
+						p #{messages.erro}
+					br
+				if messages.info
+					.alert.alert-success#success-alert
+						p #{messages.info}
+				br
+				.col-xs-12.col-sm-2.col-md-2
+					.inner-addon.left-addon
+						i(style="color: white").glyphicon.glyphicon-plus
+						input.btn.btn-primary(type="submit", value="Novo Pacote", data-toggle="modal", data-target="#pacoteModal")
+				form#formT(action="/buscar/cronograma", method="POST")
+					.col-xs-12.col-sm-2.col-md-2
+						input.form-control.calendario#dIni(type="text",name="dIni", placeholder="Data Inicial",value="#{ini || ''}")
+					.col-xs-12.col-sm-2.col-md-2
+						input.form-control.calendario#dFim(type="text",name="dFim", placeholder="Data Final",value="#{fim || ''}")
+					.col-xs-12.col-sm-4.col-md-2
+							input.btn-danger.form-control.text-center#listTeorico(type="submit", value="Buscar")
+					br
+					br
+				.row
+					.col-xs-12.col-sm-12.col-md-12
+						.panel.panel-default
+							.panel-heading
+								h4 Cronograma
+							.panel-body
+								.col-xs-12.col-sm-12.col-md-12
+									if teorico.length > 0
+										.table-responsive
+											table.table.table-hover
+												thead
+													tr
+														th Data
+														th Inicio
+														th Termino
+														th Instrutor
+														th Disciplina
+														th Excluir
+												tbody
+													each t in teorico
+														tr
+															td #{moment(t.data).format('DD/MM/YYYY')}
+															td #{t.horaIni}
+															td #{t.horaFim}
+															td #{t._instrutor.nome}
+															td #{t.disciplina}
+															td
+																a(href="/teorico/excluir/#{t._id}")
+																	span(style="color: #f44d3c").glyphicon.glyphicon-trash
+
+
+
+
+
+
+
+
+
+
+
+
+	.modal.fade#pacoteModal(role="dialog",aria-labelledby="pacoteModal", aria-hiden="true")
+		.modal-dialog.modal-md
+			.modal-content
+				form(role="form", action="/cadastrar/pacote", method="POST")
+					.modal-header
+						button.close(type="button",data-dismiss="modal", aria-label="Close")
+							span(aria-hiden="true") &times;
+						h4 Novo Pacote &nbsp;
+							i.glyphicon.glyphicon-plus
+					.modal-body
+						.row
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Instrutor
+									select.form-control(type="text", name="instrutor", required)
+										option(disabled selected)
+										each instrutor in lista_instrutor
+											option(value="#{instrutor._id}") #{instrutor.nome}
+							.col-xs-12.col-sm-6.col-md-6
+								.form-group
+									label Disciplina
+									select.form-control#disciplina(name="disciplina", required)
+										option(disabled selected)
+										option() 1 - Legislação de Trânsito
+										option() 2 - Direção Defensiva
+										option() 3 - Primeiros Socorros
+										option() 4 - Meio Ambiente e Cidadania
+										option() 5 - Mecânica Básica
+						.row
+							.col-xs-12.col-sm-6.col-md-4
+								.form-group
+									label Data
+									input.form-control.calendario(type="text", name="data")
+							.col-xs-6.col-sm-6.col-md-4
+								.form-group
+									label Inicio
+									input.form-control.timepicker(type="text", name="dataIniCron", required)
+							.col-xs-6.col-sm-6.col-md-4
+								.form-group
+									label Término
+									input.form-control.timepicker(type="text", name="dataFimCron", required)
+						.row
+	
+					.modal-footer
+						.form-group
+							.inner-addon.right-addon
+								i(style="color: white").glyphicon.glyphicon-plus
+								input.btn.btn-primary(type="submit", value="Criar")
