@@ -12,11 +12,15 @@ $(document).ready(function() {
 
   	$('.picker').appendTo('body');
 
-  	$('#agendarT').click(function(e){
-  		e.preventDefault();
+  	$('#aT').submit(function(e){
+      e.preventDefault();
+      var form = this;
   		var id;
+      var aluno = $('#alunos').find('option:selected').text();
+      console.log(aluno);
   		$('#teoricoTable input:checkbox[name=ch]').each(function(){
   			var $this = $(this);
+
   			if($this.is(':checked')){
   				id = $this.attr('id');
   				$.ajax({
@@ -25,9 +29,9 @@ $(document).ready(function() {
 		  			data: {ch: id},
 		  			success: function(res){
 		  				console.log(res);
+              form.submit();
 		  			}
-		  		})
-  				console.log(id);
+		  		});
   			}
   		});
   		

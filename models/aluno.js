@@ -34,7 +34,8 @@ module.exports = function(){
 			moto: {type:Number},
 		},
 		horario: {
-			pratico: [{type: Date}]
+			pratico: [{type: Date}],
+			teorico: [{type: Schema.Types.ObjectId, ref: 'Teorico'}]
 		}
 
 	});

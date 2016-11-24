@@ -5,7 +5,8 @@ module.exports = function(app){
 	var Instrutor = app.models.usuario;	
 	var Teorico   = app.models.teorico;
 	var instrutores
-	   ,alunos;
+	   ,alunos
+	   ,idAluno;
 	var aulasTeoricasController = {
 
 		index: function(req, res){
@@ -50,6 +51,7 @@ module.exports = function(app){
 			Aluno.findOne({_id: req.body.alunos}, function(err, _aluno){
 				if(_aluno){
 					nome = _aluno.nome;
+					idAluno = _aluno._id;
 				}
 			});
 			var ini = req.body.dIni;
@@ -119,6 +121,19 @@ module.exports = function(app){
 			});		
 		},
 		agendar: function(req, res){
+			Aluno.findOne({_id: idAluno}, function(err, aluno){
+				if(!err){
+					aluno.horario.teorico.push(req.body.ch);
+					aluno.save(function(err){
+						req.flash('info', 'Aula agendada!');
+						res.render('aulas/index_teorico',
+							{lista_instrutor: instrutores,
+						 	teorico: ''});
+					});
+				}else{
+					console.log('Deu merda',nomeAl);
+				}
+			});
 			console.log(req.body.ch);
 		},
 
