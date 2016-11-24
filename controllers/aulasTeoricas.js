@@ -122,19 +122,24 @@ module.exports = function(app){
 		},
 		agendar: function(req, res){
 			Aluno.findOne({_id: idAluno}, function(err, aluno){
-				if(!err){
-					aluno.horario.teorico.push(req.body.ch);
+				if(err){
+					req.flash('erro', 'Aluno já agendado para esta aula');
+					res.redirect('/aulas/teoricas');
+				}else{
+					for(i in req.body.ch){
+						aluno.horario.teorico.push(req.body.ch[i]);
+					}
+					
 					aluno.save(function(err){
 						req.flash('info', 'Aula agendada!');
-						res.render('aulas/index_teorico',
-							{lista_instrutor: instrutores,
-						 	teorico: ''});
+						res.send(aluno);
+						// res.render('aulas/index_teorica',
+						// 	{lista_instrutor: instrutores,
+						//  	teorico: '',aluno: alunos});
 					});
-				}else{
-					console.log('Deu merda',nomeAl);
 				}
+				
 			});
-			console.log(req.body.ch);
 		},
 
 		excluir: function(req, res){

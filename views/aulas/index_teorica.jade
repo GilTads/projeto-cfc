@@ -67,7 +67,7 @@ block content
 																td #{t.horaFim}
 																td #{t._instrutor.nome}
 																td #{t.disciplina}
-											form#aT(action="/agendar/teorico", method="POST")
+											form#aT(action="/aulas/teoricas", method="GET")
 												.col-xs-2.col-sm-2.col-md-2
 													input.btn-success.form-control.text-center#agendarT(type="submit", value="Agendar")
 

@@ -35,7 +35,7 @@ module.exports = function(){
 		},
 		horario: {
 			pratico: [{type: Date}],
-			teorico: [{type: Schema.Types.ObjectId, ref: 'Teorico'}]
+			teorico: [{type: Schema.Types.ObjectId, ref: 'Teorico', unique:true}]
 		}
 
 	});
