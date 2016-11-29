@@ -11,10 +11,12 @@ block content
 						a(href="#mainTeorico", data-toggle="tab") Agendamento
 					li
 						a(href="/cronograma") Pacotes
+					li
+						a(href="/teorico/aluno") Aulas do Aluno
 					li(role="presentation")
-						a(href="#menuT2", data-toggle="tab") Aulas do Instrutor
+						a(href="#menuT3", data-toggle="tab") Aulas do Instrutor
 					li(role="presentation")
-						a(href="#menuT3" data-toggle="tab") Aulas do Veículo
+						a(href="#menuT4" data-toggle="tab") Aulas do Veículo
 				.tab-content
 					.tab-pane.active.fade.in#mainTeorico
 
@@ -47,29 +49,30 @@ block content
 								.row#gradeTeorica
 									.col-xs-12.col-sm-12.col-md-12
 										if teorico.length > 0
-											.table-responsive
-												table.table.table-hover#teoricoTable
-													thead
-														tr
-															th Check
-															th Data
-															th Inicio
-															th Termino
-															th Instrutor
-															th Disciplina
-													tbody
-														each t in teorico
-															tr
-																td
-																	input(type="checkbox",name="ch",id="#{t._id}" )
-																td #{moment(t.data).format('DD/MM/YYYY')}
-																td #{t.horaIni}
-																td #{t.horaFim}
-																td #{t._instrutor.nome}
-																td #{t.disciplina}
 											form#aT(action="/aulas/teoricas", method="GET")
-												.col-xs-2.col-sm-2.col-md-2
-													input.btn-success.form-control.text-center#agendarT(type="submit", value="Agendar")
+												.table-responsive
+													table.table.table-hover#teoricoTable
+														thead
+															tr
+																th Check
+																th Data
+																th Inicio
+																th Termino
+																th Instrutor
+																th Disciplina
+														tbody
+															each t in teorico
+																tr
+																	td
+																		input(type="checkbox",name="ch",id="#{t._id}" )
+																	td #{moment(t.data).format('DD/MM/YYYY')}
+																	td #{t.horaIni}
+																	td #{t.horaFim}
+																	td #{t._instrutor.nome}
+																	td #{t.disciplina}
+													.col-xs-2.col-sm-2.col-md-2
+														input.btn-success.form-control.text-center#agendarT(type="submit", value="Agendar")
+														input#idAluno(type="text", value="#{_idAluno}")
 
 
 					.tab-pane.fade#menuT1

@@ -24,5 +24,11 @@ module.exports = function(app){
 		.post(aula.buscarCronograma);
 
 	app.route('/agendar/teorico')
-		.post(aula.agendar)
+		.post(aula.agendar);
+
+	app.route('/teorico/aluno')
+		.get(aula.relatorioAlunoRender);
+
+	app.route('/relatorio/aluno')
+		.post(aula.relatorioAluno);
 }

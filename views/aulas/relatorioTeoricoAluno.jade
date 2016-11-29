@@ -1,0 +1,56 @@
+extends ../layout
+block content
+	section.container.nav-top.panelPratico
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-book  Relatório Teórico 
+			.panel-body
+				.panel.panel-default
+					.panel-heading
+						h4 Aulas do Aluno
+					.panel-body
+						if messages.erro
+							.alert.alert-danger#success-alert
+								p #{messages.erro}
+							br
+						if messages.info
+							.alert.alert-success#success-alert
+								p #{messages.info}
+							
+						.row
+							form(action="/relatorio/aluno", method="POST")
+								.col-xs-12.col-sm-4.col-md-6
+									select.form-control#aluno(name="alunos", placeholder="Aluno")
+										option(disabled, selected) Alunos
+											each a in aluno
+												option(value="#{a._id}") #{a.nome} &nbsp; CPF: #{a.cpf}
+								.col-xs-12.col-sm-4.col-md-2
+									input.btn-danger.form-control.text-center(type="submit", value="Buscar")
+						if lista
+							.table-responsive
+								table.table.table-hover
+									thead
+										tr
+											th Data
+											th Início
+											th Termino
+											th Instrutor
+											th Disciplina
+											th
+									tbody
+										each i in lista
+											tr
+												td #{moment(i.data).format('DD/MM/YYYY')}
+												td #{i.horaIni}
+												td #{i.horaFim}
+												td #{i._instrutor.nome}
+												td #{i.disciplina}
+												td
+													form(method="post", action="/excluir/aula/teorica/#{i._id}")
+														input.btn.btn-danger(type="submit", value="Excluir")
+						else
+							p Nenhum dado
+			h3
+				a(href="/aulas/teoricas")
+					span.fa.fa-arrow-left   Voltar

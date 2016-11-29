@@ -7,7 +7,8 @@ module.exports = function(){
 		disciplina  : {type: String},
 		data       	: {type: Date},
 		horaIni		: {type: String},
-		horaFim 	: {type: String}
+		horaFim 	: {type: String},
+		alunos 		: [{type: Schema.Types.ObjectId, ref: 'Alunos', unique: true}]
 
 	});
 	return mongoose.model('Teorico', teoricoSchema);

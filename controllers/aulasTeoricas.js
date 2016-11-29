@@ -66,7 +66,7 @@ module.exports = function(app){
 					res.render('aulas/index_teorica', 
 						{lista_instrutor: instrutores, teorico: aula,
 						 aluno: alunos, name: nome,
-						 ini: ini, fim: fimStr});
+						 ini: ini, fim: fimStr, _idAluno: idAluno});
 					
 				}
 			});		
@@ -121,13 +121,22 @@ module.exports = function(app){
 			});		
 		},
 		agendar: function(req, res){
-			Aluno.findOne({_id: idAluno}, function(err, aluno){
+			Aluno.findOne({_id: req.body.idAluno}, function(err, aluno){
 				if(err){
 					req.flash('erro', 'Aluno já agendado para esta aula');
 					res.redirect('/aulas/teoricas');
 				}else{
 					for(i in req.body.ch){
 						aluno.horario.teorico.push(req.body.ch[i]);
+						Teorico.findOne({_id: req.body.ch[i]}, function(err, teorico){
+							if(teorico){
+								teorico.alunos.push(aluno._id);
+								teorico.save(function(err){
+									if(!err) console.log('gravou no teorico');
+								});
+							}
+						});
+
 					}
 					
 					aluno.save(function(err){
@@ -140,6 +149,28 @@ module.exports = function(app){
 				}
 				
 			});
+		},
+		relatorioAlunoRender: function(req, res){
+			Aluno.find(function(err, alunos){
+				if(alunos){
+					res.render('aulas/relatorioTeoricoAluno',{aluno: alunos, lista: ''})
+				}else{
+					req.flash('erro',  'Nenhum aluno encontrado');
+				}
+			});
+			
+		},
+		relatorioAluno: function(req, res){
+			Aluno.findOne({_id: req.body.alunos})
+				.populate('horario.teorico')
+				.exec(function(err, aulas){
+					
+					if(aulas){
+						console.log(aulas.horario.teorico);
+						res.render('aulas/relatorioTeoricoAluno',{lista: aulas.horario.teorico,
+						 aluno: alunos});
+					}
+				});
 		},
 
 		excluir: function(req, res){
