@@ -46,7 +46,7 @@ block content
 					.row
 						.col-xs-12.col-sm-6.col-md-4
 							.form-group
-								input.form-control#datepicker(type="text", name="nasc", placeholder="Data de Nasc (Mês/Dia/Ano)", value="#{aluno.nasc || ''}", tabindex="7", required)
+								input.form-control.calend(type="text", name="nasc", placeholder="Data de Nasc", value="#{aluno.nasc || ''}", tabindex="7", required)
 						.col-xs-12.col-sm-6.col-md-4
 							.form-group
 								input.form-control(type="text", name="pai", placeholder="Nome do Pai", value="#{aluno.pais.pai || ''}", tabindex="8", required)
@@ -62,7 +62,7 @@ block content
 								input.form-control.fone(type="text", name="cel", placeholder="Fone Celular", value="#{aluno.telefones.cel || ''}", tabindex="11", required)
 						.col-xs-12.col-sm-6.col-md-4
 							.form-group
-								input.form-control.fone(type="text", name="opc", placeholder="Fone Opcional", value="#{aluno.telefones.opc || ''}", tabindex="12", required)
+								input.form-control.fone(type="text", name="opc", placeholder="Fone Opcional", value="#{aluno.telefones.opc || ''}", tabindex="12")
 					.row
 						.col-xs-12.col-sm-6.col-md-9
 							.form-group

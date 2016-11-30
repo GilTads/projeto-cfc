@@ -1,0 +1,35 @@
+extends ../layout
+block content
+	section.container.nav-top
+		.panel.panel-default
+			.panel-heading.text-center
+				h3
+					span.fa.fa-graduation-cap  Área do Aluno	
+			.panel-body
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="", method="",role="form")
+					if messages.erro
+						.alert.alert-danger
+							each msg in messages.erro
+								b=msg
+								br
+						br
+					.well
+						h3 Seja Bem Vindo!
+						h4 Acesse e consulte seus agendamentos!
+					.row
+						.col-xs-12.col-sm-6.col-md-4
+							label CPF
+							input.form-control.cpf(type="text", placeholder="CPF")
+						.col-xs-12.col-sm-6.col-md-3
+							label Data Inicial
+							input.form-control.calendario(type="text")
+						.col-xs-12.col-sm-6.col-md-3
+							label Data Final
+							input.form-control.calendario(type="text")
+					.row
+						.col-xs-12.col-sm-12.col-md-12.text-right
+							button.btn.btn-lg.btn-danger(type="submit", value="Buscar") Buscar
+					.row
+						h3
+							a(href="/")
+								span.fa.fa-arrow-left   Voltar

@@ -24,7 +24,6 @@ block content
 									th Nome:
 									th E-mail
 									th Data do cadastro
-									th Visualizar
 									th Editar
 									
 							tbody
@@ -33,9 +32,6 @@ block content
 										td #{valor.nome}
 										td #{valor.email}
 										td #{moment(valor.data_cad).format('DD/MM/YYYY HH:MM:ss')}
-										td
-											a.btn(href="/usuarios/listar/#{valor._id}")
-												span.glyphicon.glyphicon-search
 										td
 											a.btn(href="/usuarios/editar/#{valor._id}")
 												span.glyphicon.glyphicon-pencil

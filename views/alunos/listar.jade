@@ -23,8 +23,8 @@ block content
 						.row
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
-									label Data de Nasc (Mês/Dia/Ano)
-									input.form-control#datepicker(type="text",name="nasc", value="#{moment(aluno.nasc).format('MM/DD/YYYY')}", disabled, required)
+									label Data de Nasc
+									input.form-control.calend(type="text",name="nasc", value="#{moment(aluno.nasc).format('DD/MM/YYYY')}", disabled, required)
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label RENACH
@@ -41,17 +41,16 @@ block content
 							.col-xs-6.col-sm-6.col-md-3
 								.form-group
 									label Sexo &nbsp;
-									label#labSex  Anterior: #{aluno.sexo}
 									input.form-control#sexShow(type="text", value="#{aluno.sexo}", disabled)
-									select.form-control#sexChoose(name="sexo",type="text",value="#{aluno.sexo}" disabled, required)
-										option(selected, disabled)
+									select.form-control#sexChoose(name="sexo",type="text" disabled, required)
+										option(selected, value="#{aluno.sexo}") #{aluno.sexo}
 										option(value="masculino") Masculino
 										option(value="feminino")  Feminino
 							.col-xs-6.col-sm-6.col-md-2
 								.form-group
-									label Categoria #{aluno.categoria}
-									select.form-control(name="categoria", tabindex="6",value="#{aluno.categoria}", required)
-										option(value="", disabled selected) Categoria
+									label Categoria
+									select.form-control(name="categoria", tabindex="6",disabled, required)
+										option(selected, value="#{aluno.categoria}") #{aluno.categoria}
 										option(value="A") A - Moto
 										option(value="B") B - Carro
 										option(value="AB") AB - Moto e Carro

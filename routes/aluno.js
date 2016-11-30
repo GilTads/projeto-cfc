@@ -24,4 +24,7 @@ module.exports = function(app){
 
 	app.route('/ajaxing')
 		.post(aluno.ajaxing);
+
+	app.route('/area/aluno')
+		.get(aluno.areaAluno);
 }

@@ -1,5 +1,6 @@
 module.exports = function(app){
 
+	var moment = require('moment');
 	var Aluno = app.models.aluno;
 	var validacao = require('../validators/alunos');
 	var AlunoController = {
@@ -23,7 +24,7 @@ module.exports = function(app){
 			if(validacao(req,res)){
 				var modelo 			   	= new Aluno();
 				modelo.nome 		   	= req.body.nome;
-				modelo.nasc 		   	= req.body.nasc;
+				modelo.nasc 		   	= moment(req.body.nasc, 'DD-MM-YYYY');
 				modelo.rg 				= req.body.rg;
 				modelo.cpf 				= req.body.cpf;
 				modelo.renach			= req.body.renach;
@@ -82,7 +83,7 @@ module.exports = function(app){
 					modelo.nome 			= req.body.nome;
 					modelo.cpf 				= req. body.cpf;
 					modelo.rg 				= req.body.rg;
-					modelo.nasc 			= req.body.nasc;
+					modelo.nasc 			= moment(req.body.nasc, 'DD-MM-YYYY');
 					modelo.renach 			= req.body.renach;
 					modelo.email 			= req.body.email;
 					modelo.sexo 			= req.body.sexo;
@@ -144,6 +145,9 @@ module.exports = function(app){
 					res.send(data);
 				}
 			});
+		},
+		areaAluno: function(req, res){
+			res.render('alunos/area_aluno');
 		}
 		
 	}

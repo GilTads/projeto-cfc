@@ -59,7 +59,10 @@ a:focus, input:focus, select:focus, .btn:focus {
       display:block !important;
   }
 }
-
+.well {
+   /* background: #80ffaa;*/
+   background: #f0f5f5;
+}
 
 .tab-pane{
   margin-top: 20px;
@@ -88,6 +91,9 @@ a:focus, input:focus, select:focus, .btn:focus {
 .livre{
   background: #04B486;
   color: white;
+}
+.mainLink{
+  color: white !important
 }
 
 a {
@@ -309,27 +315,27 @@ section {
 
 #section7 {
   background-color: transparent; 
-  /*background-color: #f44d3c;*/
+  background-color: #f44d3c;
   color: #f6f6f6;
     min-height:30px;
-/*    padding-top:40px;
-    padding-bottom:40px;*/
+    padding-top:40px;
+    padding-bottom:40px;
 }
 #section8 {
   background-color: transparent; 
-  /*background-color: #f44d3c;*/
+  background-color: #f44d3c;
   color: #f6f6f6;
     min-height:30px;
-/*    padding-top:40px;
-    padding-bottom:40px;*/
+    padding-top:40px;
+    padding-bottom:40px;
 }
 
 footer {
   background-color:#2b2b2b;
   color:#ddd;
-  /*  min-height:50px;
+    min-height:50px;
     padding-top:20px;
-    padding-bottom:20px;*/
+    padding-bottom:20px;
 }
 footer .nav>li>a {
     padding: 3px;
