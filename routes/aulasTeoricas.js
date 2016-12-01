@@ -31,4 +31,7 @@ module.exports = function(app){
 
 	app.route('/relatorio/aluno')
 		.post(aula.relatorioAluno);
+
+	app.route('/excluir/aula/teorica/:id')
+		.post(aula.excluirAulaAluno);
 }

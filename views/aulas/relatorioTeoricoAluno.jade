@@ -22,7 +22,7 @@ block content
 							form(action="/relatorio/aluno", method="POST")
 								.col-xs-12.col-sm-4.col-md-6
 									select.form-control#aluno(name="alunos", placeholder="Aluno")
-										option(disabled, selected) Alunos
+										option(selected, value="#{al || ''}") #{al || ''}  
 											each a in aluno
 												option(value="#{a._id}") #{a.nome} &nbsp; CPF: #{a.cpf}
 								.col-xs-12.col-sm-4.col-md-2

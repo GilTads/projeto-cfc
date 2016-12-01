@@ -77,11 +77,11 @@ module.exports = function(app){
 			var dataStr	= req.body.data;
 			var dia 	= moment(dataStr, 'DD/MM/YYYY');
 
-			teorico.data = dia;
-			teorico._instrutor = req.body.instrutor;
-			teorico.horaIni = req.body.dataIniCron;
-			teorico.horaFim = req.body.dataFimCron;
-			teorico.disciplina = req.body.disciplina;
+			teorico.data 	   	= dia;
+			teorico._instrutor 	= req.body.instrutor;
+			teorico.horaIni 	= req.body.dataIniCron;
+			teorico.horaFim 	= req.body.dataFimCron;
+			teorico.disciplina 	= req.body.disciplina;
 
 
 			teorico.save(function(err){
@@ -153,7 +153,7 @@ module.exports = function(app){
 		relatorioAlunoRender: function(req, res){
 			Aluno.find(function(err, alunos){
 				if(alunos){
-					res.render('aulas/relatorioTeoricoAluno',{aluno: alunos, lista: ''})
+					res.render('aulas/relatorioTeoricoAluno',{aluno: alunos, lista: '', al: ''})
 				}else{
 					req.flash('erro',  'Nenhum aluno encontrado');
 				}
@@ -161,35 +161,93 @@ module.exports = function(app){
 			
 		},
 		relatorioAluno: function(req, res){
-			Aluno.findOne({_id: req.body.alunos})
-				.populate('horario.teorico')
-				.exec(function(err, aulas){
-					
-					if(aulas){
-						console.log(aulas.horario.teorico);
-						res.render('aulas/relatorioTeoricoAluno',{lista: aulas.horario.teorico,
-						 aluno: alunos});
-					}
-				});
+			var id = req.body.alunos;
+			var nome;
+			Aluno.findOne({'_id': id}, function(err, aluno){
+				if(aluno){
+					nome = aluno.nome;
+				}
+			});
+			Teorico.find({'alunos': {$in: [id]}})
+			.populate('_instrutor')
+			.sort('data')
+			.exec(function(err, aulas){
+				if(aulas){
+					idAluno = id;
+					res.render('aulas/relatorioTeoricoAluno',{lista: aulas,
+						aluno: alunos, al: nome});
+				}
+			});
+		},
+
+		excluirAulaAluno: function(req, res){
+			var idTeorico = req.params.id;
+			Teorico.findOne({'_id': idTeorico}, function(err, teorico){
+				console.log('Olha o id teorico aqui: ', teorico._id);
+				if(err){
+					req.flash('erro', 'Erro ao excluir aula teórica do aluno');
+				}else{
+
+					Aluno.findOne({'_id': idAluno}, function(err, aluno){
+						if(err){
+								req.flash('erro', 'Não foi possível excluir');
+						}else{
+							teorico.update({$pull: {'alunos': {$in: [idAluno]}}}, function(err){
+								if(err){
+									req.flash('erro', 'Não foi possível atualizar');
+									res.render('aulas/relatorioTeoricoAluno',
+											{aluno: alunos, lista: '', al: ''})
+								}else{
+
+
+									aluno.update({$pull: {'horario.teorico':{ $in: [idTeorico]}}}
+										,function(err){
+											if(err){
+												req.flash('erro', 'Não foi possível atualizar');
+												res.render('aulas/relatorioTeoricoAluno',
+													{aluno: alunos, lista: '', al: ''})
+											}else{
+												teorico.save();
+												aluno.save();
+												res.render('aulas/relatorioTeoricoAluno',
+													{aluno: alunos, lista: '', al: ''})
+										}
+
+										
+									});
+								}
+							});
+						}
+					});
+				
+				}
+			})
 		},
 
 		excluir: function(req, res){
-			Teorico.findOne({_id: req.params.id},function(err, data){
+			Teorico.findOne({_id: req.params.id ,'alunos': {$exists:true, $ne: []}},function(err, data){
 				if(err){
-					req.flash('erro', 'Pacote contém dados inseridos. Exclusão não permitida!');
+					req.flash('erro', 'Pacote contém alunos inseridos. Exclusão não permitida!',err);
+					res.redirect('/aulas/teoricas');
+				}else if(data){
+					req.flash('erro', 'Pacote contém alunos inseridos. Exclusão não permitida!');
+					
 					res.redirect('/aulas/teoricas');
 				}else{
-					
-					Teorico.remove({_id: req.params.id}, function(err){
+					req.flash('info', 'Exclusão realizada com sucesso!');
+						Teorico.remove({_id: req.params.id}, function(err){
 						if(err){
-							req.flash('erro', 'Erro ao excluir aluno: '+err);
+							req.flash('erro', 'Pacote contém alunos inseridos. Exclusão não permitida!');
 							res.redirect('/aulas/teoricas');
 						}else{
 							req.flash('info', 'Registro excluído com sucesso!');
 							res.redirect('/aulas/teoricas');
 						}
-					})
+					});
 				}
+					
+				
+				
 				
 			});
 		}
