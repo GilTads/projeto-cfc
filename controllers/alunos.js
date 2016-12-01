@@ -2,6 +2,8 @@ module.exports = function(app){
 
 	var moment = require('moment');
 	var Aluno = app.models.aluno;
+	var Teorico = app.models.teorico;
+	var Pratico = app.models.pratico;
 	var validacao = require('../validators/alunos');
 	var AlunoController = {
 
@@ -147,7 +149,38 @@ module.exports = function(app){
 			});
 		},
 		areaAluno: function(req, res){
-			res.render('alunos/area_aluno');
+			res.render('alunos/area_aluno',{teorico: '', aluno: '', pratico: ''});
+		},
+		aulas: function(req, res){
+			var id;
+			Aluno.findOne({'cpf': req.body.cpf}, function(err, aluno){
+				if(!err){
+					id = aluno._id;
+					Teorico.find({'alunos': {$in: [aluno._id]}})
+					.populate('_instrutor')
+					.sort('data')
+					.exec(function(err, aulas_teoricas){
+						if(aulas_teoricas){
+							Pratico.find({'_aluno': aluno._id})
+								.sort('data')
+								.populate('_aluno')
+								.populate('_instrutor')
+								.populate('_veiculo')
+								.exec(function(err, aulas_praticas){
+									if(err){
+										req.flash('err', 'Falha ao gerar relatório');
+									}else{
+										res.render('alunos/area_aluno',
+											{teorico: aulas_teoricas,
+												pratico: aulas_praticas,
+												 aluno: aluno});
+									}
+								});
+							
+						}
+					});
+				}
+			});
 		}
 		
 	}

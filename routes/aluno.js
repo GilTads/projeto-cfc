@@ -26,5 +26,6 @@ module.exports = function(app){
 		.post(aluno.ajaxing);
 
 	app.route('/area/aluno')
-		.get(aluno.areaAluno);
+		.get(aluno.areaAluno)
+		.post(aluno.aulas);
 }

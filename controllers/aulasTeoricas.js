@@ -231,17 +231,35 @@ module.exports = function(app){
 					res.redirect('/aulas/teoricas');
 				}else if(data){
 					req.flash('erro', 'Pacote contém alunos inseridos. Exclusão não permitida!');
-					
-					res.redirect('/aulas/teoricas');
+					Teorico.find({})
+						.populate('_instrutor')
+						.sort('data')
+						.exec(function(err, aula){
+							if(aula){
+								res.render('aulas/cronograma_teorico', 
+									{lista_instrutor: instrutores, teorico: aula, aluno: alunos});
+								
+							}
+						});
+					//res.redirect('/cronograma');
 				}else{
-					req.flash('info', 'Exclusão realizada com sucesso!');
 						Teorico.remove({_id: req.params.id}, function(err){
 						if(err){
 							req.flash('erro', 'Pacote contém alunos inseridos. Exclusão não permitida!');
 							res.redirect('/aulas/teoricas');
 						}else{
 							req.flash('info', 'Registro excluído com sucesso!');
-							res.redirect('/aulas/teoricas');
+							Teorico.find({})
+							.populate('_instrutor')
+							.sort('data')
+							.exec(function(err, aula){
+								if(aula){
+									res.render('aulas/cronograma_teorico', 
+										{lista_instrutor: instrutores, teorico: aula, aluno: alunos});
+									
+								}
+							});
+							//res.redirect('/cronograma');
 						}
 					});
 				}

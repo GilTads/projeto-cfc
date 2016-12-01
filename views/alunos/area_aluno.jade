@@ -6,7 +6,7 @@ block content
 				h3
 					span.fa.fa-graduation-cap  Área do Aluno	
 			.panel-body
-				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="", method="",role="form")
+				form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0(action="/area/aluno", method="POST",role="form")
 					if messages.erro
 						.alert.alert-danger
 							each msg in messages.erro
@@ -14,22 +14,70 @@ block content
 								br
 						br
 					.well
-						h3 Seja Bem Vindo!
+						if aluno
+							h3 Seja bem vindo, <b> #{ aluno.nome}</b>!
+						else
+							h3 Seja bem vindo!
 						h4 Acesse e consulte seus agendamentos!
 					.row
 						.col-xs-12.col-sm-6.col-md-4
-							label CPF
-							input.form-control.cpf(type="text", placeholder="CPF")
-						.col-xs-12.col-sm-6.col-md-3
-							label Data Inicial
-							input.form-control.calendario(type="text")
-						.col-xs-12.col-sm-6.col-md-3
-							label Data Final
-							input.form-control.calendario(type="text")
+							label CPF:
+							input.form-control.cpf(type="text", placeholder="", name="cpf", value="#{aluno.cpf || ''}")
+						.col-xs-6.col-sm-6.col-md-4
+							button.lab.btn.btn-danger(type="submit", value="Buscar") Buscar	
 					.row
-						.col-xs-12.col-sm-12.col-md-12.text-right
-							button.btn.btn-lg.btn-danger(type="submit", value="Buscar") Buscar
+						&nbsp;
+						if teorico.length > 0
+							.panel.panel-success
+								.panel-heading.text-center
+									h4 Aulas Teóricas
+								.panel-body
+									.col-xs-12.col-sm-12.col-md-12
+										.table-responsive
+											table.table.table-hover
+												thead
+													tr
+														th Data
+														th Início
+														th Termino
+														th Instrutor
+														th Disciplina
+												tbody
+													each i in teorico
+														tr
+															td #{moment(i.data).format('DD/MM/YYYY')}
+															td #{i.horaIni}
+															td #{i.horaFim}
+															td #{i._instrutor.nome}
+															td #{i.disciplina}
+					.row
+						if pratico.length > 0
+							.panel.panel-success
+								.panel-heading.text-center
+									h4 Aulas Práticas
+								.panel-body
+									.col-xs-12.col-sm-12.col-md-12
+										.table-responsive
+											table.table.table-hover
+												thead
+													tr
+														th Data/Hora
+														th Renach
+														th Celular
+														th Instrutor
+														th Veículo
+														th Categoria
+												tbody
+													each i in pratico
+														tr
+															td #{moment(i.data).format('DD/MM/YYYY HH:mm')}
+															td #{i._aluno.renach}
+															td #{i._aluno.telefones.cel}
+															td #{i._instrutor.nome}
+															td #{i._veiculo.nome + '--' + i._veiculo.placa}
+															td #{i._veiculo.categoria}
 					.row
 						h3
 							a(href="/")
 								span.fa.fa-arrow-left   Voltar
+									
