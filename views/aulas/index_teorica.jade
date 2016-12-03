@@ -13,10 +13,6 @@ block content
 						a(href="/cronograma") Pacotes
 					li
 						a(href="/teorico/aluno") Aulas do Aluno
-					li(role="presentation")
-						a(href="#menuT3", data-toggle="tab") Aulas do Instrutor
-					li(role="presentation")
-						a(href="#menuT4" data-toggle="tab") Aulas do Veículo
 				.tab-content
 					.tab-pane.active.fade.in#mainTeorico
 
@@ -70,7 +66,7 @@ block content
 																	td #{t.horaFim}
 																	td #{t._instrutor.nome}
 																	td #{t.disciplina}
-													.col-xs-2.col-sm-2.col-md-2
+													.col-xs-12.col-sm-2.col-md-2
 														input.btn-success.form-control.text-center#agendarT(type="submit", value="Agendar")
 														input#idAluno(type="hidden", value="#{_idAluno}")
 
