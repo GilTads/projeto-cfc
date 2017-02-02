@@ -135,6 +135,7 @@ module.exports = function(app){
 		verificaAulaAluno: function(req, res){
 			Aluno.findOne({cpf: req.body.cpf}, function(err, aluno){
 				if(aluno){
+					//console.log(aluno);
 					res.send(aluno);
 				}else{
 					return;

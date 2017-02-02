@@ -27,6 +27,9 @@ $(document).ready(function(){
       if(dia < 10){
       	dia = '0'+dia;
       }
+      if(mes < 10){
+        mes = '0' + mes;
+      }
 
       var dataAula = dia +'/' +mes+'/'+ ano;
       var horaAula = hora+':'+min;
@@ -93,6 +96,7 @@ $(document).ready(function(){
 
           for(var i =0; i < aula.horario.pratico.length; i++){
               var dadosAula = new Date(aula.horario.pratico[i]);
+              console.log(dadosAula);
               verificaHorario(dadosAula, 'agendadoAluno');
           }
 
